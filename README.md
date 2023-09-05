@@ -2,13 +2,13 @@
 This fork was created for anyone needing to use angular 15+ in there project until 
 [zahmo/zajsf](https://github.com/zahmo/zajsf) is updated for angular 15+.
 
-**N.B:** For Angular6-json-schema-form please check [this documentation](https://github.com/zahmo/ajsf/tree/angular6-json-schema-form).
+**N.B:** For Angular6-json-schema-form please check [this documentation](https://github.com/zahmo/zajsf/tree/angular6-json-schema-form).
 
 <p align="center">
-  <a href="https://github.com/zahmo/ajsf/actions?query=workflow%3ACI+branch%3Amain"><img src="https://github.com/zahmo/ajsf/workflows/CI/badge.svg" alt="CI Status"></a>
+  <a href="https://github.com/zahmo/zajsf/actions?query=workflow%3ACI+branch%3Amain"><img src="https://github.com/zahmo/zajsf/workflows/CI/badge.svg" alt="CI Status"></a>
   <a href="https://www.npmjs.com/package/@zajsf/core"><img src="https://img.shields.io/npm/dm/@zajsf/core.svg?style=plastic" alt="npm number of downloads"></a>
-  <a href="https://github.com/zahmo/ajsf/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zahmo/ajsf.svg?style=social" alt="LICENSE IMT"></a>
-  <a href="https://app.netlify.com/sites/ajsf/deploys"><img src="https://api.netlify.com/api/v1/badges/6c5b5a1d-db7c-4d0e-8ac1-a4840d8812f0/deploy-status" alt="Netlify Status"></a>
+  <a href="https://github.com/zahmo/zajsf/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zahmo/zajsf.svg?style=social" alt="LICENSE IMT"></a>
+  <a href="https://app.netlify.com/sites/zajsf/deploys"><img src="https://api.netlify.com/api/v1/badges/6c5b5a1d-db7c-4d0e-8ac1-a4840d8812f0/deploy-status" alt="Netlify Status"></a>
 </p>
 
 Note: This project is a continuation to [dschnelldavis/Angular2-json-schema-form](https://github.com/dschnelldavis/angular2-json-schema-form) and is not affiliated with any organization.
@@ -21,14 +21,14 @@ A [JSON Schema](http://json-schema.org) Form builder for Angular, similar to, an
 
 ## Packages
 
-* [`@zajsf/core`](./README.md) [![npm version](https://badge.fury.io/js/%40ajsf%2Fcore.svg)](https://badge.fury.io/js/%40ajsf%2Fcore)
-* [`@zajsf/bootstrap3`](./projects/ajsf-bootstrap3/README.md) [![npm version](https://badge.fury.io/js/%40ajsf%2Fbootstrap3.svg)](https://badge.fury.io/js/%40ajsf%2Fbootstrap3)
-* [`@zajsf/bootstrap4`](./projects/ajsf-bootstrap4/README.md) [![npm version](https://badge.fury.io/js/%40ajsf%2Fbootstrap4.svg)](https://badge.fury.io/js/%40ajsf%2Fbootstrap4)
-* [`@zajsf/material`](./projects/ajsf-material/README.md) [![npm version](https://badge.fury.io/js/%40ajsf%2Fmaterial.svg)](https://badge.fury.io/js/%40ajsf%2Fmaterial)
+* [`@zajsf/core`](./README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fcore.svg)](https://badge.fury.io/js/%40zajsf%2Fcore)
+* [`@zajsf/bootstrap3`](./projects/zajsf-bootstrap3/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap3.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap3)
+* [`@zajsf/bootstrap4`](./projects/zajsf-bootstrap4/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap4.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap4)
+* [`@zajsf/material`](./projects/zajsf-material/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fmaterial.svg)](https://badge.fury.io/js/%40zajsf%2Fmaterial)
 
 ## Check out the live demo and play with the examples
 
-[Check out some examples here.](https://zahmo.github.io/ajsf/)
+[Check out some examples here.](https://zahmo.github.io/zajsf/)
 
 This example playground features over 70 different JSON Schemas for you to try (including all examples used by each of the three libraries listed above), and the ability to quickly view any example formatted with Material Design, Bootstrap 3, Bootstrap 4, or without any formatting.
 
@@ -80,10 +80,10 @@ It is also possible to load multiple frameworks and switch between them at runti
 
 ### To install from GitHub
 
-To install [the library and the example playground from GitHub](https://github.com/zahmo/ajsf), clone `https://github.com/zahmo/ajsf.git` with your favorite git program. Or, assuming you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node/YARN](https://nodejs.org/en/download/) installed, enter the following in your terminal:
+To install [the library and the example playground from GitHub](https://github.com/zahmo/zajsf), clone `https://github.com/zahmo/zajsf.git` with your favorite git program. Or, assuming you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node/YARN](https://nodejs.org/en/download/) installed, enter the following in your terminal:
 
 ```shell
-git clone https://github.com/zahmo/ajsf.git ajsf
+git clone https://github.com/zahmo/zajsf.git ajsf
 cd ajsf
 yarn install
 yarn start
@@ -93,13 +93,13 @@ This should start a server with the example playground, which you can view in yo
 
 The source code is composed as the following:
 
-* `projects/ajsf-core` - Angular JSON Schema Form main library
-* `projects/ajsf-bootstrap3` - Framework for Bootstrap 3
-* `projects/ajsf-bootstrap4` - Framework for Bootstrap 4
-* `projects/ajsf-material` - Framework for Angular Material
-* `projects/ajsf-core/src/lib/framework-library` - framework library
-* `projects/ajsf-core/src/lib/widget-library` - widget library
-* `projects/ajsf-core/src/lib/shared` - various utilities and helper functions
+* `projects/zajsf-core` - Angular JSON Schema Form main library
+* `projects/zajsf-bootstrap3` - Framework for Bootstrap 3
+* `projects/zajsf-bootstrap4` - Framework for Bootstrap 4
+* `projects/zajsf-material` - Framework for Angular Material
+* `projects/zajsf-core/src/lib/framework-library` - framework library
+* `projects/zajsf-core/src/lib/widget-library` - widget library
+* `projects/zajsf-core/src/lib/shared` - various utilities and helper functions
 * `demo` - the demonstration playground example application
 * `demo/assets/example-schemas` - JSON Schema examples used in the playground
 
