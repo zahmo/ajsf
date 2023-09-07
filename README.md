@@ -1,6 +1,6 @@
 # AJSF (Angular JSON Schema Form)
 This fork was created for anyone needing to use angular 15+ in there project until 
-[zahmo/zajsf](https://github.com/zahmo/zajsf) is updated for angular 15+.
+[zahmo/zajsf](https://github.com/hamzahamidi/ajsf) is updated for angular 15+.
 
 **N.B:** For Angular6-json-schema-form please check [this documentation](https://github.com/zahmo/zajsf/tree/angular6-json-schema-form).
 
