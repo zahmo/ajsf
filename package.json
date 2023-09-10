@@ -55,6 +55,7 @@
         "build:libs": "npm run build:core && npm run build:bs4 && npm run build:bs3 && npm run build:material",
         "build:demo": "npm run build:libs && ng build demo --configuration production --base-href ./",
         "build:demo-only": "ng build demo --configuration production --base-href ./",
+        "prebuild:material": "npx tailwindcss -c projects/zajsf-material/tailwind.config.js -i projects/zajsf-material/tailwind-input.css -o projects/zajsf-material/src/lib/tailwind-output.css",
         "prestats": "ng build demo --configuration production --stats-json",
         "stats": "webpack-bundle-analyzer dist/demo/stats.json",
         "test:core": "ng test @zajsf/core",
