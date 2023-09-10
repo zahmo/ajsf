@@ -1,30 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
-import cloneDeep from 'lodash/cloneDeep';
-import Ajv from 'ajv';
+import Ajv, { ErrorObject, Options } from 'ajv';
 import jsonDraft6 from 'ajv/lib/refs/json-schema-draft-06.json';
-import {
-  buildFormGroup,
-  buildFormGroupTemplate,
-  formatFormData,
-  getControl,
-  fixTitle,
-  forEach,
-  hasOwn,
-  toTitleCase,
-  buildLayout,
-  getLayoutNode,
-  buildSchemaFromData,
-  buildSchemaFromLayout,
-  removeRecursiveReferences,
-  hasValue,
-  isArray,
-  isDefined,
-  isEmpty,
-  isObject,
-  JsonPointer
-} from './shared';
+import cloneDeep from 'lodash/cloneDeep';
+import { Subject } from 'rxjs';
 import {
   deValidationMessages,
   enValidationMessages,
@@ -34,6 +13,27 @@ import {
   ptValidationMessages,
   zhValidationMessages
 } from './locale';
+import {
+  JsonPointer,
+  buildFormGroup,
+  buildFormGroupTemplate,
+  buildLayout,
+  buildSchemaFromData,
+  buildSchemaFromLayout,
+  fixTitle,
+  forEach,
+  formatFormData,
+  getControl,
+  getLayoutNode,
+  hasOwn,
+  hasValue,
+  isArray,
+  isDefined,
+  isEmpty,
+  isObject,
+  removeRecursiveReferences,
+  toTitleCase
+} from './shared';
 
 
 export interface TitleMapItem {
@@ -57,12 +57,14 @@ export class JsonSchemaFormService {
   AngularSchemaFormCompatibility = false;
   tpldata: any = {};
 
-  ajvOptions: any = {
+  ajvOptions: Options = {
     allErrors: true,
-    jsonPointers: true,
-    unknownFormats: 'ignore'
+    validateFormats:false,
+    strict:false
+  
   };
-  ajv: any = new Ajv(this.ajvOptions); // AJV: Another JSON Schema Validator
+  ajv:Ajv = new Ajv(this.ajvOptions); // AJV: Another JSON Schema Validator
+  
   validateFormData: any = null; // Compiled AJV function to validate active form's schema
 
   formValues: any = {}; // Internal form data (may not have correct types)
@@ -76,7 +78,7 @@ export class JsonSchemaFormService {
 
   validData: any = null; // Valid form data (or null) (=== isValid ? data : null)
   isValid: boolean = null; // Is current form data valid?
-  ajvErrors: any = null; // Ajv errors for current data
+  ajvErrors: ErrorObject[] = null; // Ajv errors for current data
   validationErrors: any = null; // Any validation errors for current data
   dataErrors: any = new Map(); //
   formValueSubscription: any = null; // Subscription to formGroup.valueChanges observable (for un- and re-subscribing)
@@ -248,13 +250,16 @@ export class JsonSchemaFormService {
     );
     this.isValid = this.validateFormData(this.data);
     this.validData = this.isValid ? this.data : null;
-    const compileErrors = errors => {
+    const compileErrors = (errors:ErrorObject[]) => {
       const compiledErrors = {};
       (errors || []).forEach(error => {
-        if (!compiledErrors[error.dataPath]) {
-          compiledErrors[error.dataPath] = [];
+        //TODO review-seems to be a change in newer versions
+        //of ajv giving '' as instancePath for root objects
+        let errorPath=error.instancePath||"ROOT";
+        if (!compiledErrors[errorPath]) {
+          compiledErrors[errorPath] = [];
         }
-        compiledErrors[error.dataPath].push(error.message);
+        compiledErrors[errorPath].push(error.message);
       });
       return compiledErrors;
     };
