@@ -1,6 +1,6 @@
 {
     "name": "@zajsf/material",
-    "version": "0.16.0",
+    "version": "0.16.0-alpha.0",
     "description": "Angular JSON Schema Form builder using Angular Material UI",
     "author": "https://github.com/zahmo/zajsf/graphs/contributors",
     "keywords": [
