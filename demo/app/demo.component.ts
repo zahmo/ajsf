@@ -145,7 +145,7 @@ export class DemoComponent implements OnInit {
     const errorArray = [];
     for (const error of this.formValidationErrors) {
       const message = error.message;
-      const dataPathArray = JsonPointer.parse(error.dataPath);
+      const dataPathArray = JsonPointer.parse(error.instacePath||"");
       if (dataPathArray.length) {
         let field = dataPathArray[0];
         for (let i = 1; i < dataPathArray.length; i++) {
