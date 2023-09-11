@@ -5,6 +5,7 @@ This fork was created for anyone needing to use angular 15+ in there project unt
 **N.B:** For Angular6-json-schema-form please check [this documentation](https://github.com/zahmo/zajsf/tree/angular6-json-schema-form).
 
 <p align="center">
+  <a href="https://angular.io/"><img src="https://img.shields.io/badge/angular-15,_16-red.svg?logo=Angular&logoColor=red&labelColor=white&style=plastic" alt="Angular Versions"></a>
   <a href="https://github.com/zahmo/zajsf/actions?query=workflow%3ACI+branch%3Amain"><img src="https://github.com/zahmo/zajsf/workflows/CI/badge.svg" alt="CI Status"></a>
   <a href="https://www.npmjs.com/package/@zajsf/core"><img src="https://img.shields.io/npm/dm/@zajsf/core.svg?style=plastic" alt="npm number of downloads"></a>
   <a href="https://github.com/zahmo/zajsf/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zahmo/zajsf.svg?style=social" alt="LICENSE IMT"></a>
@@ -20,11 +21,10 @@ A [JSON Schema](http://json-schema.org) Form builder for Angular, similar to, an
 * [Joshfire](http://www.joshfire.com)'s [JSON Form](http://github.com/joshfire/jsonform/wiki) for [jQuery](https://jquery.com) ([examples](http://ulion.github.io/jsonform/playground/))
 
 ## Packages
-
-* [`@zajsf/core`](./README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fcore.svg)](https://badge.fury.io/js/%40zajsf%2Fcore)
-* [`@zajsf/bootstrap3`](./projects/zajsf-bootstrap3/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap3.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap3)
-* [`@zajsf/bootstrap4`](./projects/zajsf-bootstrap4/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap4.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap4)
-* [`@zajsf/material`](./projects/zajsf-material/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fmaterial.svg)](https://badge.fury.io/js/%40zajsf%2Fmaterial)
+* [`@zajsf/core`](./README.md) [![npm version](https://img.shields.io/npm/v/%40zajsf%2Fcore.svg?color=#010101)](https://img.shields.io/npm/v/%40zajsf%2Fcore.svg?color=#010101)[![npm alpha version](https://img.shields.io/npm/v/%40zajsf%2Fcore/alpha.svg?color=blue)](https://img.shields.io/npm/v/%40zajsf%2Fcore/alpha.svg?color=blue)
+* [`@zajsf/bootstrap3`](./README.md) [![npm version](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3.svg?color=#010101)](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3.svg?color=#010101)[![npm alpha version](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3/alpha.svg?color=blue)](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3/alpha.svg?color=blue)
+* [`@zajsf/bootstrap4`](./README.md) [![npm version](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4.svg?color=#010101)](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4.svg?color=#010101)[![npm alpha version](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4/alpha.svg?color=blue)](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4/alpha.svg?color=blue)
+* [`@zajsf/material`](./README.md) [![npm version](https://img.shields.io/npm/v/%40zajsf%2Fmaterial.svg?color=#010101)](https://img.shields.io/npm/v/%40zajsf%2Fmaterial.svg?color=#010101)[![npm alpha version](https://img.shields.io/npm/v/%40zajsf%2Fmaterial/alpha.svg?color=blue)](https://img.shields.io/npm/v/%40zajsf%2Fmaterial/alpha.svg?color=blue)
 
 ## Check out the live demo and play with the examples
 
