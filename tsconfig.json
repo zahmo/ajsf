@@ -51,6 +51,12 @@
       ],
       "@zajsf/material/*": [
         "dist/@zajsf/material/*"
+      ],
+      "@zajsf/daisyui": [
+        "dist/@zajsf/daisyui"
+      ],
+      "@zajsf/daisyui/*": [
+        "dist/@zajsf/daisyui/*"
       ]
     },
     "useDefineForClassFields": false

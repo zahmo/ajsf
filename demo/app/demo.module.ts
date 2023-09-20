@@ -14,11 +14,15 @@ import { RouterModule } from '@angular/router';
 import { Bootstrap3FrameworkModule } from '@zajsf/bootstrap3';
 import { Bootstrap4FrameworkModule } from '@zajsf/bootstrap4';
 import { JsonSchemaFormModule } from '@zajsf/core';
+
+
+import { DaisyUIFrameworkModule } from '@zajsf/daisyui';
 import { MaterialDesignFrameworkModule } from '@zajsf/material';
 import { AceEditorDirective } from './ace-editor.directive';
 import { DemoRootComponent } from './demo-root.component';
 import { DemoComponent } from './demo.component';
 import { routes } from './demo.routes';
+
 
 @NgModule({
   declarations: [AceEditorDirective, DemoComponent, DemoRootComponent],
@@ -30,6 +34,7 @@ import { routes } from './demo.routes';
     Bootstrap4FrameworkModule,
     Bootstrap3FrameworkModule,
     MaterialDesignFrameworkModule,
+    DaisyUIFrameworkModule,
     JsonSchemaFormModule
   ],
   bootstrap: [DemoRootComponent]
