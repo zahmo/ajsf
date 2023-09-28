@@ -57,6 +57,12 @@
       ],
       "@zajsf/daisyui/*": [
         "dist/@zajsf/daisyui/*"
+      ],
+      "@zajsf/cssframework": [
+        "dist/@zajsf/cssframework"
+      ],
+      "@zajsf/cssframework/*": [
+        "dist/@zajsf/cssframework/*"
       ]
     },
     "useDefineForClassFields": false
