@@ -38,6 +38,8 @@ export class SelectFrameworkComponent implements OnChanges, OnInit {
       this.newComponent = this.widgetContainer.createComponent(
         this.componentFactory.resolveComponentFactory(this.jsf.framework)
       );
+      //TODO fix all deprecated calls and test 
+      //this.widgetContainer.createComponent<any>(this.jsf.framework)
     }
     if (this.newComponent) {
       for (const input of ['layoutNode', 'layoutIndex', 'dataIndex']) {
