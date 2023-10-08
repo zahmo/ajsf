@@ -1,7 +1,8 @@
-import { Framework } from './framework';
-import { hasOwn } from '../shared/utility.functions';
 import { Inject, Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { hasOwn } from '../shared/utility.functions';
 import { WidgetLibraryService } from '../widget-library/widget-library.service';
+import { Framework } from './framework';
 
 // Possible future frameworks:
 // - Foundation 6:
@@ -22,6 +23,10 @@ export class FrameworkLibraryService {
   defaultFramework: string;
   frameworkLibrary: { [name: string]: Framework } = {};
 
+  activeFrameworkName$: Observable<string>;
+  private activeFrameworkNameSubject: Subject<string>;
+  private activeFrameworkName:string;
+
   constructor(
     @Inject(Framework) private frameworks: any[],
     @Inject(WidgetLibraryService) private widgetLibrary: WidgetLibraryService
@@ -30,6 +35,11 @@ export class FrameworkLibraryService {
       this.frameworkLibrary[framework.name] = framework
     );
     this.defaultFramework = this.frameworks[0].name;
+    //this.setFramework(this.defaultFramework);
+    
+    this.activeFrameworkName=this.defaultFramework;
+    this.activeFrameworkNameSubject = new Subject<string>();
+    this.activeFrameworkName$ = this.activeFrameworkNameSubject.asObservable();
     this.setFramework(this.defaultFramework);
   }
 
@@ -47,6 +57,10 @@ export class FrameworkLibraryService {
       typeof framework === 'object' && hasOwn(framework, 'framework') ?
         framework :
         this.frameworkLibrary[this.defaultFramework];
+    if(this.activeFramework.name !=this.activeFrameworkName){
+      this.activeFrameworkName=this.activeFramework.name;
+      this.activeFrameworkNameSubject.next(this.activeFrameworkName);
+    }
     return this.registerFrameworkWidgets(this.activeFramework);
   }
 
