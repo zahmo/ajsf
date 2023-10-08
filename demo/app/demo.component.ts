@@ -1,10 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { JsonPointer } from '@zajsf/core';
+import { Framework, FrameworkLibraryService, JsonPointer } from '@zajsf/core';
 import { Examples } from './example-schemas.model';
 
 @Component({
@@ -24,7 +24,7 @@ import { Examples } from './example-schemas.model';
     ]),
   ],
 })
-export class DemoComponent implements OnInit {
+export class DemoComponent implements OnInit,AfterViewInit {
   examples: any = Examples;
   languageList: any = ['de', 'en', 'es', 'fr', 'it', 'pt', 'zh'];
   languages: any = {
@@ -36,15 +36,13 @@ export class DemoComponent implements OnInit {
     'pt': 'Portuguese',
     'zh': 'Chinese'
   };
-  frameworkList: any = ['material-design', 'bootstrap-3', 'bootstrap-4','daisyui', 'cssfw-bootstrap4','cssfw-daisyui','cssfw-bootstrap5','no-framework',];
+  frameworkList: any = ['material-design', 'bootstrap-3', 'bootstrap-4','bootstrap-5','daisyui','no-framework',];
   frameworks: any = {
     'material-design': 'Material Design',
     'bootstrap-3': 'Bootstrap 3',
     'bootstrap-4': 'Bootstrap 4',
+    'bootstrap-5': 'Bootstrap 5',
     'daisyui': 'DaisyUI',
-    'cssfw-bootstrap4':'Css Framework Bootstrap4',
-    'cssfw-daisyui':'Css Framework DaisyUI',
-    'cssfw-bootstrap5':'Css Framework Bootstrap5',
     'no-framework': 'None (plain HTML)'
     
   };
@@ -84,13 +82,23 @@ export class DemoComponent implements OnInit {
     printMargin: false,
     autoScrollEditorIntoView: true,
   };
+  selectedTheme:string;
+  themeList:any=[];
+
   @ViewChild(MatMenuTrigger, { static: true }) menuTrigger: MatMenuTrigger;
 
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    private jsfFLService:FrameworkLibraryService,
+  ) { 
+
+
+  }
+  ngAfterViewInit(): void {
+
+  }
 
   ngOnInit() {
     // Subscribe to query string to detect schema to load
@@ -119,6 +127,29 @@ export class DemoComponent implements OnInit {
         this.loadSelectedExample();
       }
     );
+    
+    //TODO review-throwing ExpressionChangedAfterItHasBeenCheckedError 
+    //for now wrapped in setTimeout
+    this.jsfFLService.activeFrameworkName$.subscribe((afName=>{
+      let activeFramework:Framework& { [key: string]: any; }=this.jsfFLService.activeFramework;
+      if(activeFramework.getConfig){
+        let cssfwConfig=activeFramework.getConfig();
+        setTimeout(()=>{
+          let tlist=cssfwConfig?.widgetstyles?.__themes__||[]
+          //append the demo app theme to the list
+          if(activeFramework.name=="material-design"){
+            tlist=[].concat({name:"demo-theme",text:"Demo Theme"},tlist);
+          }
+          this.themeList=tlist;
+          //this.requestThemeChange("demo-theme");
+          this.requestThemeChange(tlist[0]||"no-theme");
+        },0)
+        
+       
+      }
+    }))
+    //
+
   }
 
   onSubmit(data: any) {
@@ -202,6 +233,8 @@ export class DemoComponent implements OnInit {
     window.location.href = `${window.location.pathname}?set=${this.selectedSet}&example=${this.selectedExample}&framework=${this.selectedFramework}&language=${this.selectedLanguage}`;
   }
 
+
+
   // Display the form entered by the user
   // (runs whenever the user changes the jsonform object in the ACE input field)
   generateForm(newFormString: string) {
@@ -257,4 +290,17 @@ export class DemoComponent implements OnInit {
     }
     this.generateForm(this.jsonFormSchema);
   }
+
+  requestThemeChange(name:string){
+    let activeFramework:Framework& { [key: string]: any; }=this.jsfFLService.activeFramework;
+    if(activeFramework.requestThemeChange){
+      activeFramework.requestThemeChange(name);
+      //this.selectedTheme=name;
+    }
+  }
+
+  frameworkSelected(selectedFW){
+    //let selectedFramework:Framework& { [key: string]: any; }=this.jsfFLService.activeFramework;
+  }
+
 }

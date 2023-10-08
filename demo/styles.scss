@@ -98,4 +98,30 @@ body {
     width: 100%;
 }
 
+
+/*
+// Define a dark theme
+$dark-theme: mat.define-dark-theme(( color: ( primary: mat.define-palette(mat.$pink-palette), accent: mat.define-palette(mat.$blue-grey-palette), ), // Only include `typography` and `density` in the default dark theme.
+typography: mat.define-typography-config(), density: 0, ));
+// Apply the dark theme by default
+.dark-theme {
+    @include mat.core-theme($dark-theme);
+    @include mat.button-theme($dark-theme);
+}
+
+// Define a light theme
+$light-theme: mat.define-light-theme(( color: ( primary: mat.define-palette(mat.$indigo-palette), accent: mat.define-palette(mat.$pink-palette), ), ));
+.light-theme {
+    @include mat.core-theme($light-theme);
+    @include mat.button-theme($light-theme);
+}
+*/
+
+.demo-theme {
+    @include mat.core-theme($demo-app-theme);
+    //@include mat.all-component-themes($demo-app-theme);
+    @include mat.button-color($demo-app-theme);
+}
+
+@import '../projects/zajsf-material/src/lib/material-design-themes.scss';
 @import '../projects/zajsf-material/src/lib/flexlayout-replacement-styles.scss';

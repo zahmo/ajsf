@@ -62,7 +62,7 @@
         </h4>
         <div *ngIf="visible.options" fxLayout="column" [@expandSection]="true">
             <mat-form-field>
-                <mat-select [(ngModel)]="selectedFramework" name="framework" placeholder="Framework">
+                <mat-select [(ngModel)]="selectedFramework" name="framework" placeholder="Framework" (selectionChange)="frameworkSelected($event)">
                     <mat-option *ngFor="let framework of frameworkList" [value]="framework">
                         {{frameworks[framework]}}
                     </mat-option>
@@ -72,6 +72,13 @@
                 <mat-select [(ngModel)]="selectedLanguage" (selectionChange)="loadSelectedLanguage()" name="language" placeholder="Language">
                     <mat-option *ngFor="let language of languageList" [value]="language">
                         {{languages[language]}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select (selectionChange)="requestThemeChange($event.value)" name="theme" placeholder="Theme">
+                    <mat-option *ngFor="let theme of themeList" [value]="theme.name">
+                        {{theme.text}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -109,6 +116,9 @@
         </div>
     </mat-card>
 
+    <!--<div class="demo-theme">
+        <div class="mat-app-background">
+   -->
     <mat-card appearance="outlined" fxFlex="0 0 calc(50% - 12px)">
         <h4 class="default-cursor" (click)="toggleVisible('form')">
             {{visible.form ? '▼' : '▶'}} Generated Form
@@ -130,8 +140,8 @@
             <div>
                 Valid?:
                 <strong *ngIf="formIsValid || prettyValidationErrors" [class.text-success]="formIsValid" [class.text-danger]="!formIsValid">
-          {{formIsValid ? 'Yes' : 'No'}}
-        </strong>
+                  {{formIsValid ? 'Yes' : 'No'}}
+                </strong>
                 <span *ngIf="!formIsValid && !prettyValidationErrors">n/a</span>
                 <span *ngIf="prettyValidationErrors">— errors from validationErrors():</span>
                 <div *ngIf="prettyValidationErrors" class="data-bad" [innerHTML]="prettyValidationErrors"></div>
@@ -146,5 +156,10 @@
             </div>
         </div>
     </mat-card>
+    <!--    
+        </div>
+    </div>
+-->
+
 
 </div>
