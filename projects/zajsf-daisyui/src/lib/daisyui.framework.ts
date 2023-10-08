@@ -1,30 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Framework } from '@zajsf/core';
+import { CssFramework, CssframeworkService } from '@zajsf/cssframework';
+import { cssFrameworkCfgDaisyUI } from './daisui-cssframework';
 import { DaisyUIFrameworkComponent } from './daisyui-framework.component';
 import { DaisyUITabsComponent } from './widgets/daisyui-tabs.component';
 
 
 @Injectable()
-export class DaisyUIFramework extends Framework {
-  name = 'daisyui';
+export class DaisyUIFramework extends CssFramework {
 
-  framework = DaisyUIFrameworkComponent;
+framework=DaisyUIFrameworkComponent;
+  constructor(public cssFWService:CssframeworkService){
+    super(cssFrameworkCfgDaisyUI,cssFWService);
+    this.widgets= {
 
-  /*
-  stylesheets = [
-    //TODO-enable for dev only
-    cdn.tailwindcss.com/3.3.3'
-  ];
+      'tabs': DaisyUITabsComponent,
+    
+    };
+  }
 
-
-  scripts = [
-
-  ];
-  */
-
-  widgets = {
-
-    'tabs': DaisyUITabsComponent,
-  
-  };
 }
