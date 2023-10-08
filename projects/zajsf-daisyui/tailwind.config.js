@@ -12,10 +12,10 @@ module.exports = {
     daisyui: {
         themes: ["light", "dark", "cupcake", "cmyk", "pastel",
             {
-                zajsf_default: {
+                daisyui_default: {
                     ...require("daisyui/src/theming/themes")["[data-theme=light]"]
                 },
-                zajsf_drops: {
+                daisyui_leaf: {
                     ...require("daisyui/src/theming/themes")["[data-theme=light]"]
                 }
             }
