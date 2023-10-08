@@ -83,7 +83,7 @@ export class CssFrameworkComponent implements OnInit, OnChanges {
 }
 
 defaultStyling={
-  __themes__:['notheme'],
+  __themes__:[{name:'notheme',text:'None'}],
   __remove_item__:"cssfw-remove-item",
   //__array_item_nonref__:"cssfw-array-item-nonref",
   __field_addon_left__:"cssfw-addon-left",
@@ -111,7 +111,9 @@ theme:string
     let activeFramework:any=this.jsfFLService.activeFramework;
     let fwcfg=activeFramework.config||{};
     this.widgetStyles = Object.assign(this.defaultStyling,fwcfg.widgetstyles);
-    this.theme=this.options?.theme|| this.widgetStyles.__themes__[0];
+    let defaultTheme=this.widgetStyles.__themes__[0];
+    let defaultThemeName=defaultTheme.name;
+    this.theme=this.options?.theme|| defaultThemeName;
     cssFWService.frameworkTheme$.subscribe(newTheme=>{
         this.theme=newTheme;
         changeDetector.detectChanges();

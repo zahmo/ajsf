@@ -4,6 +4,12 @@ export const CSS_FRAMEWORK_CFG = new InjectionToken<css_fw.frameworkcfg>('CSS_FR
 
 export namespace css_fw{
 
+    export type themeKV=
+    { 
+        name:string,
+        text:string
+     }
+
     export class csscategories{
         fieldHtmlClass?:string|string[]
         labelHtmlClass?:string|string[]
@@ -16,7 +22,7 @@ export namespace css_fw{
         '$ref'?:csscategories,
         'alt-date'?:csscategories,
         'alt-datetime'?:csscategories,
-        __themes__?:string[],
+        __themes__?:themeKV[],
         __array_item_nonref__:csscategories,
         __form_group__:csscategories,
         __control_label__:csscategories,
@@ -62,7 +68,8 @@ export namespace css_fw{
         name:string,
         stylesheets:string[],
         scripts?:string[],
-        widgetstyles:widgetstyles
+        widgetstyles:widgetstyles,
+        widgets?:any;
     }
 
     

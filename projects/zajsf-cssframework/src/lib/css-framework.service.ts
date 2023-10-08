@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class CssframeworkService {
+
   frameworkTheme$: Observable<string>;
 
   private frameworkThemeSubject: Subject<string>;
@@ -13,7 +14,11 @@ export class CssframeworkService {
     this.frameworkTheme$ = this.frameworkThemeSubject.asObservable();
    }
 
-   setTheme(name:string){
-      this.frameworkThemeSubject.next(name);
+   //TODO-review: this acts as a public api to change the theme
+   //but doesn't do the actual change, instead it relies on 
+   //the CssFramewkCoromponent having subscribed to listen 
+   //and perform the actual theme change
+   requestThemeChange(themeName:string){
+      this.frameworkThemeSubject.next(themeName);
    }
 }

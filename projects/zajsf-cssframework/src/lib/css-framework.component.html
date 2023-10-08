@@ -1,4 +1,4 @@
-<div [attr.data-theme]="theme" [class]="options?.htmlClass || ''" [class.has-feedback]="options?.feedback && options?.isInputWidget &&
+<div [attr.data-bs-theme]="theme" [attr.data-theme]="theme" [class]="options?.htmlClass || ''" [class.has-feedback]="options?.feedback && options?.isInputWidget &&
         (formControl?.dirty || options?.feedbackOnRender)" [class.has-error]="options?.enableErrorState && formControl?.errors &&
         (formControl?.dirty || options?.feedbackOnRender)" [class.has-success]="options?.enableSuccessState && !formControl?.errors &&
         (formControl?.dirty || options?.feedbackOnRender)">

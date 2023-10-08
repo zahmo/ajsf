@@ -4,6 +4,7 @@
     "lib": {
         "entryFile": "src/public-api.ts"
     },
+    "assets": ["./assets"],
     "allowedNonPeerDependencies": [
         "lodash-es",
         "@zajsf/core"
