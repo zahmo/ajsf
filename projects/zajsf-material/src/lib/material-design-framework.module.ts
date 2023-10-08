@@ -29,6 +29,7 @@ import {
     JsonSchemaFormService,
     WidgetLibraryModule, WidgetLibraryService
 } from '@zajsf/core';
+import { CssFrameworkModule } from '@zajsf/cssframework';
 import { MaterialDesignFramework } from './material-design.framework';
 import { MATERIAL_FRAMEWORK_COMPONENTS } from './widgets/public_api';
 
@@ -57,6 +58,7 @@ export const ANGULAR_MATERIAL_MODULES = [
         ...ANGULAR_MATERIAL_MODULES,
         WidgetLibraryModule,
         JsonSchemaFormModule,
+        CssFrameworkModule
     ],
     declarations: [
         ...MATERIAL_FRAMEWORK_COMPONENTS,

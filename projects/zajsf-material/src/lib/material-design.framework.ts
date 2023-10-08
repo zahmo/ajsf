@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Framework } from '@zajsf/core';
+import { CssFramework, CssframeworkService } from '@zajsf/cssframework';
+import { cssFrameworkCfgMaterialDesign } from './material-design-cssframework';
 import {
-    FlexLayoutRootComponent,
-    FlexLayoutSectionComponent,
-    MaterialAddReferenceComponent,
-    MaterialButtonComponent,
-    MaterialButtonGroupComponent,
-    MaterialCheckboxComponent,
-    MaterialCheckboxesComponent,
-    MaterialChipListComponent,
-    MaterialDatepickerComponent,
-    MaterialDesignFrameworkComponent,
-    MaterialFileComponent,
-    MaterialInputComponent,
-    MaterialNumberComponent,
-    MaterialOneOfComponent,
-    MaterialRadiosComponent,
-    MaterialSelectComponent,
-    MaterialSliderComponent,
-    MaterialStepperComponent,
-    MaterialTabsComponent,
-    MaterialTextareaComponent
+  FlexLayoutRootComponent,
+  FlexLayoutSectionComponent,
+  MaterialAddReferenceComponent,
+  MaterialButtonComponent,
+  MaterialButtonGroupComponent,
+  MaterialCheckboxComponent,
+  MaterialCheckboxesComponent,
+  MaterialChipListComponent,
+  MaterialDatepickerComponent,
+  MaterialDesignFrameworkComponent,
+  MaterialFileComponent,
+  MaterialInputComponent,
+  MaterialNumberComponent,
+  MaterialOneOfComponent,
+  MaterialRadiosComponent,
+  MaterialSelectComponent,
+  MaterialSliderComponent,
+  MaterialStepperComponent,
+  MaterialTabsComponent,
+  MaterialTextareaComponent
 } from './widgets/public_api';
 
 
@@ -28,7 +29,7 @@ import {
 // https://github.com/angular/material2
 
 @Injectable()
-export class MaterialDesignFramework extends Framework {
+export class MaterialDesignFramework extends CssFramework {
   name = 'material-design';
 
   framework = MaterialDesignFrameworkComponent;
@@ -38,7 +39,7 @@ export class MaterialDesignFramework extends Framework {
     '//fonts.googleapis.com/css?family=Roboto:300,400,500,700',
   ];
 
-  widgets = {
+  _widgets = {
     'root': FlexLayoutRootComponent,
     'section': FlexLayoutSectionComponent,
     '$ref': MaterialAddReferenceComponent,
@@ -72,4 +73,11 @@ export class MaterialDesignFramework extends Framework {
     'tagsinput': 'chip-list',
     'wizard': 'stepper',
   };
+
+  constructor(public cssFWService:CssframeworkService){
+    super(cssFrameworkCfgMaterialDesign,cssFWService);
+    this.widgets=this._widgets
+  }
+
+
 }

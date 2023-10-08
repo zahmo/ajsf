@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
-import { JsonSchemaFormService, isDefined } from '@zajsf/core';
+import { FrameworkLibraryService, JsonSchemaFormService, isDefined } from '@zajsf/core';
+import { CssframeworkService } from '@zajsf/cssframework';
 import cloneDeep from 'lodash/cloneDeep';
+import { cssFrameworkCfgMaterialDesign } from './material-design-cssframework';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -22,10 +24,23 @@ export class MaterialDesignFrameworkComponent implements OnInit, OnChanges {
   @Input() layoutIndex: number[];
   @Input() dataIndex: number[];
 
+  theme:string="material-default-theme";
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private jsf: JsonSchemaFormService
+    private jsf: JsonSchemaFormService,
+    public jsfFLService:FrameworkLibraryService,
+    public cssFWService:CssframeworkService
   ) {
+    let activeFramework:any=this.jsfFLService.activeFramework;
+    let fwcfg=activeFramework.config||{};
+    let defaultTheme=cssFrameworkCfgMaterialDesign.widgetstyles?.__themes__[0];
+    let defaultThemeName=defaultTheme.name;
+    this.theme=this.options?.theme|| defaultThemeName;
+    cssFWService.frameworkTheme$.subscribe(newTheme=>{
+        this.theme=newTheme;
+        changeDetector.detectChanges();
+    })
+
   }
 
   get showRemoveButton(): boolean {
