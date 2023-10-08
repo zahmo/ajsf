@@ -1,24 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Framework } from '@zajsf/core';
+import { CssFramework, CssframeworkService } from '@zajsf/cssframework';
+import { cssFrameworkCfgBootstrap3 } from './bootstrap3-cssframework';
 import { Bootstrap3FrameworkComponent } from './bootstrap3-framework.component';
 
 // Bootstrap 3 Framework
 // https://github.com/valor-software/ng2-bootstrap
 
 @Injectable()
-export class Bootstrap3Framework extends Framework {
+export class Bootstrap3Framework extends CssFramework {
   name = 'bootstrap-3';
 
   framework = Bootstrap3FrameworkComponent;
 
-  stylesheets = [
-    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
-    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css',
-  ];
-
-  scripts = [
-    '//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',
-    '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
-    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
-  ];
+  constructor(public cssFWService:CssframeworkService){
+    super(cssFrameworkCfgBootstrap3,cssFWService);
+  }
 }

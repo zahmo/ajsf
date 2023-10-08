@@ -36,6 +36,7 @@
     "dependencies": {
         "lodash-es": "~4.17.21",
         "@zajsf/core": "~0.16.0",
+        "@zajsf/cssframework": "~0.16.0",
         "tslib": "^2.0.0"
     },
     "peerDependencies": {
