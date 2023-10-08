@@ -20,7 +20,22 @@
                         "tsConfig": "demo/tsconfig.app.json",
                         "assets": [
                             "demo/favicon.ico",
-                            "demo/assets"
+                            "demo/assets",
+                            {
+                                "glob": "**/*",
+                                "input": "./dist/@zajsf/bootstrap3/assets",
+                                "output": "/assets/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "./dist/@zajsf/bootstrap4/assets",
+                                "output": "/assets/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "./dist/@zajsf/daisyui/assets",
+                                "output": "/assets/"
+                            }
                         ],
                         "styles": [
                             "demo/styles.scss"
@@ -279,6 +294,39 @@
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
                         "tsConfig": "projects/zajsf-cssframework/tsconfig.spec.json",
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
+                    }
+                }
+            }
+        },
+        "@zajsf/bootstrap5": {
+            "projectType": "library",
+            "root": "projects/zajsf-bootstrap5",
+            "sourceRoot": "projects/zajsf-bootstrap5/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/zajsf-bootstrap5/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/zajsf-bootstrap5/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/zajsf-bootstrap5/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "tsConfig": "projects/zajsf-bootstrap5/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
