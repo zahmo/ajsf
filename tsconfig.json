@@ -46,6 +46,12 @@
       "@zajsf/bootstrap4/*": [
         "dist/@zajsf/bootstrap4/*"
       ],
+      "@zajsf/bootstrap5": [
+        "dist/@zajsf/bootstrap5"
+      ],
+      "@zajsf/bootstrap5/*": [
+        "dist/@zajsf/bootstrap5/*"
+      ],
       "@zajsf/material": [
         "dist/@zajsf/material"
       ],
