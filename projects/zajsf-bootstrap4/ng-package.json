@@ -4,8 +4,10 @@
     "lib": {
         "entryFile": "src/public_api.ts"
     },
+    "assets": ["./assets"],
     "allowedNonPeerDependencies": [
         "lodash-es",
-        "@zajsf/core"
+        "@zajsf/core",
+        "@zajsf/cssframework"
     ]
 }
