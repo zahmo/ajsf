@@ -116,7 +116,9 @@ theme:string
     this.theme=this.options?.theme|| defaultThemeName;
     cssFWService.frameworkTheme$.subscribe(newTheme=>{
         this.theme=newTheme;
-        changeDetector.detectChanges();
+        setTimeout(()=>{
+         changeDetector.detectChanges();
+        },0);
     })
     /*
     setTimeout(()=>{
