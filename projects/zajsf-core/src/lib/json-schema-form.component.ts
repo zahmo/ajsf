@@ -127,6 +127,8 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   @Input() loadExternalAssets: boolean; // Load external framework assets?
   @Input() debug: boolean; // Show debug information?
 
+  @Input() theme: string; // Theme
+
   @Input()
   get value(): any {
     return this.objectWrap ? this.jsf.data['1'] : this.jsf.data;
@@ -267,6 +269,11 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
         this.initializeForm();
         if (this.onChange) { this.onChange(this.jsf.formValues); }
         if (this.onTouched) { this.onTouched(this.jsf.formValues); }
+      }
+      
+      //set framework theme
+      if (this.theme && this.theme !== this.frameworkLibrary.getActiveTheme()?.name) {
+        this.frameworkLibrary.requestThemeChange(this.theme);
       }
 
       // Update previous inputs
@@ -417,7 +424,11 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
     if (isObject(this.form) && isObject(this.form.tpldata)) {
       this.jsf.setTpldata(this.form.tpldata);
     }
+    if (this.theme) {
+      this.frameworkLibrary.requestThemeChange(this.theme);
+    }
   }
+
 
   /**
    * 'initializeSchema' function
@@ -762,4 +773,5 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       }
     }
   }
+
 }
