@@ -38,7 +38,10 @@ export class MaterialDesignFrameworkComponent implements OnInit, OnChanges {
     this.theme=this.options?.theme|| defaultThemeName;
     cssFWService.frameworkTheme$.subscribe(newTheme=>{
         this.theme=newTheme;
-        changeDetector.detectChanges();
+        setTimeout(()=>{
+          changeDetector.detectChanges();
+        },0)
+        
     })
 
   }
