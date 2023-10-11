@@ -90,4 +90,59 @@ export class FrameworkLibraryService {
   public getFrameworkScripts(load: boolean = this.loadExternalAssets): string[] {
     return (load && this.activeFramework.scripts) || [];
   }
+
+  //applies to CssFramework classes
+  public getFrameworkConfig(existingFramework?:any): any {
+    let actFramework:Framework& { [key: string]: any; }=existingFramework||this.activeFramework;
+    return actFramework.config;
+  }
+
+  //applies to CssFramework classes
+  public getFrameworkThemes():{name:string,text:string}[] {
+    let cssfwConfig=this.getFrameworkConfig();
+    let themes;
+    if(cssfwConfig){
+      themes=cssfwConfig?.widgetstyles?.__themes__||[]
+    }
+    return themes
+  }
+
+  //applies to CssFramework classes
+  public requestThemeChange(name:string,validateThemeExists:boolean=false,existingFramework?:any){
+    let actFramework:Framework& { [key: string]: any; }=existingFramework||this.activeFramework;
+    if(actFramework.requestThemeChange){
+      if(validateThemeExists){  
+        let themes=this.getFrameworkThemes();
+        let foundThemes=themes.filter(thm=>{return thm.name==name});
+        if(!foundThemes|| foundThemes.length==0){
+          return false;
+        }
+      }
+      actFramework.requestThemeChange(name);
+      return true;
+    }
+  }
+  //applies to CssFramework classes
+  public getActiveTheme(existingFramework?:any):{name:string,text:string}{
+    let actFramework:Framework& { [key: string]: any; }=existingFramework||this.activeFramework;
+    if(actFramework.getActiveTheme){
+      return actFramework.getActiveTheme();
+    }
+  }
+
+  //applies to CssFramework classes
+  public registerTheme(newTheme:{name:string,text:string},existingFramework?:any):boolean{
+    let actFramework:Framework& { [key: string]: any; }=existingFramework||this.activeFramework;
+    if(actFramework.registerTheme){
+      return actFramework.registerTheme(newTheme);
+    }
+  }
+
+    //applies to CssFramework classes
+    public unregisterTheme(name:string,existingFramework?:any):boolean{
+      let actFramework:Framework& { [key: string]: any; }=existingFramework||this.activeFramework;
+      if(actFramework.registerTheme){
+        return actFramework.unregisterTheme(name);
+      }
+    }
 }
