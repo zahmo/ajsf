@@ -141,8 +141,8 @@ export class DemoComponent implements OnInit,AfterViewInit {
             tlist=[].concat({name:"demo-theme",text:"Demo Theme"},tlist);
           }
           this.themeList=tlist;
-          //this.requestThemeChange("demo-theme");
-          this.requestThemeChange(tlist[0]||"no-theme");
+          ///this.requestThemeChange(tlist[0]||"no-theme");
+          this.selectedTheme=tlist[0]||"no-theme"
         },0)
         
        
@@ -291,12 +291,8 @@ export class DemoComponent implements OnInit,AfterViewInit {
     this.generateForm(this.jsonFormSchema);
   }
 
-  requestThemeChange(name:string){
-    let activeFramework:Framework& { [key: string]: any; }=this.jsfFLService.activeFramework;
-    if(activeFramework.requestThemeChange){
-      activeFramework.requestThemeChange(name);
-      //this.selectedTheme=name;
-    }
+  onThemeChange(theme){
+    this.selectedTheme=theme;
   }
 
   frameworkSelected(selectedFW){
