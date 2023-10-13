@@ -40,3 +40,17 @@
 [data-theme="daisyui_leaf"] {
     --rounded-btn: 2rem
 }
+
+[data-theme="daisyui_leaf"] .border {
+    border-radius: 1rem;
+}
+
+
+/*this rule should apply to the element that has both data-theme="daisyui_leaf"
+ and class="border", whereas the previous one applies strictly to 
+ descendants data-theme="daisyui_leaf" elements having class="border"
+*/
+
+.border[data-theme="daisyui_leaf"] {
+    border-radius: 1rem;
+}
