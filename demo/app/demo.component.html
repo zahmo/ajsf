@@ -62,7 +62,7 @@
         </h4>
         <div *ngIf="visible.options" fxLayout="column" [@expandSection]="true">
             <mat-form-field>
-                <mat-select [(ngModel)]="selectedFramework" name="framework" placeholder="Framework" (selectionChange)="frameworkSelected($event)">
+                <mat-select [(ngModel)]="selectedFramework" name="framework" placeholder="Framework">
                     <mat-option *ngFor="let framework of frameworkList" [value]="framework">
                         {{frameworks[framework]}}
                     </mat-option>
@@ -76,7 +76,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <mat-select (selectionChange)="onThemeChange($event.value)" name="theme" placeholder="Theme">
+                <mat-select [(ngModel)]="selectedTheme" name="theme" placeholder="Theme">
                     <mat-option *ngFor="let theme of themeList" [value]="theme.name">
                         {{theme.text}}
                     </mat-option>
