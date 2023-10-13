@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import Ajv, { ErrorObject, Options } from 'ajv';
 import jsonDraft6 from 'ajv/lib/refs/json-schema-draft-06.json';
 import cloneDeep from 'lodash/cloneDeep';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import {
   deValidationMessages,
   enValidationMessages,
@@ -51,7 +51,7 @@ export interface ErrorMessages {
 }
 
 @Injectable()
-export class JsonSchemaFormService {
+export class JsonSchemaFormService implements OnDestroy {
   JsonFormCompatibility = false;
   ReactJsonSchemaFormCompatibility = false;
   AngularSchemaFormCompatibility = false;
@@ -145,9 +145,20 @@ export class JsonSchemaFormService {
     }
   };
 
+  fcValueChangesSubs:Subscription;
+  fcStatusChangesSubs:Subscription;
   constructor() {
     this.setLanguage(this.language);
     this.ajv.addMetaSchema(jsonDraft6);
+  }
+  ngOnDestroy(): void {
+    this.fcValueChangesSubs?.unsubscribe();
+    this.fcStatusChangesSubs?.unsubscribe();
+    this.formValueSubscription?.unsubscribe();
+    this.fcValueChangesSubs=null;
+    this.fcStatusChangesSubs=null;
+    this.formValueSubscription=null;
+
   }
 
   setLanguage(language: string = 'en-US') {
@@ -563,7 +574,7 @@ export class JsonSchemaFormService {
         this.formOptions.validateOnRender === true ||
         (this.formOptions.validateOnRender === 'auto' &&
           hasValue(ctx.controlValue));
-      ctx.formControl.statusChanges.subscribe(
+      this.fcStatusChangesSubs=ctx.formControl.statusChanges.subscribe(
         status =>
           (ctx.options.errorMessage =
             status === 'VALID'
@@ -573,7 +584,7 @@ export class JsonSchemaFormService {
                 ctx.options.validationMessages
               ))
       );
-      ctx.formControl.valueChanges.subscribe(value => {
+      this.fcValueChangesSubs=ctx.formControl.valueChanges.subscribe(value => {
         if (!!value) {
           ctx.controlValue = value;
         }
