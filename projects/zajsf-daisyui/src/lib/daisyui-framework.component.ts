@@ -19,7 +19,8 @@ template: `
 <div>
   <css-framework [layoutNode]="layoutNode" 
   [layoutIndex]="layoutIndex" 
-  [dataIndex]="dataIndex">
+  [dataIndex]="dataIndex"
+  >
   </css-framework>
 </div>
 `,
@@ -27,6 +28,8 @@ styleUrls: ['./daisyui-framework.component.scss'],
 encapsulation:ViewEncapsulation.None
 })
 export class DaisyUIFrameworkComponent implements OnInit, OnChanges {
+
+
 frameworkInitialized = false;
 widgetOptions: any; // Options passed to child widget
 widgetLayoutNode: any; // layoutNode passed to child widget
@@ -40,10 +43,13 @@ isOrderable = false;
 @Input() layoutIndex: number[];
 @Input() dataIndex: number[];
 
+
+
 constructor(
   public changeDetector: ChangeDetectorRef,
   public jsf: JsonSchemaFormService
 ) {
+  
 }
 
 
