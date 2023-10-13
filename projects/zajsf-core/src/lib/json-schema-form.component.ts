@@ -9,12 +9,13 @@ import {
   forwardRef,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FrameworkLibraryService } from './framework-library/framework-library.service';
 import { JsonSchemaFormService } from './json-schema-form.service';
@@ -80,7 +81,7 @@ export const JSON_SCHEMA_FORM_VALUE_ACCESSOR: any = {
   // creates a separate instance of the service for each component
   providers:  [ JsonSchemaFormService, JSON_SCHEMA_FORM_VALUE_ACCESSOR ],
 })
-export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges, OnInit {
+export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges, OnInit,OnDestroy {
   // TODO: quickfix to avoid subscribing twice to the same emitters
   private unsubscribeOnActivateForm$ = new Subject<void>();
 
@@ -157,12 +158,28 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   onChange: Function;
   onTouched: Function;
 
+  //TODO-review,maybe use takeUntilDestroyed rxjs op
+  dataChangesSubs:Subscription;
+  statusChangesSubs:Subscription;
+  isValidChangesSubs:Subscription;
+  validationErrorChangesSubs:Subscription;
+
   constructor(
     private changeDetector: ChangeDetectorRef,
     private frameworkLibrary: FrameworkLibraryService,
     private widgetLibrary: WidgetLibraryService,
     public jsf: JsonSchemaFormService,
   ) { }
+  ngOnDestroy(): void {
+    this.dataChangesSubs?.unsubscribe();
+    this.statusChangesSubs?.unsubscribe();
+    this.isValidChangesSubs?.unsubscribe();
+    this.validationErrorChangesSubs?.unsubscribe();
+    this.dataChangesSubs=null;
+    this.statusChangesSubs=null;
+    this.isValidChangesSubs=null;
+    this.validationErrorChangesSubs=null;
+  }
 
   private resetScriptsAndStyleSheets() {
     document.querySelectorAll('.ajsf').forEach(element => element.remove());
@@ -268,7 +285,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
 
         // If anything else has changed, re-render the entire form
       } else if (changedInput.length) {
-        this.initializeForm();
+        this.initializeForm(this.value);
         if (this.onChange) { this.onChange(this.jsf.formValues); }
         if (this.onTouched) { this.onTouched(this.jsf.formValues); }
       }
@@ -329,19 +346,22 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
    * - Create the master 'formGroupTemplate' then from it 'formGroup'
    *   the Angular formGroup used to control the reactive form.
    */
-  initializeForm() {
+  initializeForm(initialData?:any) {
     if (
       this.schema || this.layout || this.data || this.form || this.model ||
       this.JSONSchema || this.UISchema || this.formData || this.ngModel ||
       this.jsf.data
     ) {
-
-      this.jsf.resetAllValues();  // Reset all form values to defaults
+      // Reset all form values to defaults
+      this.jsf.resetAllValues();
       this.initializeOptions();   // Update options
       this.initializeSchema();    // Update schema, schemaRefLibrary,
       // schemaRecursiveRefMap, & dataRecursiveRefMap
       this.initializeLayout();    // Update layout, layoutRefLibrary,
       this.initializeData();      // Update formValues
+      if(initialData){
+        this.jsf.formValues=initialData;
+      }
       this.activateForm();        // Update dataMap, templateRefLibrary,
       // formGroupTemplate, formGroup
 
@@ -741,7 +761,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       // }
 
       // Subscribe to form changes to output live data, validation, and errors
-      this.jsf.dataChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(data => {
+      this.dataChangesSubs=this.jsf.dataChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(data => {
         this.onChanges.emit(this.objectWrap ? data['1'] : data);
         if (this.formValuesInput && this.formValuesInput.indexOf('.') === -1) {
           this[`${this.formValuesInput}Change`].emit(this.objectWrap ? data['1'] : data);
@@ -749,9 +769,9 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       });
 
       // Trigger change detection on statusChanges to show updated errors
-      this.jsf.formGroup.statusChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(() => this.changeDetector.markForCheck());
-      this.jsf.isValidChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(isValid => this.isValid.emit(isValid));
-      this.jsf.validationErrorChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(err => this.validationErrors.emit(err));
+      this.statusChangesSubs= this.jsf.formGroup.statusChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(() => this.changeDetector.markForCheck());
+      this.isValidChangesSubs=this.jsf.isValidChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(isValid => this.isValid.emit(isValid));
+      this.validationErrorChangesSubs=this.jsf.validationErrorChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(err => this.validationErrors.emit(err));
 
       // Output final schema, final layout, and initial data
       this.formSchema.emit(this.jsf.schema);
