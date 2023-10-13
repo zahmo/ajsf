@@ -488,7 +488,7 @@ export function buildLayout_original(jsf, widgetLibrary) {
 //TODO-review:this implements a quick 'post' fix rather than an
 //integrared ideal fix
 export function buildLayout(jsf, widgetLibrary) {
-  let layout=buildLayout_original(jsf, widgetLibrary)
+  let layout=buildLayout_original(jsf, widgetLibrary);
   if (jsf.formValues) {
     let fixedLayout = fixNestedArrayLayout({
       builtLayout: layout,
