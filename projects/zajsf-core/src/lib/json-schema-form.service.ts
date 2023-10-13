@@ -35,6 +35,8 @@ import {
   toTitleCase
 } from './shared';
 
+import _isEqual from 'lodash/isEqual';
+
 
 export interface TitleMapItem {
   name?: string;
@@ -585,9 +587,15 @@ export class JsonSchemaFormService implements OnDestroy {
               ))
       );
       this.fcValueChangesSubs=ctx.formControl.valueChanges.subscribe(value => {
+         //commented out to revert back to previous commits
+         //as seems to be causing some issues
+         /*
         if (!!value) {
           ctx.controlValue = value;
         }
+        */
+        //TODO-test,this is the original code
+        if (!_isEqual(ctx.controlValue, value)) { ctx.controlValue = value }
       });
     } else {
       ctx.controlName = ctx.layoutNode.name;
