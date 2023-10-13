@@ -124,6 +124,9 @@ export class DemoComponent implements OnInit,AfterViewInit {
         if (params['language']) {
           this.selectedLanguage = params['language'];
         }
+        if (params['theme']) {
+          this.selectedTheme = params['theme'];
+        }
         this.loadSelectedExample();
       }
     );
@@ -142,7 +145,16 @@ export class DemoComponent implements OnInit,AfterViewInit {
           }
           this.themeList=tlist;
           ///this.requestThemeChange(tlist[0]||"no-theme");
-          this.selectedTheme=tlist[0]||"no-theme"
+          if(this.selectedTheme){//if theme was set in params
+            let themeNames=tlist.map(thm=>{return thm.name});
+            //if selectedTheme not from this framework, set to first in framework
+            if(themeNames.indexOf(this.selectedTheme)<0){
+              this.selectedTheme=tlist[0]?.name||"no-theme"
+            }
+          }else{
+            this.selectedTheme=tlist[0]?.name||"no-theme"
+          }
+          
         },0)
         
        
@@ -213,7 +225,8 @@ export class DemoComponent implements OnInit,AfterViewInit {
         '/?set=' + selectedSet +
         '&example=' + selectedExample +
         '&framework=' + this.selectedFramework +
-        '&language=' + this.selectedLanguage
+        '&language=' + this.selectedLanguage+
+        '&theme=' + this.selectedTheme
       );
       this.liveFormData = {};
       this.submittedFormData = null;
@@ -230,7 +243,7 @@ export class DemoComponent implements OnInit,AfterViewInit {
   }
 
   loadSelectedLanguage() {
-    window.location.href = `${window.location.pathname}?set=${this.selectedSet}&example=${this.selectedExample}&framework=${this.selectedFramework}&language=${this.selectedLanguage}`;
+    window.location.href = `${window.location.pathname}?set=${this.selectedSet}&example=${this.selectedExample}&framework=${this.selectedFramework}&language=${this.selectedLanguage}&theme=${this.selectedTheme}`;
   }
 
 
@@ -291,12 +304,6 @@ export class DemoComponent implements OnInit,AfterViewInit {
     this.generateForm(this.jsonFormSchema);
   }
 
-  onThemeChange(theme){
-    this.selectedTheme=theme;
-  }
 
-  frameworkSelected(selectedFW){
-    //let selectedFramework:Framework& { [key: string]: any; }=this.jsfFLService.activeFramework;
-  }
 
 }
