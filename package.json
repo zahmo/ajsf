@@ -1,6 +1,6 @@
 {
     "name": "demo",
-    "version": "16.0.0-alpha.0",
+    "version": "16.1.0-RC.1",
     "author": "https://github.com/zahmo/zajsf/graphs/contributors",
     "description": "Angular JSON Schema Form builder Demo",
     "engines": {
@@ -20,12 +20,18 @@
         "form",
         "forms",
         "form builder",
+        "form themes",
         "material",
         "angular material",
         "material design",
         "bootstrap",
         "bootstrap 3",
         "bootstrap 4",
+        "bootstrap 5",
+        "daisyui",
+        "tailwind",
+        "tailwindcss",
+        "tailwind css",
         "ajsf",
         "zajsf",
         "angular json schema form"
