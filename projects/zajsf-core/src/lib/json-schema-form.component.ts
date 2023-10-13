@@ -232,8 +232,10 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   }
 
   updateForm() {
+    
     if (!this.formInitialized || !this.formValuesInput ||
       (this.language && this.language !== this.jsf.language)
+      
     ) {
       this.initializeForm();
     } else {
@@ -567,7 +569,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       this.jsf.formValues = cloneDeep(this.form.formData);
       this.formValuesInput = 'form.formData';
     } else {
-      this.formValuesInput = null;
+      this.formValuesInput = "data";//null;
     }
   }
 
