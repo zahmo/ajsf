@@ -8,7 +8,7 @@ export class CssframeworkService {
 
   frameworkTheme$: Observable<string>;
   activeRequestedTheme:string;
-  private frameworkThemeSubject: Subject<string>;
+  frameworkThemeSubject: Subject<string>;
   constructor() {
     this.frameworkThemeSubject = new Subject<string>();
     this.frameworkTheme$ = this.frameworkThemeSubject.asObservable();
