@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { FrameworkLibraryService, JsonSchemaFormService, isDefined } from '@zajsf/core';
 import { CssframeworkService } from '@zajsf/cssframework';
 import cloneDeep from 'lodash/cloneDeep';
+import { Subscription } from 'rxjs';
 import { cssFrameworkCfgMaterialDesign } from './material-design-cssframework';
 
 @Component({
@@ -9,8 +10,9 @@ import { cssFrameworkCfgMaterialDesign } from './material-design-cssframework';
   selector: 'material-design-framework',
   templateUrl: './material-design-framework.component.html',
   styleUrls: ['./material-design-framework.component.scss'],
+  //changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class MaterialDesignFrameworkComponent implements OnInit, OnChanges {
+export class MaterialDesignFrameworkComponent implements OnInit, OnChanges ,OnDestroy {
   frameworkInitialized = false;
   inputType: string;
   options: any; // Options used in this framework
@@ -25,6 +27,7 @@ export class MaterialDesignFrameworkComponent implements OnInit, OnChanges {
   @Input() dataIndex: number[];
 
   theme:string="material-default-theme";
+  frameworkThemeSubs:Subscription;
   constructor(
     private changeDetector: ChangeDetectorRef,
     private jsf: JsonSchemaFormService,
@@ -34,16 +37,17 @@ export class MaterialDesignFrameworkComponent implements OnInit, OnChanges {
     let activeFramework:any=this.jsfFLService.activeFramework;
     let fwcfg=activeFramework.config||{};
     let defaultTheme=cssFrameworkCfgMaterialDesign.widgetstyles?.__themes__[0];
-    let defaultThemeName=defaultTheme.name;
+    let defaultThemeName=cssFWService.activeRequestedTheme||defaultTheme.name;
     this.theme=this.options?.theme|| defaultThemeName;
-    cssFWService.frameworkTheme$.subscribe(newTheme=>{
+    this.frameworkThemeSubs= cssFWService.frameworkTheme$.subscribe(newTheme=>{
         this.theme=newTheme;
-        setTimeout(()=>{
-          changeDetector.detectChanges();
-        },0)
-        
     })
 
+
+  }
+  ngOnDestroy(): void {
+    this.frameworkThemeSubs.unsubscribe();
+    this.frameworkThemeSubs=null;
   }
 
   get showRemoveButton(): boolean {
