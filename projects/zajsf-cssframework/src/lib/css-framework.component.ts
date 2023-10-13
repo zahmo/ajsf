@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FrameworkLibraryService, JsonSchemaFormService, addClasses, inArray } from '@zajsf/core';
 import _, { cloneDeep, map } from 'lodash';
+import { Subscription } from 'rxjs';
 import { css_fw } from './css-framework.defs';
 import { CssframeworkService } from './css-framework.service';
 
@@ -10,7 +11,7 @@ import { CssframeworkService } from './css-framework.service';
   styleUrls: ['./css-framework.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CssFrameworkComponent implements OnInit, OnChanges {
+export class CssFrameworkComponent implements OnInit, OnChanges,OnDestroy {
   frameworkInitialized = false;
   widgetOptions: any; // Options passed to child widget
   widgetLayoutNode: any; // layoutNode passed to child widget
@@ -98,7 +99,7 @@ defaultStyling={
 
 
 theme:string
-
+frameworkThemeSubs:Subscription;
   constructor(
     public changeDetector: ChangeDetectorRef,
     public jsf: JsonSchemaFormService,
@@ -112,20 +113,19 @@ theme:string
     let fwcfg=activeFramework.config||{};
     this.widgetStyles = Object.assign(this.defaultStyling,fwcfg.widgetstyles);
     let defaultTheme=this.widgetStyles.__themes__[0];
-    let defaultThemeName=defaultTheme.name;
+    let defaultThemeName=cssFWService.activeRequestedTheme||defaultTheme.name;
     this.theme=this.options?.theme|| defaultThemeName;
-    cssFWService.frameworkTheme$.subscribe(newTheme=>{
+    this.frameworkThemeSubs=cssFWService.frameworkTheme$.subscribe(newTheme=>{
         this.theme=newTheme;
-        setTimeout(()=>{
-         changeDetector.detectChanges();
-        },0);
     })
-    /*
-    setTimeout(()=>{
-      cssFWService.setTheme("zajsf_drops");
-    },10000)
-    */
+ 
   }
+
+  ngOnDestroy(): void {
+    this.frameworkThemeSubs.unsubscribe();
+    this.frameworkThemeSubs=null;
+  }
+
 
   get showRemoveButton(): boolean {
     if (!this.options.removable || this.options.readonly ||
