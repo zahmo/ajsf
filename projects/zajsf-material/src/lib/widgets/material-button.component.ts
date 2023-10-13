@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { JsonSchemaFormService, hasOwn } from '@zajsf/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -23,7 +24,7 @@ import { JsonSchemaFormService, hasOwn } from '@zajsf/core';
     </div>`,
     styles: [` button { margin-top: 10px; } `],
 })
-export class MaterialButtonComponent implements OnInit {
+export class MaterialButtonComponent implements OnInit,OnDestroy {
   formControl: AbstractControl;
   controlName: string;
   controlValue: any;
@@ -34,9 +35,15 @@ export class MaterialButtonComponent implements OnInit {
   @Input() layoutIndex: number[];
   @Input() dataIndex: number[];
 
+  isValidChangesSubs:Subscription;
   constructor(
     private jsf: JsonSchemaFormService
   ) { }
+
+  ngOnDestroy(): void {
+    this.isValidChangesSubs?.unsubscribe();
+    this.isValidChangesSubs=null;
+  }
 
   ngOnInit() {
     this.options = this.layoutNode.options || {};
