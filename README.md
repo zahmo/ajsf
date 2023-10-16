@@ -22,15 +22,19 @@ A [JSON Schema](http://json-schema.org) Form builder for Angular, similar to, an
 ## Packages
 
 * [`@zajsf/core`](./README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fcore.svg)](https://badge.fury.io/js/%40zajsf%2Fcore)
+* [`@zajsf/cssframework](./README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fcssframework.svg)](https://badge.fury.io/js/%40zajsf%cssframework)
 * [`@zajsf/bootstrap3`](./projects/zajsf-bootstrap3/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap3.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap3)
 * [`@zajsf/bootstrap4`](./projects/zajsf-bootstrap4/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap4.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap4)
+* [`@zajsf/bootstrap5`](./projects/zajsf-bootstrap5/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap5.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap5)
+* [`@zajsf/daisyui`](./projects/zajsf-daisyui/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fdaisyui.svg)](https://badge.fury.io/js/%40zajsf%2Fdaisyui)
 * [`@zajsf/material`](./projects/zajsf-material/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fmaterial.svg)](https://badge.fury.io/js/%40zajsf%2Fmaterial)
+
 
 ## Check out the live demo and play with the examples
 
 [Check out some examples here.](https://zahmo.github.io/zajsf/)
 
-This example playground features over 70 different JSON Schemas for you to try (including all examples used by each of the three libraries listed above), and the ability to quickly view any example formatted with Material Design, Bootstrap 3, Bootstrap 4, or without any formatting.
+This example playground features over 70 different JSON Schemas for you to try (including all examples used by each of the three libraries listed above), and the ability to quickly view any example formatted with Material Design, Bootstrap 3, Bootstrap 4, Bootstrap 5, DaisyUI or without any formatting.
 
 ## Installation
 
@@ -69,11 +73,13 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-Four framework modules are currently included, the import is the same as above :
+six framework modules are currently included, the import is the same as above :
 
 * MaterialDesignFrameworkModule from @zajsf/material — Material Design
 * Bootstrap3FrameworkModule from @zajsf/bootstrap3 — Bootstrap 3
 * Bootstrap4FrameworkModule from @zajsf/bootstrap4 — Bootstrap 4
+* Bootstrap5FrameworkModule from @zajsf/bootstrap5 — Bootstrap 5
+* DaisyUIFrameworkModule from @zajsf/daisyui — DaisyUi
 * JsonSchemaFormModule from @zajsf/core — plain HTML (for testing)
 
 It is also possible to load multiple frameworks and switch between them at runtime, like the example playground on GitHub. But most typical sites will just load one framework.
@@ -94,8 +100,11 @@ This should start a server with the example playground, which you can view in yo
 The source code is composed as the following:
 
 * `projects/zajsf-core` - Angular JSON Schema Form main library
+* `projects/zajsf-cssframework` - Framework module used to build other frameworks
 * `projects/zajsf-bootstrap3` - Framework for Bootstrap 3
 * `projects/zajsf-bootstrap4` - Framework for Bootstrap 4
+* `projects/zajsf-bootstrap5` - Framework for Bootstrap 5
+* `projects/zajsf-daisyui` - Framework for DaisyUI
 * `projects/zajsf-material` - Framework for Angular Material
 * `projects/zajsf-core/src/lib/framework-library` - framework library
 * `projects/zajsf-core/src/lib/widget-library` - widget library
@@ -124,9 +133,11 @@ Where `schema` is a valid JSON schema object, and `onSubmit` calls a function to
 
 `framework` is for the template you want to use, the default value is `no-framwork`. The possible values are:
 
-* `material-design` for  Material Design.
-* `bootstrap-3` for Bootstrap 3.
-* `bootstrap-4` for 'Bootstrap 4.
+* `material-design` for  Material Design (if installed).
+* `bootstrap-3` for Bootstrap 3 (if installed).
+* `bootstrap-4` for Bootstrap 4 (if installed).
+* `bootstrap-5` for Bootstrap 5 (if installed).
+* `daisyui` for DaisyUi. 
 * `no-framework` for (plain HTML).
 
 Setting `loadExternalAssets="true"` will automatically load any additional assets needed by the display framework. It is useful when you are trying out this library, but production sites should instead load all required assets separately. For full details see 'Changing or adding frameworks', below.
@@ -498,6 +509,36 @@ Alternately, during development, you may find it helpful to let Angular JSON Sch
 Finally, if you want to see what scripts a particular framework will automatically load, after setting that framework you can call `getFrameworkStylesheets()` or `getFrameworkScritps()` from the `FrameworkLibraryService` to return the built-in arrays of URLs.
 
 However, if you are creating a production site you should load these assets separately, and make sure to remove all references to `loadExternalAssets` to prevent the assets from being loaded twice.
+
+#### Theming
+Framework specific theming is supported(implementation dependent).
+To enable theming in a form component, the theme binding must be  in place
+for example
+
+```html
+<json-schema-form
+  loadExternalAssets="true"
+  [schema]="yourJsonSchema"
+  [framework]="yourFramework"
+  [theme]="yourTheme"
+  (onSubmit)="yourOnSubmitFn($event)">
+</json-schema-form>
+```
+
+currently the following built-in themes are available(per framework):
+* Bootstrap 3:"bootstrap3_default"
+* Bootstrap 4:"bootstrap4_default"
+* Bootstrap 3:"bootstrap5_default" | "light" | "dark"
+* Material design:"material_default" | "indigo-pink" | "purple-green" | "deeppurple-amber" | "pink-bluegrey"
+* DaisyUi:  "daisyui_default" | "light" | "dark" | "cupcake" | "cmyk" | "pastel" |"daisyui_leaf"
+
+for more on how to customize themes, take a look at the relevant framework's docs:
+* [`@zajsf/bootstrap3`](./projects/zajsf-bootstrap3/README.md#custom-theming)
+* [`@zajsf/bootstrap4`](./projects/zajsf-bootstrap3/README.md#custom-theming)
+* [`@zajsf/bootstrap5`](./projects/zajsf-bootstrap4/README.md#custom-theming)
+* [`@zajsf/daisyui`](./projects/zajsf-daisyui/README.md#custom-theming)
+* [`@zajsf/material`](./projects/zajsf-material/README.md#custom-theming)
+
 
 ## contributing guide
 
