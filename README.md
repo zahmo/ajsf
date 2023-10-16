@@ -1,8 +1,8 @@
 # AJSF (Angular JSON Schema Form)
-This fork was created for anyone needing to use angular 15+ in there project until 
-[hamzahamidi/ajsf](https://github.com/hamzahamidi/ajsf) is updated for angular 15+.
+This fork was created for anyone needing to use angular 15+ in their project.
+[hamzahamidi/ajsf](https://github.com/hamzahamidi/ajsf) can be used for angular 14 and below
 
-**N.B:** For Angular6-json-schema-form please check [this documentation](https://github.com/zahmo/zajsf/tree/angular6-json-schema-form).
+**N.B:** For Angular6-json-schema-form please check [this documentation](https://github.com/hamzahamidi/ajsf/tree/angular6-json-schema-form).
 
 <p align="center">
   <a href="https://angular.io/"><img src="https://img.shields.io/badge/angular-15,_16-red.svg?logo=Angular&logoColor=red&labelColor=white&style=plastic" alt="Angular Versions"></a>
@@ -21,22 +21,43 @@ A [JSON Schema](http://json-schema.org) Form builder for Angular, similar to, an
 * [Joshfire](http://www.joshfire.com)'s [JSON Form](http://github.com/joshfire/jsonform/wiki) for [jQuery](https://jquery.com) ([examples](http://ulion.github.io/jsonform/playground/))
 
 ## Packages
-* [`@zajsf/core`](./README.md) [![npm version](https://img.shields.io/npm/v/%40zajsf%2Fcore.svg?color=#010101)](https://img.shields.io/npm/v/%40zajsf%2Fcore.svg?color=#010101)[![npm alpha version](https://img.shields.io/npm/v/%40zajsf%2Fcore/alpha.svg?color=blue)](https://img.shields.io/npm/v/%40zajsf%2Fcore/alpha.svg?color=blue)
-* [`@zajsf/bootstrap3`](./README.md) [![npm version](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3.svg?color=#010101)](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3.svg?color=#010101)[![npm alpha version](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3/alpha.svg?color=blue)](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3/alpha.svg?color=blue)
-* [`@zajsf/bootstrap4`](./README.md) [![npm version](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4.svg?color=#010101)](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4.svg?color=#010101)[![npm alpha version](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4/alpha.svg?color=blue)](https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4/alpha.svg?color=blue)
-* [`@zajsf/material`](./README.md) [![npm version](https://img.shields.io/npm/v/%40zajsf%2Fmaterial.svg?color=#010101)](https://img.shields.io/npm/v/%40zajsf%2Fmaterial.svg?color=#010101)[![npm alpha version](https://img.shields.io/npm/v/%40zajsf%2Fmaterial/alpha.svg?color=blue)](https://img.shields.io/npm/v/%40zajsf%2Fmaterial/alpha.svg?color=blue)
+
+* [`@zajsf/core`][gh_core_project] 
+[![npm version][npm_core_badge]][npm_core_ver]
+[![npm RC version][npm_core_badge_RC]][npm_core_ver_RC]
+* [`@zajsf/cssframework`][gh_cssframework_project] 
+[![npm version][npm_cssframework_badge]][npm_cssframework_ver]
+[![npm RC version][npm_cssframework_badge_RC]][npm_cssframework_ver_RC]
+* [`@zajsf/bootstrap3`][gh_bootstrap3_project] 
+[![npm version][npm_bootstrap3_badge]][npm_bootstrap3_ver]
+[![npm RC version][npm_bootstrap3_badge_RC]][npm_bootstrap3_ver_RC]
+* [`@zajsf/bootstrap4`][gh_bootstrap4_project] 
+[![npm version][npm_bootstrap4_badge]][npm_bootstrap4_ver]
+[![npm RC version][npm_bootstrap4_badge_RC]][npm_bootstrap4_ver_RC]
+* [`@zajsf/bootstrap5`][gh_bootstrap5_project] 
+[![npm version][npm_bootstrap5_badge]][npm_bootstrap5_ver]
+[![npm RC version][npm_bootstrap5_badge_RC]][npm_bootstrap5_ver_RC]
+* [`@zajsf/daisyui`][gh_daisyui_project] 
+[![npm version][npm_daisyui_badge]][npm_daisyui_ver]
+[![npm RC version][npm_daisyui_badge_RC]][npm_daisyui_ver_RC]
+* [`@zajsf/material`][gh_material_project] 
+[![npm version][npm_material_badge]][npm_material_ver]
+[![npm RC version][npm_material_badge_RC]][npm_material_ver_RC]
+
+
+
 
 ## Check out the live demo and play with the examples
 
 [Check out some examples here.](https://zahmo.github.io/zajsf/)
 
-This example playground features over 70 different JSON Schemas for you to try (including all examples used by each of the three libraries listed above), and the ability to quickly view any example formatted with Material Design, Bootstrap 3, Bootstrap 4, or without any formatting.
+This example playground features over 70 different JSON Schemas for you to try (including all examples used by each of the three libraries listed above), and the ability to quickly view any example formatted with Material Design, Bootstrap 3, Bootstrap 4, Bootstrap 5, DaisyUI or without any formatting.
 
 ## Installation
 
 ### To install from NPM/YARN and use in your own project
 
-If you want to try out the libraries, you can for example [install @zajsf/material package from NPM](https://www.npmjs.com/package/@zajsf/material) which uses `material-angular` UI. You can use either [NPM](https://www.npmjs.com) or [Yarn](https://yarnpkg.com). To install with NPM, run the following from your terminal:
+If you want to try out the libraries, you can for example [install @zajsf/material package from NPM][npm_material_ver] which uses `material-angular` UI. You can use either [NPM](https://www.npmjs.com) or [Yarn](https://yarnpkg.com). To install with NPM, run the following from your terminal:
 
 ```shell
 npm install @zajsf/material@latest
@@ -69,11 +90,13 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-Four framework modules are currently included, the import is the same as above :
+six framework modules are currently included, the import is the same as above :
 
 * MaterialDesignFrameworkModule from @zajsf/material — Material Design
 * Bootstrap3FrameworkModule from @zajsf/bootstrap3 — Bootstrap 3
 * Bootstrap4FrameworkModule from @zajsf/bootstrap4 — Bootstrap 4
+* Bootstrap5FrameworkModule from @zajsf/bootstrap5 — Bootstrap 5
+* DaisyUIFrameworkModule from @zajsf/daisyui — DaisyUi
 * JsonSchemaFormModule from @zajsf/core — plain HTML (for testing)
 
 It is also possible to load multiple frameworks and switch between them at runtime, like the example playground on GitHub. But most typical sites will just load one framework.
@@ -94,8 +117,11 @@ This should start a server with the example playground, which you can view in yo
 The source code is composed as the following:
 
 * `projects/zajsf-core` - Angular JSON Schema Form main library
+* `projects/zajsf-cssframework` - Framework module used to build other frameworks
 * `projects/zajsf-bootstrap3` - Framework for Bootstrap 3
 * `projects/zajsf-bootstrap4` - Framework for Bootstrap 4
+* `projects/zajsf-bootstrap5` - Framework for Bootstrap 5
+* `projects/zajsf-daisyui` - Framework for DaisyUI
 * `projects/zajsf-material` - Framework for Angular Material
 * `projects/zajsf-core/src/lib/framework-library` - framework library
 * `projects/zajsf-core/src/lib/widget-library` - widget library
@@ -124,9 +150,11 @@ Where `schema` is a valid JSON schema object, and `onSubmit` calls a function to
 
 `framework` is for the template you want to use, the default value is `no-framwork`. The possible values are:
 
-* `material-design` for  Material Design.
-* `bootstrap-3` for Bootstrap 3.
-* `bootstrap-4` for 'Bootstrap 4.
+* `material-design` for  Material Design (if installed).
+* `bootstrap-3` for Bootstrap 3 (if installed).
+* `bootstrap-4` for Bootstrap 4 (if installed).
+* `bootstrap-5` for Bootstrap 5 (if installed).
+* `daisyui` for DaisyUi. 
 * `no-framework` for (plain HTML).
 
 Setting `loadExternalAssets="true"` will automatically load any additional assets needed by the display framework. It is useful when you are trying out this library, but production sites should instead load all required assets separately. For full details see 'Changing or adding frameworks', below.
@@ -499,6 +527,36 @@ Finally, if you want to see what scripts a particular framework will automatical
 
 However, if you are creating a production site you should load these assets separately, and make sure to remove all references to `loadExternalAssets` to prevent the assets from being loaded twice.
 
+#### Theming
+Framework specific theming is supported(implementation dependent).
+To enable theming in a form component, the theme binding must be  in place
+for example
+
+```html
+<json-schema-form
+  loadExternalAssets="true"
+  [schema]="yourJsonSchema"
+  [framework]="yourFramework"
+  [theme]="yourTheme"
+  (onSubmit)="yourOnSubmitFn($event)">
+</json-schema-form>
+```
+
+currently the following built-in themes are available(per framework):
+* Bootstrap 3:"bootstrap3_default"
+* Bootstrap 4:"bootstrap4_default"
+* Bootstrap 3:"bootstrap5_default" | "light" | "dark"
+* Material design:"material_default" | "indigo-pink" | "purple-green" | "deeppurple-amber" | "pink-bluegrey"
+* DaisyUi:  "daisyui_default" | "light" | "dark" | "cupcake" | "cmyk" | "pastel" |"daisyui_leaf"
+
+for more on how to customize themes, take a look at the relevant framework's docs:
+* [`@zajsf/bootstrap3`](./projects/zajsf-bootstrap3/README.md#custom-theming)
+* [`@zajsf/bootstrap4`](./projects/zajsf-bootstrap3/README.md#custom-theming)
+* [`@zajsf/bootstrap5`](./projects/zajsf-bootstrap4/README.md#custom-theming)
+* [`@zajsf/daisyui`](./projects/zajsf-daisyui/README.md#custom-theming)
+* [`@zajsf/material`](./projects/zajsf-material/README.md#custom-theming)
+
+
 ## contributing guide
 
 If you like this project and want to contribute you can check this [documentation](./CONTRIBUTING.md).
@@ -506,3 +564,45 @@ If you like this project and want to contribute you can check this [documentatio
 ## License
 
 [MIT](/LICENSE)
+
+[gh_core_project]:./README.md
+[npm_core_badge]:https://img.shields.io/npm/v/%40zajsf%2Fcore.svg?color=#010101
+[npm_core_ver]:https://www.npmjs.com/package/@zajsf/core
+[npm_core_badge_RC]:https://img.shields.io/npm/v/%40zajsf%2Fcore/RC.svg?color=blue
+[npm_core_ver_RC]:https://www.npmjs.com/package/@zajsf/core
+
+[gh_cssframework_project]:./projects/zajsf-cssframework/README.md
+[npm_cssframework_badge]:https://img.shields.io/npm/v/%40zajsf%2Fcssframework.svg?color=#010101
+[npm_cssframework_ver]:https://www.npmjs.com/package/@zajsf/cssframework
+[npm_cssframework_badge_RC]:https://img.shields.io/npm/v/%40zajsf%2Fcssframework/RC.svg?color=blue
+[npm_cssframework_ver_RC]:https://www.npmjs.com/package/@zajsf/cssframework
+
+[gh_bootstrap3_project]:./projects/zajsf-bootstrap3/README.md
+[npm_bootstrap3_badge]:https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3.svg?color=#010101
+[npm_bootstrap3_ver]:https://www.npmjs.com/package/@zajsf/bootstrap3
+[npm_bootstrap3_badge_RC]:https://img.shields.io/npm/v/%40zajsf%2Fbootstrap3/RC.svg?color=blue
+[npm_bootstrap3_ver_RC]:https://www.npmjs.com/package/@zajsf/bootstrap3
+
+[gh_bootstrap4_project]:./projects/zajsf-bootstrap4/README.md
+[npm_bootstrap4_badge]:https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4.svg?color=#010101
+[npm_bootstrap4_ver]:https://www.npmjs.com/package/@zajsf/bootstrap4
+[npm_bootstrap4_badge_RC]:https://img.shields.io/npm/v/%40zajsf%2Fbootstrap4/RC.svg?color=blue
+[npm_bootstrap4_ver_RC]:https://www.npmjs.com/package/@zajsf/bootstrap4
+
+[gh_bootstrap5_project]:./projects/zajsf-bootstrap5/README.md
+[npm_bootstrap5_badge]:https://img.shields.io/npm/v/%40zajsf%2Fbootstrap5.svg?color=#010101
+[npm_bootstrap5_ver]:https://www.npmjs.com/package/@zajsf/bootstrap5
+[npm_bootstrap5_badge_RC]:https://img.shields.io/npm/v/%40zajsf%2Fbootstrap5/RC.svg?color=blue
+[npm_bootstrap5_ver_RC]:https://www.npmjs.com/package/@zajsf/bootstrap5
+
+[gh_daisyui_project]:./projects/zajsf-daisyui/README.md
+[npm_daisyui_badge]:https://img.shields.io/npm/v/%40zajsf%2Fdaisyui.svg?color=#010101
+[npm_daisyui_ver]:https://www.npmjs.com/package/@zajsf/daisyui
+[npm_daisyui_badge_RC]:https://img.shields.io/npm/v/%40zajsf%2Fdaisyui/RC.svg?color=blue
+[npm_daisyui_ver_RC]:https://www.npmjs.com/package/@zajsf/daisyui
+
+[gh_material_project]:./projects/zajsf-material/README.md
+[npm_material_badge]:https://img.shields.io/npm/v/%40zajsf%2Fmaterial.svg?color=#010101
+[npm_material_ver]:https://www.npmjs.com/package/@zajsf/material
+[npm_material_badge_RC]:https://img.shields.io/npm/v/%40zajsf%2Fmaterial/RC.svg?color=blue
+[npm_material_ver_RC]:https://www.npmjs.com/package/@zajsf/material
