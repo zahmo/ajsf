@@ -22,7 +22,7 @@ A [JSON Schema](http://json-schema.org) Form builder for Angular, similar to, an
 ## Packages
 
 * [`@zajsf/core`](./README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fcore.svg)](https://badge.fury.io/js/%40zajsf%2Fcore)
-* [`@zajsf/cssframework](./README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fcssframework.svg)](https://badge.fury.io/js/%40zajsf%cssframework)
+* [`@zajsf/cssframework`](./README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fcssframework.svg)](https://badge.fury.io/js/%40zajsf%cssframework)
 * [`@zajsf/bootstrap3`](./projects/zajsf-bootstrap3/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap3.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap3)
 * [`@zajsf/bootstrap4`](./projects/zajsf-bootstrap4/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap4.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap4)
 * [`@zajsf/bootstrap5`](./projects/zajsf-bootstrap5/README.md) [![npm version](https://badge.fury.io/js/%40zajsf%2Fbootstrap5.svg)](https://badge.fury.io/js/%40zajsf%2Fbootstrap5)
