@@ -3,7 +3,7 @@ name: DeployBranch
 on:
   workflow_dispatch:
     inputs:
-      name:
+      branch:
         description: 'Define branch name'     
         required: true
         default: 'main'
