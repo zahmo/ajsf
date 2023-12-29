@@ -66,6 +66,7 @@ export namespace css_fw{
     }
     export type frameworkcfg={
         name:string,
+        text:string;
         stylesheets:string[],
         scripts?:string[],
         widgetstyles:widgetstyles,

@@ -9,7 +9,6 @@ import { CssframeworkService } from './css-framework.service';
 @Injectable()
 export class CssFramework extends Framework {
   name = 'css';
- 
 
   framework:any = CssFrameworkComponent;
   config:css_fw.frameworkcfg
@@ -17,6 +16,7 @@ export class CssFramework extends Framework {
         super();
         
         this.name=cfg.name;
+        this.text=cfg.text||this.name;
         this.stylesheets=cfg.stylesheets;
         this.scripts=cfg.scripts;
         this.config=cfg;
