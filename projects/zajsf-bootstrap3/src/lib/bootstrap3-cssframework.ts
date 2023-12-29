@@ -2,6 +2,7 @@ import { css_fw } from "@zajsf/cssframework";
 
 export const cssFrameworkCfgBootstrap3:css_fw.frameworkcfg={
     "name": "bootstrap-3",
+    "text":"Bootstrap 3",
     "stylesheets": [
         "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
         "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"

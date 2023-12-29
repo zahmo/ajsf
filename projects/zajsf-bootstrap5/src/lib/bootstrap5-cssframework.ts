@@ -3,10 +3,9 @@ import { css_fw } from "@zajsf/cssframework";
 export const cssFrameworkCfgBootstrap5:css_fw.frameworkcfg={
 
     "name": "bootstrap-5",
+    "text":"Bootstrap 5",
     "scripts": [
-
         "//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-
     ],
     "stylesheets": [
         "//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",

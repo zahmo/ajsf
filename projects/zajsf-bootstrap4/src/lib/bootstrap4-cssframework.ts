@@ -2,14 +2,13 @@ import { css_fw } from "@zajsf/cssframework";
 
 export const cssFrameworkCfgBootstrap4:css_fw.frameworkcfg={
     "name": "bootstrap-4",
+    "text":"Bootstrap 4",
     "scripts": [
-        "//code.jquery.com/jquery-3.3.1.slim.min.js",
-        "//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js",
-        "//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        "//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js",
+        "//cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
     ],
     "stylesheets": [
-        "//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
-        "/assets/cssframework-assets/bootstrap4-framework.css"
+        "//cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
     ],
     "widgetstyles": {
         "__themes__": [
