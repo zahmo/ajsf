@@ -184,8 +184,8 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   private resetScriptsAndStyleSheets() {
     document.querySelectorAll('.ajsf').forEach(element => element.remove());
   }
-  private loadScripts() {
-    const scripts = this.frameworkLibrary.getFrameworkScripts();
+  private loadScripts(scriptList?:string[]) {
+    const scripts = scriptList||this.frameworkLibrary.getFrameworkScripts();
     scripts.map(script => {
       const scriptTag: HTMLScriptElement = document.createElement('script');
       scriptTag.src = script;
@@ -195,8 +195,8 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       document.getElementsByTagName('head')[0].appendChild(scriptTag);
     });
   }
-  private loadStyleSheets() {
-    const stylesheets = this.frameworkLibrary.getFrameworkStylesheets();
+  private loadStyleSheets(styleList?:string[]) {
+    const stylesheets = styleList||this.frameworkLibrary.getFrameworkStylesheets();
     stylesheets.map(stylesheet => {
       const linkTag: HTMLLinkElement = document.createElement('link');
       linkTag.rel = 'stylesheet';
@@ -206,9 +206,17 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
     });
   }
   private loadAssets() {
-    this.resetScriptsAndStyleSheets();
-    this.loadScripts();
-    this.loadStyleSheets();
+    this.frameworkLibrary.getFrameworkAssetConfig().then(assetCfg=>{
+      this.resetScriptsAndStyleSheets();
+      this.loadScripts(assetCfg.scripts);
+      this.loadStyleSheets(assetCfg.stylesheets);
+    }).catch(err=>{
+      console.log(err);
+      this.resetScriptsAndStyleSheets();
+      this.loadScripts();
+      this.loadStyleSheets();
+    })
+
   }
   ngOnInit() {
     this.updateForm();
@@ -249,7 +257,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   }
 
   updateForm() {
-    
+      let changedData;
     if (!this.formInitialized || !this.formValuesInput ||
       (this.language && this.language !== this.jsf.language)
       
@@ -277,15 +285,17 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       // If only input values have changed, update the form values
       if (changedInput.length === 1 && changedInput[0] === this.formValuesInput) {
         if (this.formValuesInput.indexOf('.') === -1) {
-          this.setFormValues(this[this.formValuesInput], resetFirst);
+          changedData=this[this.formValuesInput];
+          this.setFormValues(changedData, resetFirst);
         } else {
           const [input, key] = this.formValuesInput.split('.');
-          this.setFormValues(this[input][key], resetFirst);
+          changedData=this[input][key];
+          this.setFormValues(changedData, resetFirst);
         }
 
         // If anything else has changed, re-render the entire form
       } else if (changedInput.length) {
-        this.initializeForm(this.value);
+        this.initializeForm(changedData);
         if (this.onChange) { this.onChange(this.jsf.formValues); }
         if (this.onTouched) { this.onTouched(this.jsf.formValues); }
       }
@@ -308,11 +318,11 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       if (!this.jsf.formGroup) {
         this.jsf.formValues = formValues;
         this.activateForm();
-      } else if (resetFirst) {
-        this.jsf.formGroup.reset();
+      } else if (resetFirst) {//changed to avoid reset events
+        this.jsf.formGroup.reset({},{emitEvent:false});
       }
-      if (this.jsf.formGroup) {
-        this.jsf.formGroup.patchValue(newFormValues);
+      if (this.jsf.formGroup) {//changed to avoid reset events
+        this.jsf.formGroup.patchValue(newFormValues,{emitEvent:false});
       }
       if (this.onChange) { this.onChange(newFormValues); }
       if (this.onTouched) { this.onTouched(newFormValues); }

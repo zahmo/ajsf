@@ -65,7 +65,7 @@ export class JsonSchemaFormService implements OnDestroy {
     strict:false
   
   };
-  ajv:Ajv = new Ajv(this.ajvOptions); // AJV: Another JSON Schema Validator
+  ajv:any = new Ajv(this.ajvOptions); // AJV: Another JSON Schema Validator
   
   validateFormData: any = null; // Compiled AJV function to validate active form's schema
 
