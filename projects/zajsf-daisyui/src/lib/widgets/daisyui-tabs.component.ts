@@ -15,7 +15,7 @@ import { JsonSchemaFormService } from '@zajsf/core';
           (' ' + options?.style?.unselected))"
         >
         <span *ngIf="showAddTab || item.type !== '$ref'"
-        [class]="'nav-link' + (selectedItem === i ? (' ' + options?.activeClass + ' ' + options?.style?.selected) :
+        [class]="(selectedItem === i ? (' ' + options?.activeClass + ' ' + options?.style?.selected) :
         (' ' + options?.style?.unselected))"
       [innerHTML]="setTabTitle(item, i)"
       (click)="select(i)"></span>
