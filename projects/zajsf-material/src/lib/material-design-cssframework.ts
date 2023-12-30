@@ -1,6 +1,7 @@
 
 export const cssFrameworkCfgMaterialDesign:any={
     "name": "material-design",
+    "text":"Material Design",
     "scripts": [],
     "stylesheets": [
         '//fonts.googleapis.com/icon?family=Material+Icons',
