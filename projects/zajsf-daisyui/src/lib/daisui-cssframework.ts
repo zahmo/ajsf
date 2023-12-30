@@ -2,6 +2,7 @@ import { css_fw } from "@zajsf/cssframework";
 
 export const cssFrameworkCfgDaisyUI:css_fw.frameworkcfg={
     "name": "daisyui",
+    "text":"DaisyUI",
     "scripts": [],
     "stylesheets": [
         //"/assets/cssframework/daisyui-framework.css"
