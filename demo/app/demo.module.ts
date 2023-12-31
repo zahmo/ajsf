@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, REMOVE_STYLES_ON_COMPONENT_DESTROY } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { Bootstrap3FrameworkModule } from '@zajsf/bootstrap3';
@@ -44,6 +44,7 @@ import { routes } from './demo.routes';
     CssFrameworkModule,
     JsonSchemaFormModule
   ],
+  providers:[{ provide: REMOVE_STYLES_ON_COMPONENT_DESTROY, useValue: true }],
   bootstrap: [DemoRootComponent]
 })
 
