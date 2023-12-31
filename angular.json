@@ -20,22 +20,7 @@
                         "tsConfig": "demo/tsconfig.app.json",
                         "assets": [
                             "demo/favicon.ico",
-                            "demo/assets",
-                            {
-                                "glob": "**/*",
-                                "input": "./dist/@zajsf/bootstrap3/assets",
-                                "output": "/assets/"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "./dist/@zajsf/bootstrap4/assets",
-                                "output": "/assets/"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "./dist/@zajsf/daisyui/assets",
-                                "output": "/assets/"
-                            }
+                            "demo/assets"
                         ],
                         "styles": [
                             "demo/styles.scss"
