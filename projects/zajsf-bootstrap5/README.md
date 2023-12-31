@@ -122,6 +122,92 @@ for example
 
 ```
 
+## Framework assets
+
+Framework assets are typically third party assets (mainly js and css files) that are loaded at runtime for the particular framework's styling and effects to activate.
+By default these assets are loaded from built in cdn urls. These assets can also be self hosted or loaded from different urls if need be.
+To use custom urls the following steps must be followed:
+
+
+* create a file called assets.json somewhere in your app src folder
+* edit the assets.json file so that it contains both 'stylesheets' and 'scripts' properties-ex:
+
+```
+{
+
+    "stylesheets": [
+      "http://some.domain/css/style1.css",
+      "http://some.domain/css/style2.css",
+      "localstyle.css",
+      ...
+      ],
+    "scripts": [
+      "http://some.domain/css/script1.js",
+      "localscript.js",
+      ...
+    ]
+
+}
+
+```
+* adapt your apps angular.json assets config accordingly, for example:
+    
+```
+	"projects": {
+        "<your project name>": {
+			...
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        ...
+                        "assets": [
+                            ...
+                            {
+                                "glob": "assets.json",
+                                "input": "src",
+                                "output": "/assets/bootstrap-5"
+                            },
+                            {
+                                "glob": "localstyle.css",
+                                "input": "./some/path/to/framework/cssfolder/",
+                                "output": "/assets/bootstrap-5/cssframework"
+                            },
+                            {
+                                "glob": "localscript.js",
+                                "input": "./some/path/to/framework/jsfolder/",
+                                "output": "/assets/bootstrap-5/cssframework"
+                            }
+                        ],
+						...
+```
+Note that relative asset urls will be assumed to reside under "/assets/bootstrap-5/cssframework" and the assets.json file must output to "/assets/bootstrap-5"
+
+for convenince a default assets.json file is included for including the framework assets
+from the node_modules folder, this assumes that the third party libraries were installed locally with npm and that they will reside in the "/assets/bootstrap-5/cssframework" deployment folder. In this case, the following config can be used and adapted similar to above:
+
+```
+...
+                        "assets": [
+                            ...
+                           {
+                                "glob": "**/*",
+                                "input": "./node_modules/@zajsf/bootstrap5/assets",
+                                "output": "/assets/bootstrap-5"
+                            },
+                            {
+                                "glob": "bootstrap.bundle.min.js",
+                                "input": "./node_modules/bootstrap/dist/js/",
+                                "output": "/assets/bootstrap-5/cssframework"
+                            },
+                            {
+                                "glob": "bootstrap.min.css",
+                                "input": "./node_modules/bootstrap/dist/css/",
+                                "output": "/assets/bootstrap-5/cssframework"
+                            }
+                        ],
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name --project @zajsf/bootstrap5` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @zajsf/bootstrap5`.
