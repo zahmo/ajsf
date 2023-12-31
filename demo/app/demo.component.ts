@@ -36,8 +36,10 @@ export class DemoComponent implements OnInit,AfterViewInit {
     'pt': 'Portuguese',
     'zh': 'Chinese'
   };
-  frameworkList: any = ['material-design', 'bootstrap-3', 'bootstrap-4','bootstrap-5','daisyui','no-framework',];
-  frameworks: any = {
+  frameworkList: any =[]// ['material-design', 'bootstrap-3', 'bootstrap-4','bootstrap-5','daisyui','no-framework',];
+  frameworks: any ={};
+  /*
+  {
     'material-design': 'Material Design',
     'bootstrap-3': 'Bootstrap 3',
     'bootstrap-4': 'Bootstrap 4',
@@ -46,6 +48,7 @@ export class DemoComponent implements OnInit,AfterViewInit {
     'no-framework': 'None (plain HTML)'
     
   };
+  */
   selectedSet = 'ng-jsf';
   selectedSetName = '';
   selectedExample = 'ng-jsf-flex-layout';
@@ -102,6 +105,9 @@ export class DemoComponent implements OnInit,AfterViewInit {
 
   ngOnInit() {
     // Subscribe to query string to detect schema to load
+    this.frameworks=this.jsfFLService.getFrameworkList()
+    .reduce((acc,item)=>{acc[item.name]=item.text;return acc},{});
+    this.frameworkList=Object.keys(this.frameworks);
     this.route.queryParams.subscribe(
       params => {
         if (params['set']) {
