@@ -21,13 +21,8 @@ export declare class Bootstrap4FrameworkComponent implements OnInit, OnChanges {
     layoutIndex: number[];
     dataIndex: number[];
     constructor(changeDetector: ChangeDetectorRef, jsf: JsonSchemaFormService);
-    get showRemoveButton(): boolean;
     ngOnInit(): void;
     ngOnChanges(): void;
-    initializeFramework(): void;
-    updateHelpBlock(status: any): void;
-    setTitle(): string;
-    removeItem(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<Bootstrap4FrameworkComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<Bootstrap4FrameworkComponent, "bootstrap-4-framework", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<Bootstrap4FrameworkComponent, "bootstrap-4-framework", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }
