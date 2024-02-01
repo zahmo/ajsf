@@ -3,10 +3,11 @@
 module.exports = {
     content: [
         "./src/**/*.{html,ts}",
-        "./projects/**/*.{html,ts}"
+        "./projects/**/*.{html,ts}",
+        "./demo/**/*.{html,ts}"
     ],
     theme: {
         extend: {},
     },
-    plugins: [],
+    plugins: []
 }

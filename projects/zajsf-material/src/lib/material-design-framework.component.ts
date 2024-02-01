@@ -1,14 +1,18 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
-import { JsonSchemaFormService, isDefined } from '@zajsf/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { FrameworkLibraryService, JsonSchemaFormService, isDefined } from '@zajsf/core';
+import { CssframeworkService } from '@zajsf/cssframework';
 import cloneDeep from 'lodash/cloneDeep';
+import { Subscription } from 'rxjs';
+import { cssFrameworkCfgMaterialDesign } from './material-design-cssframework';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'material-design-framework',
   templateUrl: './material-design-framework.component.html',
   styleUrls: ['./material-design-framework.component.scss'],
+  //changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class MaterialDesignFrameworkComponent implements OnInit, OnChanges {
+export class MaterialDesignFrameworkComponent implements OnInit, OnChanges ,OnDestroy {
   frameworkInitialized = false;
   inputType: string;
   options: any; // Options used in this framework
@@ -22,10 +26,28 @@ export class MaterialDesignFrameworkComponent implements OnInit, OnChanges {
   @Input() layoutIndex: number[];
   @Input() dataIndex: number[];
 
+  theme:string="material-default-theme";
+  frameworkThemeSubs:Subscription;
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private jsf: JsonSchemaFormService
+    private jsf: JsonSchemaFormService,
+    public jsfFLService:FrameworkLibraryService,
+    public cssFWService:CssframeworkService
   ) {
+    let activeFramework:any=this.jsfFLService.activeFramework;
+    let fwcfg=activeFramework.config||{};
+    let defaultTheme=cssFrameworkCfgMaterialDesign.widgetstyles?.__themes__[0];
+    let defaultThemeName=cssFWService.activeRequestedTheme||defaultTheme.name;
+    this.theme=this.options?.theme|| defaultThemeName;
+    this.frameworkThemeSubs= cssFWService.frameworkTheme$.subscribe(newTheme=>{
+        this.theme=newTheme;
+    })
+
+
+  }
+  ngOnDestroy(): void {
+    this.frameworkThemeSubs.unsubscribe();
+    this.frameworkThemeSubs=null;
   }
 
   get showRemoveButton(): boolean {

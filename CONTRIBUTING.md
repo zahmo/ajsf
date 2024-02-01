@@ -129,8 +129,11 @@ The scope should be the name of the npm package affected (as perceived by the pe
 The following is the list of supported scopes:
 
 * **zajsf/core**
+* **zajsf/cssfw**
 * **zajsf/bs3**
 * **zajsf/bs4**
+* **zajsf/bs5**
+* **zajsf/daisyui**
 * **zajsf/material**
 * **locales**
 * **demo**

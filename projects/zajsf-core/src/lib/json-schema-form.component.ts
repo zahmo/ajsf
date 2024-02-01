@@ -9,12 +9,13 @@ import {
   forwardRef,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FrameworkLibraryService } from './framework-library/framework-library.service';
 import { JsonSchemaFormService } from './json-schema-form.service';
@@ -80,7 +81,7 @@ export const JSON_SCHEMA_FORM_VALUE_ACCESSOR: any = {
   // creates a separate instance of the service for each component
   providers:  [ JsonSchemaFormService, JSON_SCHEMA_FORM_VALUE_ACCESSOR ],
 })
-export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges, OnInit {
+export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges, OnInit,OnDestroy {
   // TODO: quickfix to avoid subscribing twice to the same emitters
   private unsubscribeOnActivateForm$ = new Subject<void>();
 
@@ -127,6 +128,8 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   @Input() loadExternalAssets: boolean; // Load external framework assets?
   @Input() debug: boolean; // Show debug information?
 
+  @Input() theme: string; // Theme
+
   @Input()
   get value(): any {
     return this.objectWrap ? this.jsf.data['1'] : this.jsf.data;
@@ -155,18 +158,34 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   onChange: Function;
   onTouched: Function;
 
+  //TODO-review,maybe use takeUntilDestroyed rxjs op
+  dataChangesSubs:Subscription;
+  statusChangesSubs:Subscription;
+  isValidChangesSubs:Subscription;
+  validationErrorChangesSubs:Subscription;
+
   constructor(
     private changeDetector: ChangeDetectorRef,
     private frameworkLibrary: FrameworkLibraryService,
     private widgetLibrary: WidgetLibraryService,
     public jsf: JsonSchemaFormService,
   ) { }
+  ngOnDestroy(): void {
+    this.dataChangesSubs?.unsubscribe();
+    this.statusChangesSubs?.unsubscribe();
+    this.isValidChangesSubs?.unsubscribe();
+    this.validationErrorChangesSubs?.unsubscribe();
+    this.dataChangesSubs=null;
+    this.statusChangesSubs=null;
+    this.isValidChangesSubs=null;
+    this.validationErrorChangesSubs=null;
+  }
 
   private resetScriptsAndStyleSheets() {
     document.querySelectorAll('.ajsf').forEach(element => element.remove());
   }
-  private loadScripts() {
-    const scripts = this.frameworkLibrary.getFrameworkScripts();
+  private loadScripts(scriptList?:string[]) {
+    const scripts = scriptList||this.frameworkLibrary.getFrameworkScripts();
     scripts.map(script => {
       const scriptTag: HTMLScriptElement = document.createElement('script');
       scriptTag.src = script;
@@ -176,8 +195,8 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       document.getElementsByTagName('head')[0].appendChild(scriptTag);
     });
   }
-  private loadStyleSheets() {
-    const stylesheets = this.frameworkLibrary.getFrameworkStylesheets();
+  private loadStyleSheets(styleList?:string[]) {
+    const stylesheets = styleList||this.frameworkLibrary.getFrameworkStylesheets();
     stylesheets.map(stylesheet => {
       const linkTag: HTMLLinkElement = document.createElement('link');
       linkTag.rel = 'stylesheet';
@@ -187,9 +206,17 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
     });
   }
   private loadAssets() {
-    this.resetScriptsAndStyleSheets();
-    this.loadScripts();
-    this.loadStyleSheets();
+    this.frameworkLibrary.getFrameworkAssetConfig().then(assetCfg=>{
+      this.resetScriptsAndStyleSheets();
+      this.loadScripts(assetCfg.scripts);
+      this.loadStyleSheets(assetCfg.stylesheets);
+    }).catch(err=>{
+      console.log(err);
+      this.resetScriptsAndStyleSheets();
+      this.loadScripts();
+      this.loadStyleSheets();
+    })
+
   }
   ngOnInit() {
     this.updateForm();
@@ -230,8 +257,10 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   }
 
   updateForm() {
+      let changedData;
     if (!this.formInitialized || !this.formValuesInput ||
       (this.language && this.language !== this.jsf.language)
+      
     ) {
       this.initializeForm();
     } else {
@@ -256,17 +285,24 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       // If only input values have changed, update the form values
       if (changedInput.length === 1 && changedInput[0] === this.formValuesInput) {
         if (this.formValuesInput.indexOf('.') === -1) {
-          this.setFormValues(this[this.formValuesInput], resetFirst);
+          changedData=this[this.formValuesInput];
+          this.setFormValues(changedData, resetFirst);
         } else {
           const [input, key] = this.formValuesInput.split('.');
-          this.setFormValues(this[input][key], resetFirst);
+          changedData=this[input][key];
+          this.setFormValues(changedData, resetFirst);
         }
 
         // If anything else has changed, re-render the entire form
       } else if (changedInput.length) {
-        this.initializeForm();
+        this.initializeForm(changedData);
         if (this.onChange) { this.onChange(this.jsf.formValues); }
         if (this.onTouched) { this.onTouched(this.jsf.formValues); }
+      }
+      
+      //set framework theme
+      if (this.theme && this.theme !== this.frameworkLibrary.getActiveTheme()?.name) {
+        this.frameworkLibrary.requestThemeChange(this.theme);
       }
 
       // Update previous inputs
@@ -282,11 +318,11 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       if (!this.jsf.formGroup) {
         this.jsf.formValues = formValues;
         this.activateForm();
-      } else if (resetFirst) {
-        this.jsf.formGroup.reset();
+      } else if (resetFirst) {//changed to avoid reset events
+        this.jsf.formGroup.reset({},{emitEvent:false});
       }
-      if (this.jsf.formGroup) {
-        this.jsf.formGroup.patchValue(newFormValues);
+      if (this.jsf.formGroup) {//changed to avoid reset events
+        this.jsf.formGroup.patchValue(newFormValues,{emitEvent:false});
       }
       if (this.onChange) { this.onChange(newFormValues); }
       if (this.onTouched) { this.onTouched(newFormValues); }
@@ -320,19 +356,22 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
    * - Create the master 'formGroupTemplate' then from it 'formGroup'
    *   the Angular formGroup used to control the reactive form.
    */
-  initializeForm() {
+  initializeForm(initialData?:any) {
     if (
       this.schema || this.layout || this.data || this.form || this.model ||
       this.JSONSchema || this.UISchema || this.formData || this.ngModel ||
       this.jsf.data
     ) {
-
-      this.jsf.resetAllValues();  // Reset all form values to defaults
+      // Reset all form values to defaults
+      this.jsf.resetAllValues();
       this.initializeOptions();   // Update options
       this.initializeSchema();    // Update schema, schemaRefLibrary,
       // schemaRecursiveRefMap, & dataRecursiveRefMap
       this.initializeLayout();    // Update layout, layoutRefLibrary,
       this.initializeData();      // Update formValues
+      if(initialData){
+        this.jsf.formValues=initialData;
+      }
       this.activateForm();        // Update dataMap, templateRefLibrary,
       // formGroupTemplate, formGroup
 
@@ -417,7 +456,11 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
     if (isObject(this.form) && isObject(this.form.tpldata)) {
       this.jsf.setTpldata(this.form.tpldata);
     }
+    if (this.theme) {
+      this.frameworkLibrary.requestThemeChange(this.theme);
+    }
   }
+
 
   /**
    * 'initializeSchema' function
@@ -556,7 +599,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       this.jsf.formValues = cloneDeep(this.form.formData);
       this.formValuesInput = 'form.formData';
     } else {
-      this.formValuesInput = null;
+      this.formValuesInput = "data";//null;
     }
   }
 
@@ -728,7 +771,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       // }
 
       // Subscribe to form changes to output live data, validation, and errors
-      this.jsf.dataChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(data => {
+      this.dataChangesSubs=this.jsf.dataChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(data => {
         this.onChanges.emit(this.objectWrap ? data['1'] : data);
         if (this.formValuesInput && this.formValuesInput.indexOf('.') === -1) {
           this[`${this.formValuesInput}Change`].emit(this.objectWrap ? data['1'] : data);
@@ -736,9 +779,9 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       });
 
       // Trigger change detection on statusChanges to show updated errors
-      this.jsf.formGroup.statusChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(() => this.changeDetector.markForCheck());
-      this.jsf.isValidChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(isValid => this.isValid.emit(isValid));
-      this.jsf.validationErrorChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(err => this.validationErrors.emit(err));
+      this.statusChangesSubs= this.jsf.formGroup.statusChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(() => this.changeDetector.markForCheck());
+      this.isValidChangesSubs=this.jsf.isValidChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(isValid => this.isValid.emit(isValid));
+      this.validationErrorChangesSubs=this.jsf.validationErrorChanges.pipe(takeUntil(this.unsubscribeOnActivateForm$)).subscribe(err => this.validationErrors.emit(err));
 
       // Output final schema, final layout, and initial data
       this.formSchema.emit(this.jsf.schema);
@@ -762,4 +805,5 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
       }
     }
   }
+
 }

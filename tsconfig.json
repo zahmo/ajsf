@@ -46,11 +46,29 @@
       "@zajsf/bootstrap4/*": [
         "dist/@zajsf/bootstrap4/*"
       ],
+      "@zajsf/bootstrap5": [
+        "dist/@zajsf/bootstrap5"
+      ],
+      "@zajsf/bootstrap5/*": [
+        "dist/@zajsf/bootstrap5/*"
+      ],
       "@zajsf/material": [
         "dist/@zajsf/material"
       ],
       "@zajsf/material/*": [
         "dist/@zajsf/material/*"
+      ],
+      "@zajsf/daisyui": [
+        "dist/@zajsf/daisyui"
+      ],
+      "@zajsf/daisyui/*": [
+        "dist/@zajsf/daisyui/*"
+      ],
+      "@zajsf/cssframework": [
+        "dist/@zajsf/cssframework"
+      ],
+      "@zajsf/cssframework/*": [
+        "dist/@zajsf/cssframework/*"
       ]
     },
     "useDefineForClassFields": false

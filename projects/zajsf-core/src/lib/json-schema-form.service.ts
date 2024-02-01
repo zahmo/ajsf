@@ -1,39 +1,41 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
-import cloneDeep from 'lodash/cloneDeep';
-import Ajv from 'ajv';
+import Ajv, { ErrorObject, Options } from 'ajv';
 import jsonDraft6 from 'ajv/lib/refs/json-schema-draft-06.json';
+import cloneDeep from 'lodash/cloneDeep';
+import { Subject, Subscription } from 'rxjs';
 import {
-  buildFormGroup,
-  buildFormGroupTemplate,
-  formatFormData,
-  getControl,
-  fixTitle,
-  forEach,
-  hasOwn,
-  toTitleCase,
-  buildLayout,
-  getLayoutNode,
-  buildSchemaFromData,
-  buildSchemaFromLayout,
-  removeRecursiveReferences,
-  hasValue,
-  isArray,
-  isDefined,
-  isEmpty,
-  isObject,
-  JsonPointer
-} from './shared';
-import {
-  deValidationMessages,
-  enValidationMessages,
-  esValidationMessages,
-  frValidationMessages,
-  itValidationMessages,
-  ptValidationMessages,
-  zhValidationMessages
+    deValidationMessages,
+    enValidationMessages,
+    esValidationMessages,
+    frValidationMessages,
+    itValidationMessages,
+    ptValidationMessages,
+    zhValidationMessages
 } from './locale';
+import {
+    JsonPointer,
+    buildFormGroup,
+    buildFormGroupTemplate,
+    buildLayout,
+    buildSchemaFromData,
+    buildSchemaFromLayout,
+    fixTitle,
+    forEach,
+    formatFormData,
+    getControl,
+    getLayoutNode,
+    hasOwn,
+    hasValue,
+    isArray,
+    isDefined,
+    isEmpty,
+    isObject,
+    removeRecursiveReferences,
+    toTitleCase
+} from './shared';
+
+import _isEqual from 'lodash/isEqual';
 
 
 export interface TitleMapItem {
@@ -51,18 +53,20 @@ export interface ErrorMessages {
 }
 
 @Injectable()
-export class JsonSchemaFormService {
+export class JsonSchemaFormService implements OnDestroy {
   JsonFormCompatibility = false;
   ReactJsonSchemaFormCompatibility = false;
   AngularSchemaFormCompatibility = false;
   tpldata: any = {};
 
-  ajvOptions: any = {
+  ajvOptions: Options = {
     allErrors: true,
-    jsonPointers: true,
-    unknownFormats: 'ignore'
+    validateFormats:false,
+    strict:false
+  
   };
-  ajv: any = new Ajv(this.ajvOptions); // AJV: Another JSON Schema Validator
+  ajv:any = new Ajv(this.ajvOptions); // AJV: Another JSON Schema Validator
+  
   validateFormData: any = null; // Compiled AJV function to validate active form's schema
 
   formValues: any = {}; // Internal form data (may not have correct types)
@@ -76,7 +80,7 @@ export class JsonSchemaFormService {
 
   validData: any = null; // Valid form data (or null) (=== isValid ? data : null)
   isValid: boolean = null; // Is current form data valid?
-  ajvErrors: any = null; // Ajv errors for current data
+  ajvErrors: ErrorObject[] = null; // Ajv errors for current data
   validationErrors: any = null; // Any validation errors for current data
   dataErrors: any = new Map(); //
   formValueSubscription: any = null; // Subscription to formGroup.valueChanges observable (for un- and re-subscribing)
@@ -123,7 +127,7 @@ export class JsonSchemaFormService {
     // false = only validate fields after they are touched by user
     // 'auto' = validate fields with values immediately, empty fields after they are touched
     widgets: {}, // Any custom widgets to load
-    defautWidgetOptions: {
+    defaultWidgetOptions: {
       // Default options for form control widgets
       listItems: 1, // Number of list items to initially add to arrays with no default value
       addable: true, // Allow adding items to an array or $ref point?
@@ -143,9 +147,20 @@ export class JsonSchemaFormService {
     }
   };
 
+  fcValueChangesSubs:Subscription;
+  fcStatusChangesSubs:Subscription;
   constructor() {
     this.setLanguage(this.language);
     this.ajv.addMetaSchema(jsonDraft6);
+  }
+  ngOnDestroy(): void {
+    this.fcValueChangesSubs?.unsubscribe();
+    this.fcStatusChangesSubs?.unsubscribe();
+    this.formValueSubscription?.unsubscribe();
+    this.fcValueChangesSubs=null;
+    this.fcStatusChangesSubs=null;
+    this.formValueSubscription=null;
+
   }
 
   setLanguage(language: string = 'en-US') {
@@ -163,7 +178,7 @@ export class JsonSchemaFormService {
 
     const validationMessages = languageValidationMessages[languageCode];
 
-    this.defaultFormOptions.defautWidgetOptions.validationMessages = cloneDeep(
+    this.defaultFormOptions.defaultWidgetOptions.validationMessages = cloneDeep(
       validationMessages
     );
   }
@@ -248,13 +263,16 @@ export class JsonSchemaFormService {
     );
     this.isValid = this.validateFormData(this.data);
     this.validData = this.isValid ? this.data : null;
-    const compileErrors = errors => {
+    const compileErrors = (errors:ErrorObject[]) => {
       const compiledErrors = {};
       (errors || []).forEach(error => {
-        if (!compiledErrors[error.dataPath]) {
-          compiledErrors[error.dataPath] = [];
+        //TODO review-seems to be a change in newer versions
+        //of ajv giving '' as instancePath for root objects
+        let errorPath=error.instancePath||"ROOT";
+        if (!compiledErrors[errorPath]) {
+          compiledErrors[errorPath] = [];
         }
-        compiledErrors[error.dataPath].push(error.message);
+        compiledErrors[errorPath].push(error.message);
       });
       return compiledErrors;
     };
@@ -298,25 +316,25 @@ export class JsonSchemaFormService {
   setOptions(newOptions: any) {
     if (isObject(newOptions)) {
       const addOptions = cloneDeep(newOptions);
-      // Backward compatibility for 'defaultOptions' (renamed 'defautWidgetOptions')
+      // Backward compatibility for 'defaultOptions' (renamed 'defaultWidgetOptions')
       if (isObject(addOptions.defaultOptions)) {
         Object.assign(
-          this.formOptions.defautWidgetOptions,
+          this.formOptions.defaultWidgetOptions,
           addOptions.defaultOptions
         );
         delete addOptions.defaultOptions;
       }
-      if (isObject(addOptions.defautWidgetOptions)) {
+      if (isObject(addOptions.defaultWidgetOptions)) {
         Object.assign(
-          this.formOptions.defautWidgetOptions,
-          addOptions.defautWidgetOptions
+          this.formOptions.defaultWidgetOptions,
+          addOptions.defaultWidgetOptions
         );
-        delete addOptions.defautWidgetOptions;
+        delete addOptions.defaultWidgetOptions;
       }
       Object.assign(this.formOptions, addOptions);
 
       // convert disableErrorState / disableSuccessState to enable...
-      const globalDefaults = this.formOptions.defautWidgetOptions;
+      const globalDefaults = this.formOptions.defaultWidgetOptions;
       ['ErrorState', 'SuccessState']
         .filter(suffix => hasOwn(globalDefaults, 'disable' + suffix))
         .forEach(suffix => {
@@ -558,7 +576,7 @@ export class JsonSchemaFormService {
         this.formOptions.validateOnRender === true ||
         (this.formOptions.validateOnRender === 'auto' &&
           hasValue(ctx.controlValue));
-      ctx.formControl.statusChanges.subscribe(
+      this.fcStatusChangesSubs=ctx.formControl.statusChanges.subscribe(
         status =>
           (ctx.options.errorMessage =
             status === 'VALID'
@@ -568,10 +586,16 @@ export class JsonSchemaFormService {
                 ctx.options.validationMessages
               ))
       );
-      ctx.formControl.valueChanges.subscribe(value => {
+      this.fcValueChangesSubs=ctx.formControl.valueChanges.subscribe(value => {
+         //commented out to revert back to previous commits
+         //as seems to be causing some issues
+         /*
         if (!!value) {
           ctx.controlValue = value;
         }
+        */
+        //TODO-test,this is the original code
+        if (!_isEqual(ctx.controlValue, value)) { ctx.controlValue = value }
       });
     } else {
       ctx.controlName = ctx.layoutNode.name;

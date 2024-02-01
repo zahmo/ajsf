@@ -12,6 +12,11 @@ With YARN, run the following:
 yarn add @zajsf/material@latest
 ```
 
+include the themes scss in your applications sass file(typically "styles.scss" under "src" folder -see angular docs for more details) 
+```scss
+@import "node_modules/@zajsf/material/assets/material-design-themes.scss";
+```
+
 Then import `MaterialDesignFrameworkModule` in your main application module if you want to use `material-angular` UI, like this:
 
 ```javascript
@@ -40,6 +45,7 @@ For basic use, after loading JsonSchemaFormModule as described above, to display
   loadExternalAssets="true"
   [schema]="yourJsonSchema"
   framework="material-design"
+  [theme]="yourTheme"
   (onSubmit)="yourOnSubmitFn($event)">
 </json-schema-form>
 ```
@@ -48,10 +54,63 @@ Where `schema` is a valid JSON schema object, and `onSubmit` calls a function to
 
 `framework` is for the template you want to use, the default value is `no-framwork`. The possible values are:
 
+
 * `material-design` for  Material Design.
-* `bootstrap-3` for Bootstrap 3.
-* `bootstrap-4` for 'Bootstrap 4.
+* `bootstrap-3` for Bootstrap 3 (if installed).
+* `bootstrap-4` for Bootstrap 4 (if installed).
+* `bootstrap-5` for Bootstrap 5.(if installed).
+* `daisyui` for DaisyUi (if installed).
 * `no-framework` for (plain HTML).
+
+`theme` is for the framework theme you want to use. 
+The possible values for this framework are:
+
+* `material_default` for the default theme.
+* `indigo-pink` for the indigo & pink theme.
+* `purple-green` for the purple & green theme.
+* `deeppurple-amber` for the deep purple & amber theme.
+* `pink-bluegrey` for the pink & blue-grey theme.
+
+the list of available themes can also be gotten using the 
+FrameworkLibraryService(found in '@zajsf/core'): 
+ ```typescript
+ getFrameworkThemes()
+ ``` 
+ method
+
+## Custom theming
+
+Custom theming can be achieved in the following way:
+
+Adding a new theme:
+the first step will be to create the entire theme (see the specific frameworks underlying documentation for how this can be done), then add the theme as
+a css class
+
+```sass
+.material_custom {
+    @include mat.core-color($custom-pink-theme);
+    @include mat.all-component-colors($custom-pink-theme);
+    @include mat.button-color($custom-pink-theme);
+}
+
+```
+after making the css available, the theme will need to be registered using the  
+FrameworkLibraryService(found in '@zajsf/core'):
+for example 
+
+```typescript
+  constructor(
+    .
+    private frameworkLibrary: FrameworkLibraryService,
+    .
+    .
+  ) { 
+
+    frameworkLibrary.registerTheme({name:'material_custom',text:'Material custom theme'})
+
+  }
+
+```
 
 ## Code scaffolding
 

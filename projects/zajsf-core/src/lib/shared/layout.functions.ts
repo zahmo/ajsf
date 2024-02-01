@@ -1,30 +1,33 @@
-import uniqueId from 'lodash/uniqueId';
 import cloneDeep from 'lodash/cloneDeep';
-import {
-  checkInlineType,
-  getFromSchema,
-  getInputType,
-  isInputRequired,
-  removeRecursiveReferences,
-  updateInputOptions
-  } from './json-schema.functions';
-import {
-  copy,
-  fixTitle,
-  forEach,
-  hasOwn
-  } from './utility.functions';
-import {
-  inArray,
-  isArray,
-  isDefined,
-  isEmpty,
-  isNumber,
-  isObject,
-  isString
-  } from './validator.functions';
-import { JsonPointer } from './jsonpointer.functions';
+import _isArray from 'lodash/isArray';
+import _isPlainObject from 'lodash/isPlainObject';
+import uniqueId from 'lodash/uniqueId';
 import { TitleMapItem } from '../json-schema-form.service';
+import {
+    checkInlineType,
+    getFromSchema,
+    getInputType,
+    isInputRequired,
+    removeRecursiveReferences,
+    updateInputOptions
+} from './json-schema.functions';
+import { JsonPointer } from './jsonpointer.functions';
+import {
+    copy,
+    fixTitle,
+    forEach,
+    hasOwn
+} from './utility.functions';
+import {
+    inArray,
+    isArray,
+    isDefined,
+    isEmpty,
+    isNumber,
+    isObject,
+    isString
+} from './validator.functions';
+
 
 
 
@@ -49,7 +52,7 @@ import { TitleMapItem } from '../json-schema-form.service';
  * //   widgetLibrary
  * //
  */
-export function buildLayout(jsf, widgetLibrary) {
+export function buildLayout_original(jsf, widgetLibrary) {
   let hasSubmitButton = !JsonPointer.get(jsf, '/formOptions/addSubmit');
   const formLayout = mapLayout(jsf.layout, (layoutItem, index, layoutPointer) => {
     const newNode: any = {
@@ -464,7 +467,7 @@ export function buildLayout(jsf, widgetLibrary) {
       dataType: 'object',
       items: fullLayout,
       name: '',
-      options: cloneDeep(jsf.formOptions.defautWidgetOptions),
+      options: cloneDeep(jsf.formOptions.defaultWidgetOptions),
       recursiveReference: true,
       required: false,
       type: 'section',
@@ -480,6 +483,166 @@ export function buildLayout(jsf, widgetLibrary) {
     });
   }
   return formLayout;
+}
+
+//TODO-review:this implements a quick 'post' fix rather than an
+//integrared ideal fix
+export function buildLayout(jsf, widgetLibrary) {
+  let layout=buildLayout_original(jsf, widgetLibrary);
+  if (jsf.formValues) {
+    let fixedLayout = fixNestedArrayLayout({
+      builtLayout: layout,
+      formData: jsf.formValues
+    });
+  }
+  return layout;
+}
+
+
+
+function fixNestedArrayLayout(options: any) {
+  let { builtLayout, formData } = options;
+  let arrLengths = {};
+  let traverseObj = function (obj, path, onValue?) {
+    if (_isArray(obj)) {
+      onValue && onValue(obj, path);
+      obj.forEach((item, ind) => {
+        onValue && onValue(item, path + "/" + ind);
+        traverseObj(item, path + "/" + ind, onValue);
+      });
+      return;
+    }
+    if (_isPlainObject(obj)) {
+      onValue && onValue(obj, path);
+      Object.keys(obj).forEach(key => {
+        onValue && onValue(obj[key], path + "/" + key);
+        traverseObj(obj[key], path + "/" + key, onValue);
+      });
+      return
+    }
+  }
+  traverseObj(formData, "", (value, path) => {
+    if (_isArray(value)) {
+      arrLengths[path] = arrLengths[path] || value.length;
+    }
+  });
+
+  let getDataSize = (options: any) => {
+    let { data, dataPointer, indexArray } = options;
+    let dashCount = 0;
+    let dpInstance = dataPointer.substring(1).split("/").map((part, pind) => {
+      if (part == "-" && indexArray[dashCount] != undefined) {
+        return indexArray[dashCount++];
+      }
+      return part;
+    })
+      .join("/");
+    dpInstance = "/" + dpInstance;
+    let arrSize = arrLengths[dpInstance];
+    return arrSize;
+  }
+  //still too buggy
+  let createNonRefItem = (nodeWithRef: any) => {
+    let templateNode = {
+      "type": "section", //check this could also be array?
+      "recursiveReference": false,//check this 
+      "items": []
+    }
+    let clone = cloneDeep(nodeWithRef);
+    //commented out for now so that it behaves as ususal
+    //_.merge(clone,templateNode);
+    return clone;
+  }
+
+  let rebuildLayout = (options: any) => {
+    let { builtLayout, indices, parentDataPointer, indexPos } = options;
+    indices = indices || [];
+    indexPos = indexPos == undefined ? indexPos = -1 : indexPos;
+    if (_isArray(builtLayout)) {
+      builtLayout.forEach((item, index) => {
+        rebuildLayout({
+          builtLayout: item,
+          indices: indices,
+          indexPos: indexPos,
+          parentDataPointer: builtLayout.dataPointer || parentDataPointer
+        })
+      })
+      return;
+    }
+    //for now added condition to ignore recursive references
+    if (builtLayout.items && builtLayout.type == "array"
+      && builtLayout.dataPointer
+      && !builtLayout.recursiveReference
+    ) {
+      let numDataItems: any = getDataSize({
+        data: formData,
+        dataPointer: builtLayout.dataPointer,
+        indexArray: indices
+      });
+      let numActualItems = builtLayout.items.length;
+      //check if there's ref items, if so ignore it and therefore
+      //decrement the item count
+      builtLayout.items.forEach(item => {
+        if (item.type && item.type == "$ref") {
+          numActualItems--;
+        }
+      });
+      numActualItems = Math.max(numActualItems, 0);//avoid dealing with negatives
+      if (numActualItems < numDataItems) {
+
+        let numItemsNeeded = numDataItems - numActualItems;
+        //added to ignore recursive references
+        if (numActualItems == 0 && builtLayout.items[0].recursiveReference) {
+          numItemsNeeded = 0
+        }
+        for (let i = 0; i < numItemsNeeded; i++) {
+          //node must not be of type "type": "$ref"
+          //if it is then manufacture our own
+          let isRefNode = builtLayout.items[0].type && builtLayout.items[0].type == "$ref";
+          let newItem = isRefNode
+            ? createNonRefItem(builtLayout.items[0])
+            : cloneDeep(builtLayout.items[0]);//copy first
+          newItem._id = uniqueId("new_");
+          builtLayout.items.unshift(newItem);
+        }
+        if (builtLayout.options.listItems) {
+          builtLayout.options.listItems = numDataItems;
+        }
+      }
+      indices[builtLayout.dataPointer] = indices[builtLayout.dataPointer] || -1;
+      indexPos++;
+      builtLayout.items.forEach((item, index) => {
+        indices[indexPos] = index
+        rebuildLayout({
+          builtLayout: item,
+          indices: indices,
+          parentDataPointer: builtLayout.dataPointer,
+          indexPos: indexPos
+        })
+      })
+      indexPos--;
+    } else {
+      if (builtLayout.items) {
+        builtLayout.items.forEach((item, index) => {
+          rebuildLayout({
+            builtLayout: item,
+            indices: indices,
+            parentDataPointer: parentDataPointer,
+            indexPos: indexPos
+          })
+        })
+
+      }
+    }
+
+
+  }
+  rebuildLayout({
+    builtLayout: builtLayout
+  });
+  //NB original is mutated
+  let fixedLayout = builtLayout;
+  return fixedLayout;
 }
 
 /**

@@ -8,6 +8,7 @@ import {
     WidgetLibraryModule,
     WidgetLibraryService
 } from '@zajsf/core';
+import { CssFrameworkModule } from '@zajsf/cssframework';
 import { Bootstrap4FrameworkComponent } from './bootstrap4-framework.component';
 import { Bootstrap4Framework } from './bootstrap4.framework';
 
@@ -16,6 +17,7 @@ import { Bootstrap4Framework } from './bootstrap4.framework';
         JsonSchemaFormModule,
         CommonModule,
         WidgetLibraryModule,
+        CssFrameworkModule
     ],
     declarations: [
         Bootstrap4FrameworkComponent,
