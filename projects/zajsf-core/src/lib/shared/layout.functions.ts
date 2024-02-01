@@ -4,28 +4,28 @@ import _isPlainObject from 'lodash/isPlainObject';
 import uniqueId from 'lodash/uniqueId';
 import { TitleMapItem } from '../json-schema-form.service';
 import {
-  checkInlineType,
-  getFromSchema,
-  getInputType,
-  isInputRequired,
-  removeRecursiveReferences,
-  updateInputOptions
+    checkInlineType,
+    getFromSchema,
+    getInputType,
+    isInputRequired,
+    removeRecursiveReferences,
+    updateInputOptions
 } from './json-schema.functions';
 import { JsonPointer } from './jsonpointer.functions';
 import {
-  copy,
-  fixTitle,
-  forEach,
-  hasOwn
+    copy,
+    fixTitle,
+    forEach,
+    hasOwn
 } from './utility.functions';
 import {
-  inArray,
-  isArray,
-  isDefined,
-  isEmpty,
-  isNumber,
-  isObject,
-  isString
+    inArray,
+    isArray,
+    isDefined,
+    isEmpty,
+    isNumber,
+    isObject,
+    isString
 } from './validator.functions';
 
 
@@ -467,7 +467,7 @@ export function buildLayout_original(jsf, widgetLibrary) {
       dataType: 'object',
       items: fullLayout,
       name: '',
-      options: cloneDeep(jsf.formOptions.defautWidgetOptions),
+      options: cloneDeep(jsf.formOptions.defaultWidgetOptions),
       recursiveReference: true,
       required: false,
       type: 'section',

@@ -1,16 +1,16 @@
 import cloneDeep from 'lodash/cloneDeep';
-import { forEach, hasOwn, mergeFilteredObject } from './utility.functions';
-import {
-  getType,
-  hasValue,
-  inArray,
-  isArray,
-  isNumber,
-  isObject,
-  isString
-  } from './validator.functions';
 import { JsonPointer } from './jsonpointer.functions';
 import { mergeSchemas } from './merge-schemas.function';
+import { forEach, hasOwn, mergeFilteredObject } from './utility.functions';
+import {
+    getType,
+    hasValue,
+    inArray,
+    isArray,
+    isNumber,
+    isObject,
+    isString
+} from './validator.functions';
 
 
 /**
@@ -413,7 +413,7 @@ export function updateInputOptions(layoutNode, schema, jsf) {
   // Set all option values in layoutNode.options
   const newOptions: any = { };
   const fixUiKeys = key => key.slice(0, 3).toLowerCase() === 'ui:' ? key.slice(3) : key;
-  mergeFilteredObject(newOptions, jsf.formOptions.defautWidgetOptions, [], fixUiKeys);
+  mergeFilteredObject(newOptions, jsf.formOptions.defaultWidgetOptions, [], fixUiKeys);
   [ [ JsonPointer.get(schema, '/ui:widget/options'), [] ],
     [ JsonPointer.get(schema, '/ui:widget'), [] ],
     [ schema, [

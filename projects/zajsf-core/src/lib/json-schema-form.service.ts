@@ -5,34 +5,34 @@ import jsonDraft6 from 'ajv/lib/refs/json-schema-draft-06.json';
 import cloneDeep from 'lodash/cloneDeep';
 import { Subject, Subscription } from 'rxjs';
 import {
-  deValidationMessages,
-  enValidationMessages,
-  esValidationMessages,
-  frValidationMessages,
-  itValidationMessages,
-  ptValidationMessages,
-  zhValidationMessages
+    deValidationMessages,
+    enValidationMessages,
+    esValidationMessages,
+    frValidationMessages,
+    itValidationMessages,
+    ptValidationMessages,
+    zhValidationMessages
 } from './locale';
 import {
-  JsonPointer,
-  buildFormGroup,
-  buildFormGroupTemplate,
-  buildLayout,
-  buildSchemaFromData,
-  buildSchemaFromLayout,
-  fixTitle,
-  forEach,
-  formatFormData,
-  getControl,
-  getLayoutNode,
-  hasOwn,
-  hasValue,
-  isArray,
-  isDefined,
-  isEmpty,
-  isObject,
-  removeRecursiveReferences,
-  toTitleCase
+    JsonPointer,
+    buildFormGroup,
+    buildFormGroupTemplate,
+    buildLayout,
+    buildSchemaFromData,
+    buildSchemaFromLayout,
+    fixTitle,
+    forEach,
+    formatFormData,
+    getControl,
+    getLayoutNode,
+    hasOwn,
+    hasValue,
+    isArray,
+    isDefined,
+    isEmpty,
+    isObject,
+    removeRecursiveReferences,
+    toTitleCase
 } from './shared';
 
 import _isEqual from 'lodash/isEqual';
@@ -127,7 +127,7 @@ export class JsonSchemaFormService implements OnDestroy {
     // false = only validate fields after they are touched by user
     // 'auto' = validate fields with values immediately, empty fields after they are touched
     widgets: {}, // Any custom widgets to load
-    defautWidgetOptions: {
+    defaultWidgetOptions: {
       // Default options for form control widgets
       listItems: 1, // Number of list items to initially add to arrays with no default value
       addable: true, // Allow adding items to an array or $ref point?
@@ -178,7 +178,7 @@ export class JsonSchemaFormService implements OnDestroy {
 
     const validationMessages = languageValidationMessages[languageCode];
 
-    this.defaultFormOptions.defautWidgetOptions.validationMessages = cloneDeep(
+    this.defaultFormOptions.defaultWidgetOptions.validationMessages = cloneDeep(
       validationMessages
     );
   }
@@ -316,25 +316,25 @@ export class JsonSchemaFormService implements OnDestroy {
   setOptions(newOptions: any) {
     if (isObject(newOptions)) {
       const addOptions = cloneDeep(newOptions);
-      // Backward compatibility for 'defaultOptions' (renamed 'defautWidgetOptions')
+      // Backward compatibility for 'defaultOptions' (renamed 'defaultWidgetOptions')
       if (isObject(addOptions.defaultOptions)) {
         Object.assign(
-          this.formOptions.defautWidgetOptions,
+          this.formOptions.defaultWidgetOptions,
           addOptions.defaultOptions
         );
         delete addOptions.defaultOptions;
       }
-      if (isObject(addOptions.defautWidgetOptions)) {
+      if (isObject(addOptions.defaultWidgetOptions)) {
         Object.assign(
-          this.formOptions.defautWidgetOptions,
-          addOptions.defautWidgetOptions
+          this.formOptions.defaultWidgetOptions,
+          addOptions.defaultWidgetOptions
         );
-        delete addOptions.defautWidgetOptions;
+        delete addOptions.defaultWidgetOptions;
       }
       Object.assign(this.formOptions, addOptions);
 
       // convert disableErrorState / disableSuccessState to enable...
-      const globalDefaults = this.formOptions.defautWidgetOptions;
+      const globalDefaults = this.formOptions.defaultWidgetOptions;
       ['ErrorState', 'SuccessState']
         .filter(suffix => hasOwn(globalDefaults, 'disable' + suffix))
         .forEach(suffix => {
