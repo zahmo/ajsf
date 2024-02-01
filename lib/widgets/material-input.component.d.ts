@@ -19,5 +19,5 @@ export declare class MaterialInputComponent implements OnInit {
     ngOnInit(): void;
     updateValue(event: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialInputComponent, [{ optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialInputComponent, "material-input-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialInputComponent, "material-input-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

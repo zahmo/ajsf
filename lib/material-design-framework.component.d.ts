@@ -1,9 +1,13 @@
-import { ChangeDetectorRef, OnChanges, OnInit } from '@angular/core';
-import { JsonSchemaFormService } from '@zajsf/core';
+import { ChangeDetectorRef, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { FrameworkLibraryService, JsonSchemaFormService } from '@zajsf/core';
+import { CssframeworkService } from '@zajsf/cssframework';
+import { Subscription } from 'rxjs';
 import * as i0 from "@angular/core";
-export declare class MaterialDesignFrameworkComponent implements OnInit, OnChanges {
+export declare class MaterialDesignFrameworkComponent implements OnInit, OnChanges, OnDestroy {
     private changeDetector;
     private jsf;
+    jsfFLService: FrameworkLibraryService;
+    cssFWService: CssframeworkService;
     frameworkInitialized: boolean;
     inputType: string;
     options: any;
@@ -16,7 +20,10 @@ export declare class MaterialDesignFrameworkComponent implements OnInit, OnChang
     layoutNode: any;
     layoutIndex: number[];
     dataIndex: number[];
-    constructor(changeDetector: ChangeDetectorRef, jsf: JsonSchemaFormService);
+    theme: string;
+    frameworkThemeSubs: Subscription;
+    constructor(changeDetector: ChangeDetectorRef, jsf: JsonSchemaFormService, jsfFLService: FrameworkLibraryService, cssFWService: CssframeworkService);
+    ngOnDestroy(): void;
     get showRemoveButton(): boolean;
     ngOnInit(): void;
     ngOnChanges(): void;
@@ -24,5 +31,5 @@ export declare class MaterialDesignFrameworkComponent implements OnInit, OnChang
     updateTitle(): void;
     removeItem(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialDesignFrameworkComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialDesignFrameworkComponent, "material-design-framework", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialDesignFrameworkComponent, "material-design-framework", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

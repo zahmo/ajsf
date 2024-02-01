@@ -16,5 +16,5 @@ export declare class MaterialTabsComponent implements OnInit {
     updateControl(): void;
     setTabTitle(item: any, index: number): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialTabsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialTabsComponent, "material-tabs-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialTabsComponent, "material-tabs-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

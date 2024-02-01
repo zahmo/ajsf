@@ -17,5 +17,5 @@ export declare class MaterialFileComponent implements OnInit {
     ngOnInit(): void;
     updateValue(event: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialFileComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialFileComponent, "material-file-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialFileComponent, "material-file-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -23,5 +23,5 @@ export declare class MaterialCheckboxesComponent implements OnInit {
     updateValue(): void;
     updateAllValues(event: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialCheckboxesComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialCheckboxesComponent, "material-checkboxes-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialCheckboxesComponent, "material-checkboxes-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

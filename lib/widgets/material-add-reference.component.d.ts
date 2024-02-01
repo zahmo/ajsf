@@ -16,5 +16,5 @@ export declare class MaterialAddReferenceComponent implements OnInit {
     addItem(event: any): void;
     get buttonText(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialAddReferenceComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialAddReferenceComponent, "material-add-reference-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialAddReferenceComponent, "material-add-reference-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -1,11 +1,12 @@
-import { Framework } from '@zajsf/core';
+import { CssFramework, CssframeworkService } from '@zajsf/cssframework';
 import { FlexLayoutRootComponent, FlexLayoutSectionComponent, MaterialAddReferenceComponent, MaterialButtonComponent, MaterialButtonGroupComponent, MaterialCheckboxComponent, MaterialCheckboxesComponent, MaterialChipListComponent, MaterialDatepickerComponent, MaterialDesignFrameworkComponent, MaterialFileComponent, MaterialInputComponent, MaterialNumberComponent, MaterialOneOfComponent, MaterialRadiosComponent, MaterialSelectComponent, MaterialSliderComponent, MaterialStepperComponent, MaterialTabsComponent, MaterialTextareaComponent } from './widgets/public_api';
 import * as i0 from "@angular/core";
-export declare class MaterialDesignFramework extends Framework {
+export declare class MaterialDesignFramework extends CssFramework {
+    cssFWService: CssframeworkService;
     name: string;
     framework: typeof MaterialDesignFrameworkComponent;
     stylesheets: string[];
-    widgets: {
+    _widgets: {
         root: typeof FlexLayoutRootComponent;
         section: typeof FlexLayoutSectionComponent;
         $ref: typeof MaterialAddReferenceComponent;
@@ -39,6 +40,7 @@ export declare class MaterialDesignFramework extends Framework {
         tagsinput: string;
         wizard: string;
     };
+    constructor(cssFWService: CssframeworkService);
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialDesignFramework, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<MaterialDesignFramework>;
 }

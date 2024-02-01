@@ -18,5 +18,5 @@ export declare class MaterialDatepickerComponent implements OnInit {
     constructor(matFormFieldDefaultOptions: any, jsf: JsonSchemaFormService);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialDatepickerComponent, [{ optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialDatepickerComponent, "material-datepicker-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialDatepickerComponent, "material-datepicker-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

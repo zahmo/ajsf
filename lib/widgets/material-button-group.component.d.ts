@@ -19,5 +19,5 @@ export declare class MaterialButtonGroupComponent implements OnInit {
     ngOnInit(): void;
     updateValue(value: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialButtonGroupComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialButtonGroupComponent, "material-button-group-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MaterialButtonGroupComponent, "material-button-group-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }
