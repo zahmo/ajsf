@@ -12,6 +12,11 @@ With YARN, run the following:
 yarn add @zajsf/material@latest
 ```
 
+include the themes scss in your applications sass file(typically "styles.scss" under "src" folder -see angular docs for more details) 
+```scss
+@import "node_modules/@zajsf/material/assets/material-design-themes.scss";
+```
+
 Then import `MaterialDesignFrameworkModule` in your main application module if you want to use `material-angular` UI, like this:
 
 ```javascript
