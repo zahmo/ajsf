@@ -569,6 +569,11 @@ currently the following built-in themes are available(per framework):
                   | "pastel"
                   | "daisyui-leaf"                  
 
+=======
+* Bootstrap 3:"bootstrap5_default" | "light" | "dark"
+* Material design:"material_default" | "indigo-pink" | "purple-green" | "deeppurple-amber" | "pink-bluegrey"
+* DaisyUi:  "daisyui_default" | "light" | "dark" | "cupcake" | "cmyk" | "pastel" |"daisyui_leaf"
+
 for more on how to customize themes, take a look at the relevant framework's docs:
 * [`@zajsf/bootstrap3`](./projects/zajsf-bootstrap3/README.md#custom-theming)
 * [`@zajsf/bootstrap4`](./projects/zajsf-bootstrap3/README.md#custom-theming)
