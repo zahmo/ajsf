@@ -1,23 +1,26 @@
 {
   "name": "@zajsf/bootstrap3",
-  "version": "0.8.0",
+  "version": "16.1.1",
   "description": "Angular JSON Schema Form builder using Bootstrap 3 UI",
   "author": "https://github.com/zahmo/zajsf/graphs/contributors",
   "keywords": [
     "Angular",
     "ng",
-    "Angular14",
-    "Angular 14",
     "Angular15",
     "Angular 15",
-    "ng14",
+    "Angular16",
+    "Angular 16",
+    "ng15",
+    "ng16",
     "JSON Schema",
     "form",
     "forms",
     "form builder",
-    "Bootstrap",
-    "Bootstrap 3",
+    "form themes",
+    "bootstrap",
+    "bootstrap 3",
     "ajsf",
+    "zajsf",
     "angular json schema form"
   ],
   "license": "MIT",
@@ -31,18 +34,15 @@
   "private": false,
   "dependencies": {
     "lodash-es": "~4.17.21",
-    "@zajsf/core": "~0.8.0",
+    "@zajsf/core": "~16.1.1",
+    "@zajsf/cssframework": "~16.1.1",
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=15.0.0",
-    "@angular/core": ">=15.0.0"
+    "@angular/common": ">=16.0.0",
+    "@angular/core": ">=16.0.0"
   },
-  "module": "fesm2015/zajsf-bootstrap3.mjs",
-  "es2020": "fesm2020/zajsf-bootstrap3.mjs",
-  "esm2020": "esm2020/zajsf-bootstrap3.mjs",
-  "fesm2020": "fesm2020/zajsf-bootstrap3.mjs",
-  "fesm2015": "fesm2015/zajsf-bootstrap3.mjs",
+  "module": "fesm2022/zajsf-bootstrap3.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -50,11 +50,9 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/zajsf-bootstrap3.mjs",
-      "es2020": "./fesm2020/zajsf-bootstrap3.mjs",
-      "es2015": "./fesm2015/zajsf-bootstrap3.mjs",
-      "node": "./fesm2015/zajsf-bootstrap3.mjs",
-      "default": "./fesm2020/zajsf-bootstrap3.mjs"
+      "esm2022": "./esm2022/zajsf-bootstrap3.mjs",
+      "esm": "./esm2022/zajsf-bootstrap3.mjs",
+      "default": "./fesm2022/zajsf-bootstrap3.mjs"
     }
   },
   "sideEffects": false
