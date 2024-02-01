@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { FrameworkLibraryService } from './framework-library/framework-library.service';
 import { JsonSchemaFormService } from './json-schema-form.service';
 import { WidgetLibraryService } from './widget-library/widget-library.service';
@@ -39,7 +40,7 @@ export declare const JSON_SCHEMA_FORM_VALUE_ACCESSOR: any;
  * In addition, the Example Playground also depends on:
  *  - brace, Browserified Ace editor       http://thlorenz.github.io/brace
  */
-export declare class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges, OnInit {
+export declare class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges, OnInit, OnDestroy {
     private changeDetector;
     private frameworkLibrary;
     private widgetLibrary;
@@ -80,6 +81,7 @@ export declare class JsonSchemaFormComponent implements ControlValueAccessor, On
     language: string;
     loadExternalAssets: boolean;
     debug: boolean;
+    theme: string;
     get value(): any;
     set value(value: any);
     onChanges: EventEmitter<any>;
@@ -94,7 +96,12 @@ export declare class JsonSchemaFormComponent implements ControlValueAccessor, On
     ngModelChange: EventEmitter<any>;
     onChange: Function;
     onTouched: Function;
+    dataChangesSubs: Subscription;
+    statusChangesSubs: Subscription;
+    isValidChangesSubs: Subscription;
+    validationErrorChangesSubs: Subscription;
     constructor(changeDetector: ChangeDetectorRef, frameworkLibrary: FrameworkLibraryService, widgetLibrary: WidgetLibraryService, jsf: JsonSchemaFormService);
+    ngOnDestroy(): void;
     private resetScriptsAndStyleSheets;
     private loadScripts;
     private loadStyleSheets;
@@ -128,7 +135,7 @@ export declare class JsonSchemaFormComponent implements ControlValueAccessor, On
      * - Create the master 'formGroupTemplate' then from it 'formGroup'
      *   the Angular formGroup used to control the reactive form.
      */
-    initializeForm(): void;
+    initializeForm(initialData?: any): void;
     /**
      * 'initializeOptions' function
      *
@@ -207,5 +214,5 @@ export declare class JsonSchemaFormComponent implements ControlValueAccessor, On
      */
     private activateForm;
     static ɵfac: i0.ɵɵFactoryDeclaration<JsonSchemaFormComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<JsonSchemaFormComponent, "json-schema-form", never, { "schema": "schema"; "layout": "layout"; "data": "data"; "options": "options"; "framework": "framework"; "widgets": "widgets"; "form": "form"; "model": "model"; "JSONSchema": "JSONSchema"; "UISchema": "UISchema"; "formData": "formData"; "ngModel": "ngModel"; "language": "language"; "loadExternalAssets": "loadExternalAssets"; "debug": "debug"; "value": "value"; }, { "onChanges": "onChanges"; "onSubmit": "onSubmit"; "isValid": "isValid"; "validationErrors": "validationErrors"; "formSchema": "formSchema"; "formLayout": "formLayout"; "dataChange": "dataChange"; "modelChange": "modelChange"; "formDataChange": "formDataChange"; "ngModelChange": "ngModelChange"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<JsonSchemaFormComponent, "json-schema-form", never, { "schema": { "alias": "schema"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "data": { "alias": "data"; "required": false; }; "options": { "alias": "options"; "required": false; }; "framework": { "alias": "framework"; "required": false; }; "widgets": { "alias": "widgets"; "required": false; }; "form": { "alias": "form"; "required": false; }; "model": { "alias": "model"; "required": false; }; "JSONSchema": { "alias": "JSONSchema"; "required": false; }; "UISchema": { "alias": "UISchema"; "required": false; }; "formData": { "alias": "formData"; "required": false; }; "ngModel": { "alias": "ngModel"; "required": false; }; "language": { "alias": "language"; "required": false; }; "loadExternalAssets": { "alias": "loadExternalAssets"; "required": false; }; "debug": { "alias": "debug"; "required": false; }; "theme": { "alias": "theme"; "required": false; }; "value": { "alias": "value"; "required": false; }; }, { "onChanges": "onChanges"; "onSubmit": "onSubmit"; "isValid": "isValid"; "validationErrors": "validationErrors"; "formSchema": "formSchema"; "formLayout": "formLayout"; "dataChange": "dataChange"; "modelChange": "modelChange"; "formDataChange": "formDataChange"; "ngModelChange": "ngModelChange"; }, never, never, false, never>;
 }

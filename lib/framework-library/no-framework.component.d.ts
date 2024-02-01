@@ -4,5 +4,5 @@ export declare class NoFrameworkComponent {
     layoutIndex: number[];
     dataIndex: number[];
     static ɵfac: i0.ɵɵFactoryDeclaration<NoFrameworkComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<NoFrameworkComponent, "no-framework", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NoFrameworkComponent, "no-framework", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

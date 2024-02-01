@@ -1,5 +1,7 @@
+import { OnDestroy } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { ErrorObject, Options } from 'ajv';
+import { Subject, Subscription } from 'rxjs';
 import * as i0 from "@angular/core";
 export interface TitleMapItem {
     name?: string;
@@ -14,12 +16,12 @@ export interface ErrorMessages {
         code: string;
     }[];
 }
-export declare class JsonSchemaFormService {
+export declare class JsonSchemaFormService implements OnDestroy {
     JsonFormCompatibility: boolean;
     ReactJsonSchemaFormCompatibility: boolean;
     AngularSchemaFormCompatibility: boolean;
     tpldata: any;
-    ajvOptions: any;
+    ajvOptions: Options;
     ajv: any;
     validateFormData: any;
     formValues: any;
@@ -32,7 +34,7 @@ export declare class JsonSchemaFormService {
     formOptions: any;
     validData: any;
     isValid: boolean;
-    ajvErrors: any;
+    ajvErrors: ErrorObject[];
     validationErrors: any;
     dataErrors: any;
     formValueSubscription: any;
@@ -49,7 +51,10 @@ export declare class JsonSchemaFormService {
     hasRootReference: boolean;
     language: string;
     defaultFormOptions: any;
+    fcValueChangesSubs: Subscription;
+    fcStatusChangesSubs: Subscription;
     constructor();
+    ngOnDestroy(): void;
     setLanguage(language?: string): void;
     getData(): any;
     getSchema(): any;

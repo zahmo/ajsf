@@ -15,5 +15,5 @@ export declare class HiddenComponent implements OnInit {
     constructor(jsf: JsonSchemaFormService);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<HiddenComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<HiddenComponent, "hidden-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HiddenComponent, "hidden-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

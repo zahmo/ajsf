@@ -14,5 +14,5 @@ export declare class SelectFrameworkComponent implements OnChanges, OnInit {
     ngOnChanges(): void;
     updateComponent(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SelectFrameworkComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SelectFrameworkComponent, "select-framework-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SelectFrameworkComponent, "select-framework-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

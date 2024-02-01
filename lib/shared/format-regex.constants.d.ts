@@ -16,4 +16,4 @@ export declare const jsonSchemaFormatTests: {
     'relative-json-pointer': RegExp;
     regex: (str: any) => boolean;
 };
-export declare type JsonSchemaFormatNames = 'date' | 'time' | 'date-time' | 'email' | 'hostname' | 'ipv4' | 'ipv6' | 'uri' | 'uri-reference' | 'uri-template' | 'url' | 'uuid' | 'color' | 'json-pointer' | 'relative-json-pointer' | 'regex';
+export type JsonSchemaFormatNames = 'date' | 'time' | 'date-time' | 'email' | 'hostname' | 'ipv4' | 'ipv6' | 'uri' | 'uri-reference' | 'uri-template' | 'url' | 'uuid' | 'color' | 'json-pointer' | 'relative-json-pointer' | 'regex';

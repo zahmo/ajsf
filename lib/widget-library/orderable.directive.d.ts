@@ -37,5 +37,5 @@ export declare class OrderableDirective implements OnInit {
     constructor(elementRef: ElementRef, jsf: JsonSchemaFormService, ngZone: NgZone);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<OrderableDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<OrderableDirective, "[orderable]", never, { "orderable": "orderable"; "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<OrderableDirective, "[orderable]", never, { "orderable": { "alias": "orderable"; "required": false; }; "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -10,5 +10,5 @@ export declare class TabComponent implements OnInit {
     constructor(jsf: JsonSchemaFormService);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TabComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TabComponent, "tab-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TabComponent, "tab-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

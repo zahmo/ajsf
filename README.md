@@ -545,6 +545,31 @@ for example
 currently the following built-in themes are available(per framework):
 * Bootstrap 3:"bootstrap3_default"
 * Bootstrap 4:"bootstrap4_default"
+* Bootstrap 5:"bootstrap5_default" | "light" | "dark"
+* Material design:"material_default" | "indigo-pink" | "purple-green" | "deeppurple-amber" | "pink-bluegrey"
+* DaisyUi:  "daisyui_default" | "light" | "dark" | "cupcake" | "cmyk" | "pastel" |"daisyui_leaf"
+
+ Framework Values | Theme values
+------------------|--------------------
+"bootstrap-3"     | "bootstrap3_default"
+"bootstrap-4"     | "bootstrap4_default"
+"bootstrap-5"     | "bootstrap5_default"
+                  | "light"
+                  | "dark"
+"material-design" | "material_default"
+                  | "indigo-pink"
+                  | "purple-green"
+                  | "deeppurple-amber"
+                  | "pink-bluegrey"
+"daisyui"         | "daisyui_default"
+                  | "light"
+                  | "dark"
+                  | "cupcake"                                    
+                  | "cmyk"
+                  | "pastel"
+                  | "daisyui-leaf"                  
+
+=======
 * Bootstrap 3:"bootstrap5_default" | "light" | "dark"
 * Material design:"material_default" | "indigo-pink" | "purple-green" | "deeppurple-amber" | "pink-bluegrey"
 * DaisyUi:  "daisyui_default" | "light" | "dark" | "cupcake" | "cmyk" | "pastel" |"daisyui_leaf"

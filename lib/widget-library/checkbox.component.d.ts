@@ -20,5 +20,5 @@ export declare class CheckboxComponent implements OnInit {
     updateValue(event: any): void;
     get isChecked(): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<CheckboxComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CheckboxComponent, "checkbox-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CheckboxComponent, "checkbox-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

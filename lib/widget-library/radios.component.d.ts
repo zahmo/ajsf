@@ -19,5 +19,5 @@ export declare class RadiosComponent implements OnInit {
     ngOnInit(): void;
     updateValue(event: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<RadiosComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<RadiosComponent, "radios-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<RadiosComponent, "radios-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

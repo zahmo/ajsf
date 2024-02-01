@@ -16,5 +16,5 @@ export declare class AddReferenceComponent implements OnInit {
     addItem(event: any): void;
     get buttonText(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<AddReferenceComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AddReferenceComponent, "add-reference-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AddReferenceComponent, "add-reference-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

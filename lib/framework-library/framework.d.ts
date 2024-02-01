@@ -1,6 +1,7 @@
 import * as i0 from "@angular/core";
 export declare class Framework {
     name: string;
+    text: string;
     framework: any;
     widgets?: {
         [key: string]: any;

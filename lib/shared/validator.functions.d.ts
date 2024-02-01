@@ -29,16 +29,16 @@ import { Observable } from 'rxjs';
  *   argument which, if set to TRUE, causes the validator to perform
  *   the opposite of its original function.
  */
-export declare type SchemaPrimitiveType = 'string' | 'number' | 'integer' | 'boolean' | 'null';
-export declare type SchemaType = 'string' | 'number' | 'integer' | 'boolean' | 'null' | 'object' | 'array';
-export declare type JavaScriptPrimitiveType = 'string' | 'number' | 'boolean' | 'null' | 'undefined';
-export declare type JavaScriptType = 'string' | 'number' | 'boolean' | 'null' | 'undefined' | 'object' | 'array' | 'map' | 'set' | 'arguments' | 'date' | 'error' | 'function' | 'json' | 'math' | 'regexp';
-export declare type PrimitiveValue = string | number | boolean | null | undefined;
+export type SchemaPrimitiveType = 'string' | 'number' | 'integer' | 'boolean' | 'null';
+export type SchemaType = 'string' | 'number' | 'integer' | 'boolean' | 'null' | 'object' | 'array';
+export type JavaScriptPrimitiveType = 'string' | 'number' | 'boolean' | 'null' | 'undefined';
+export type JavaScriptType = 'string' | 'number' | 'boolean' | 'null' | 'undefined' | 'object' | 'array' | 'map' | 'set' | 'arguments' | 'date' | 'error' | 'function' | 'json' | 'math' | 'regexp';
+export type PrimitiveValue = string | number | boolean | null | undefined;
 export interface PlainObject {
     [k: string]: any;
 }
-export declare type IValidatorFn = (c: AbstractControl, i?: boolean) => PlainObject;
-export declare type AsyncIValidatorFn = (c: AbstractControl, i?: boolean) => any;
+export type IValidatorFn = (c: AbstractControl, i?: boolean) => PlainObject;
+export type AsyncIValidatorFn = (c: AbstractControl, i?: boolean) => any;
 /**
  * '_executeValidators' utility function
  *

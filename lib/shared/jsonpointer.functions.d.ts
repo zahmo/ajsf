@@ -13,7 +13,7 @@ import * as i0 from "@angular/core";
  * Some functions based on manuelstofer's json-pointer utilities
  * https://github.com/manuelstofer/json-pointer
  */
-export declare type Pointer = string | string[];
+export type Pointer = string | string[];
 export declare class JsonPointer {
     /**
      * 'get' function

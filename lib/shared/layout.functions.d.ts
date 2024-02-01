@@ -19,6 +19,7 @@ import { TitleMapItem } from '../json-schema-form.service';
  * //   widgetLibrary
  * //
  */
+export declare function buildLayout_original(jsf: any, widgetLibrary: any): any[];
 export declare function buildLayout(jsf: any, widgetLibrary: any): any[];
 /**
  * 'buildLayoutFromSchema' function

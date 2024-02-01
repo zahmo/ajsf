@@ -14,5 +14,5 @@ export declare class SelectWidgetComponent implements OnChanges, OnInit {
     ngOnChanges(): void;
     updateComponent(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SelectWidgetComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SelectWidgetComponent, "select-widget-widget", never, { "layoutNode": "layoutNode"; "layoutIndex": "layoutIndex"; "dataIndex": "dataIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SelectWidgetComponent, "select-widget-widget", never, { "layoutNode": { "alias": "layoutNode"; "required": false; }; "layoutIndex": { "alias": "layoutIndex"; "required": false; }; "dataIndex": { "alias": "dataIndex"; "required": false; }; }, {}, never, never, false, never>;
 }
