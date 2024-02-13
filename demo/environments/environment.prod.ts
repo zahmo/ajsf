@@ -1,1 +1,3 @@
-export const environment = { production: true };
+
+    export const environment ={"production":true,"version":"17.0.0-alpha.0","angularVersion":"17.1.3","materialVersion":"17.1.2"}
+    
