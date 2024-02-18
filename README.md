@@ -14,18 +14,7 @@ This fork was created for anyone needing to use angular 15+ in their project.
 
 
 <a  href="https://angular.io/"><img  src="https://img.shields.io/badge/angular-15,_16,_17-red.svg?logo=Angular&logoColor=red&labelColor=white&style=plastic"  alt="Angular Versions"></a>
-
-
-<a  href="https://github.com/zahmo/zajsf/actions?query=workflow%3ACI+branch%3Amain"><img  src="https://github.com/zahmo/zajsf/workflows/CI/badge.svg"  alt="CI Status"></a>
-
-
-<a  href="https://www.npmjs.com/package/@zajsf/core"><img  src="https://img.shields.io/npm/dm/@zajsf/core.svg?style=plastic"  alt="npm number of downloads"></a>
-
-
-<a  href="https://github.com/zahmo/zajsf/blob/master/LICENSE"><img  src="https://img.shields.io/github/license/zahmo/zajsf.svg?style=social"  alt="LICENSE IMT"></a>
-
-
-<a  href="https://app.netlify.com/sites/zajsf/deploys"><img  src="https://api.netlify.com/api/v1/badges/6c5b5a1d-db7c-4d0e-8ac1-a4840d8812f0/deploy-status"  alt="Netlify Status"></a>
+<a  href="https://github.com/zahmo/zajsf/actions?query=workflow%3ACI+branch%3Amain"><img  src="https://github.com/zahmo/zajsf/workflows/CI/badge.svg"  alt="CI Status"></a> <a  href="https://www.npmjs.com/package/@zajsf/core"><img  src="https://img.shields.io/npm/dm/@zajsf/core.svg?style=plastic"  alt="npm number of downloads"></a><a  href="https://github.com/zahmo/zajsf/blob/master/LICENSE"><img  src="https://img.shields.io/github/license/zahmo/zajsf.svg?style=social"  alt="LICENSE IMT"></a><a  href="https://app.netlify.com/sites/zajsf/deploys"><img  src="https://api.netlify.com/api/v1/badges/6c5b5a1d-db7c-4d0e-8ac1-a4840d8812f0/deploy-status"  alt="Netlify Status"></a>
 
 
 </p>
@@ -55,67 +44,22 @@ A [JSON Schema](http://json-schema.org) Form builder for Angular, similar to, an
 
 ## Packages
 
-* [`@zajsf/core`][gh_core_project]
+* [`@zajsf/core`][gh_core_project] [![npm version][npm_core_badge]][npm_core_ver][![npm RC version][npm_core_badge_alpha]][npm_core_ver_alpha]
+
+* [`@zajsf/cssframework`][gh_cssframework_project] [![npm version][npm_cssframework_badge]][npm_cssframework_ver][![npm RC version][npm_cssframework_badge_alpha]][npm_cssframework_ver_alpha]
+
+* [`@zajsf/bootstrap3`][gh_bootstrap3_project] [![npm version][npm_bootstrap3_badge]][npm_bootstrap3_ver][![npm RC version][npm_bootstrap3_badge_alpha]][npm_bootstrap3_ver_alpha]
+
+* [`@zajsf/bootstrap4`][gh_bootstrap4_project] [![npm version][npm_bootstrap4_badge]][npm_bootstrap4_ver][![npm RC version][npm_bootstrap4_badge_alpha]][npm_bootstrap4_ver_alpha]
 
 
-[![npm version][npm_core_badge]][npm_core_ver]
+* [`@zajsf/bootstrap5`][gh_bootstrap5_project] [![npm version][npm_bootstrap5_badge]][npm_bootstrap5_ver][![npm RC version][npm_bootstrap5_badge_alpha]][npm_bootstrap5_ver_alpha]
 
 
-[![npm RC version][npm_core_badge_alpha]][npm_core_ver_alpha]
+* [`@zajsf/daisyui`][gh_daisyui_project] [![npm version][npm_daisyui_badge]][npm_daisyui_ver][![npm RC version][npm_daisyui_badge_alpha]][npm_daisyui_ver_alpha]
 
 
-* [`@zajsf/cssframework`][gh_cssframework_project]
-
-
-[![npm version][npm_cssframework_badge]][npm_cssframework_ver]
-
-
-[![npm RC version][npm_cssframework_badge_alpha]][npm_cssframework_ver_alpha]
-
-
-* [`@zajsf/bootstrap3`][gh_bootstrap3_project]
-
-
-[![npm version][npm_bootstrap3_badge]][npm_bootstrap3_ver]
-
-
-[![npm RC version][npm_bootstrap3_badge_alpha]][npm_bootstrap3_ver_alpha]
-
-
-* [`@zajsf/bootstrap4`][gh_bootstrap4_project]
-
-
-[![npm version][npm_bootstrap4_badge]][npm_bootstrap4_ver]
-
-
-[![npm RC version][npm_bootstrap4_badge_alpha]][npm_bootstrap4_ver_alpha]
-
-
-* [`@zajsf/bootstrap5`][gh_bootstrap5_project]
-
-
-[![npm version][npm_bootstrap5_badge]][npm_bootstrap5_ver]
-
-
-[![npm RC version][npm_bootstrap5_badge_alpha]][npm_bootstrap5_ver_alpha]
-
-
-* [`@zajsf/daisyui`][gh_daisyui_project]
-
-
-[![npm version][npm_daisyui_badge]][npm_daisyui_ver]
-
-
-[![npm RC version][npm_daisyui_badge_alpha]][npm_daisyui_ver_alpha]
-
-
-* [`@zajsf/material`][gh_material_project]
-
-
-[![npm version][npm_material_badge]][npm_material_ver]
-
-
-[![npm RC version][npm_material_badge_alpha]][npm_material_ver_alpha]
+* [`@zajsf/material`][gh_material_project] [![npm version][npm_material_badge]][npm_material_ver][![npm RC version][npm_material_badge_alpha]][npm_material_ver_alpha]
 
 ## Check out the live demo and play with the examples
 
