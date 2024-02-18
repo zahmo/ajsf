@@ -1,16 +1,7 @@
 # @zajsf/cssframework
 
-## Getting started
-
-```shell
-npm install @zajsf/cssframework@latest
-```
-
-With YARN, run the following:
-
-```shell
-yarn add @zajsf/cssframework@latest
-```
+This module is a dependency of the [zajsf project][npm_core_ver] and not intended to be consumed independently see [@zajsf/core][npm_core_ver] for more details.
+Below is information regarding the development tasks and not related to the module's installation, it should automatically be installed when a framework module is installed.  
 
 ## Code scaffolding
 
@@ -32,3 +23,6 @@ Run `ng test @zajsf/cssframework` to execute the unit tests via [Karma](https://
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+[npm_core_ver]:https://www.npmjs.com/package/@zajsf/core

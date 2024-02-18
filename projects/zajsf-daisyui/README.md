@@ -1,4 +1,10 @@
 # @zajsf/daisyui
+This module is a dependency of the [zajsf project][npm_core_ver] and is meant to work as a framework installation module for using DaisyUI in the forms.
+
+## Getting started
+
+If you are unfamiliar with with the zajsf project, it is highly recommended to 
+first have a look at the [@zajsf pages][npm_core_ver] for examples, demos, options and documentation.
 
 ## Getting started
 
@@ -138,3 +144,5 @@ Run `ng build @zajsf/daisyui` to build the project. The build artifacts will be 
 ## Running unit tests
 
 Run `ng test @zajsf/daisyui` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+[npm_core_ver]:https://www.npmjs.com/package/@zajsf/core
