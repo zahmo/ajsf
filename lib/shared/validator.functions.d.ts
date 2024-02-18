@@ -199,7 +199,7 @@ export declare function isSymbol(item: any): boolean;
  * //  { any = false } strict - if truthy, also checks JavaScript tyoe
  * // { SchemaType }
  */
-export declare function getType(value: any, strict?: any): "object" | "string" | "number" | "integer" | "boolean" | "null" | "array";
+export declare function getType(value: any, strict?: any): "null" | "number" | "string" | "integer" | "boolean" | "object" | "array";
 /**
  * 'isType' function
  *
