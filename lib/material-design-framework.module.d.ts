@@ -1,4 +1,4 @@
-import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
 import * as i0 from "@angular/core";
 import * as i1 from "./widgets/flex-layout-root.component";
 import * as i2 from "./widgets/flex-layout-section.component";
@@ -52,7 +52,7 @@ import * as i45 from "@zajsf/cssframework";
  * MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule,
  * ,
  */
-export declare const ANGULAR_MATERIAL_MODULES: (typeof MatButtonModule)[];
+export declare const ANGULAR_MATERIAL_MODULES: (typeof MatNativeDateModule)[];
 export declare class MaterialDesignFrameworkModule {
     constructor();
     static ɵfac: i0.ɵɵFactoryDeclaration<MaterialDesignFrameworkModule, never>;
