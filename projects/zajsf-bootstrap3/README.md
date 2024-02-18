@@ -1,6 +1,10 @@
 # @zajsf/bootstrap3
+This module is a dependency of the [zajsf project][npm_core_ver] and is meant to work as a framework installation module for using Bootstrap 3 in the forms.
 
 ## Getting started
+
+If you are unfamiliar with with the zajsf project, it is highly recommended to 
+first have a look at the [@zajsf pages][npm_core_ver] for examples, demos, options and documentation.
 
 ```shell
 npm install @zajsf/bootstrap3@latest
@@ -236,3 +240,5 @@ Run `ng test @zajsf/bootstrap3` to execute the unit tests via [Karma](https://ka
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+[npm_core_ver]:https://www.npmjs.com/package/@zajsf/core

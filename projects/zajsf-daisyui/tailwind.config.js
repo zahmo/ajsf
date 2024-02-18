@@ -13,10 +13,10 @@ module.exports = {
         themes: ["light", "dark", "cupcake", "cmyk", "pastel",
             {
                 daisyui_default: {
-                    ...require("daisyui/src/theming/themes")["[data-theme=light]"]
+                    ...require("daisyui/src/theming/themes")["light"]
                 },
                 daisyui_leaf: {
-                    ...require("daisyui/src/theming/themes")["[data-theme=light]"]
+                    ...require("daisyui/src/theming/themes")["light"]
                 }
             }
         ]
