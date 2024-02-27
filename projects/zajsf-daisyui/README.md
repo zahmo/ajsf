@@ -9,13 +9,13 @@ first have a look at the [@zajsf pages][npm_core_ver] for examples, demos, optio
 ## Getting started
 
 ```shell
-npm install @zajsf/daisyui@latest
+npm install @zajsf/core@latest @zajsf/cssframework@latest @zajsf/daisyui@latest
 ```
 
 With YARN, run the following:
 
 ```shell
-yarn add @zajsf/daisyui@latest
+yarn add @zajsf/core@latest @zajsf/cssframework@latest @zajsf/daisyui@latest
 ```
 
 Then import `DaisyUIFrameworkModule` in your main application module if you want to use `daisyui` UI, like this:
