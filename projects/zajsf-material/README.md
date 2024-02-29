@@ -8,13 +8,13 @@ If you are unfamiliar with with the zajsf project, it is highly recommended to
 first have a look at the [@zajsf pages][npm_core_ver] for examples, demos, options and documentation.
 
 ```shell
-npm install @zajsf/material@latest
+npm install @zajsf/core@latest @zajsf/cssframework@latest @zajsf/material@latest
 ```
 
 With YARN, run the following:
 
 ```shell
-yarn add @zajsf/material@latest
+yarn add @zajsf/core@latest @zajsf/cssframework@latest @zajsf/material@latest
 ```
 
 include the themes scss in your applications sass file(typically "styles.scss" under "src" folder -see angular docs for more details) 

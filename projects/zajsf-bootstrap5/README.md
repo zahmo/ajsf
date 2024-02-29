@@ -7,13 +7,13 @@ If you are unfamiliar with with the zajsf project, it is highly recommended to
 first have a look at the [@zajsf pages][npm_core_ver] for examples, demos, options and documentation.
 
 ```shell
-npm install @zajsf/bootstrap5@latest
+npm install @zajsf/core@latest @zajsf/cssframework@latest @zajsf/bootstrap5@latest
 ```
 
 With YARN, run the following:
 
 ```shell
-yarn add @zajsf/bootstrap5@latest
+yarn add @zajsf/core@latest @zajsf/cssframework@latest @zajsf/bootstrap5@latest
 ```
 
 Then import `Bootstrap5FrameworkModule` in your main application module if you want to use `bootstrap5` UI, like this:

@@ -122,7 +122,7 @@ export const cssFrameworkCfgDaisyUI:css_fw.frameworkcfg={
             "fieldHtmlClass": "input input-md input-bordered w-full"
         },
         "tabs": {
-            "labelHtmlClass": "tabs tabs-boxed",
+            "labelHtmlClass": "tabs-md tabs-boxed",
             "htmlClass": "",
             "itemLabelHtmlClass": "tab",
             "activeClass": "tab-active"
