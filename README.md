@@ -94,12 +94,12 @@ For example if you'd like to try the material design based framework, [install @
 
 
  ```shell
-npm  install  @zajsf/material@latest
+npm  install @zajsf/core@latest @zajsf/cssframework@latest @zajsf/material@latest 
 ```  
 
 With YARN, run the following:
 ```shell
-yarn  add  @zajsf/material@latest
+yarn  add  @zajsf/core@latest @zajsf/cssframework@latest @zajsf/material@latest 
 ```  
 
 include the themes scss in your applications sass file(typically "styles.scss" under "src" folder -see angular docs for more details) 
