@@ -132,6 +132,34 @@ for example
 
 ```
 
+## Resolving conflicting css class names
+
+In case your app already uses css class names used by the DaisyUI Framework for example '.btn', then it is possible to switch the framework's class names with prefixed ones. Instead of now using '.btn', the framework's class will be prefixed with 'dui-' making the class name
+'.dui-btn'. In order to make the switch, the DUIOPTIONS token value needs to be provided with the classPrefix property set to true-see code snippet below. By default the classPrefix property is false however could be changed in the future, since it does mean that a client needs to know which css classes are in conflict.   
+
+```typescript
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import {DUIOPTIONS, DaisyUIFrameworkModule } from '@zajsf/daisyui';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [ AppComponent ],
+  imports: [
+    DaisyUIFrameworkModule
+  ],
+  providers: [
+    { provide: DUIOPTIONS, useValue: {classPrefix:true} }
+    ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name --project @zajsf/daisyui` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @zajsf/daisyui`.

@@ -4,6 +4,7 @@ import { Framework, FrameworkLibraryService, JsonSchemaFormModule, JsonSchemaFor
 
 import { CssFrameworkModule } from '@zajsf/cssframework';
 import { DaisyUIFrameworkComponent } from './daisyui-framework.component';
+import { DaisyUIFrameworkComponentPrefixed } from './daisyui-framework.prefixed.component';
 import { DaisyUIFramework } from './daisyui.framework';
 import { DaisyUITabsComponent } from './widgets/daisyui-tabs.component';
 
@@ -12,6 +13,7 @@ import { DaisyUITabsComponent } from './widgets/daisyui-tabs.component';
 @NgModule({
   declarations: [
     DaisyUIFrameworkComponent,
+    DaisyUIFrameworkComponentPrefixed,
     DaisyUITabsComponent
   ],
   imports: [
@@ -22,6 +24,7 @@ import { DaisyUITabsComponent } from './widgets/daisyui-tabs.component';
   ],
   exports: [
     DaisyUIFrameworkComponent,
+    DaisyUIFrameworkComponentPrefixed,
     JsonSchemaFormModule,
     DaisyUITabsComponent
   ],
