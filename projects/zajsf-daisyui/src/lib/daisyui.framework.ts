@@ -11,19 +11,11 @@ import { DaisyUITabsComponent } from './widgets/daisyui-tabs.component';
 export class DaisyUIFramework extends CssFramework {
 
 framework=DaisyUIFrameworkComponent;
-  constructor(public cssFWService:CssframeworkService,@Inject(DUIOPTIONS) @Optional() private duiOptions:any={}){
+  constructor(public cssFWService:CssframeworkService,@Inject(DUIOPTIONS) 
+  @Optional() private duiOptions:any={classPrefix:true}//use class prefix by default
+  ){
      let cssFrameworkCfg=cssFrameworkCfgDaisyUI;
     if(duiOptions?.classPrefix){
-
-      /*
-        cssFrameworkCfgDaisyUI.widgetstyles.tabs={
-          "labelHtmlClass": "dui-tabs-md dui-tabs-boxed",
-          "htmlClass": "",
-          "itemLabelHtmlClass": "dui-tab",
-          "activeClass": "dui-tab-active"
-      }
-      cssFrameworkCfgDaisyUI.widgetstyles.tabarray=cssFrameworkCfgDaisyUI.widgetstyles.tabs;
-    */
       cssFrameworkCfg=getCssFrameworkCfgPrefixed(cssFrameworkCfgDaisyUI)
     }
     super(cssFrameworkCfg,cssFWService);
