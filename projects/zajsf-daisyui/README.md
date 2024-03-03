@@ -132,10 +132,10 @@ for example
 
 ```
 
-## Resolving conflicting css class names
+## Using default DaisyUI css class names
 
-In case your app already uses css class names used by the DaisyUI Framework for example '.btn', then it is possible to switch the framework's class names with prefixed ones. Instead of now using '.btn', the framework's class will be prefixed with 'dui-' making the class name
-'.dui-btn'. In order to make the switch, the DUIOPTIONS token value needs to be provided with the classPrefix property set to true-see code snippet below. By default the classPrefix property is false however could be changed in the future, since it does mean that a client needs to know which css classes are in conflict.   
+By default, the framework prefixes all standard DaisyUI class names with 'dui-'
+for example '.btn' will become '.dui-btn'. The standard names can be switched back without the 'dui-' prefix if need be. To switch opf the 'dui-' prefixing, the DUIOPTIONS token value needs to be provided with the classPrefix property set to false-see code snippet below. By default the classPrefix property is true. 
 
 ```typescript
 
@@ -152,7 +152,7 @@ import { AppComponent } from './app.component';
     DaisyUIFrameworkModule
   ],
   providers: [
-    { provide: DUIOPTIONS, useValue: {classPrefix:true} }
+    { provide: DUIOPTIONS, useValue: {classPrefix:false} }
     ],
   bootstrap: [ AppComponent ]
 })
