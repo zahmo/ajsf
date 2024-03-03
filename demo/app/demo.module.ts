@@ -44,7 +44,10 @@ import { routes } from './demo.routes';
     CssFrameworkModule,
     JsonSchemaFormModule
   ],
-  providers:[{ provide: REMOVE_STYLES_ON_COMPONENT_DESTROY, useValue: true }],
+  providers:[{ provide: REMOVE_STYLES_ON_COMPONENT_DESTROY, useValue: true }
+    //uncomment to disable daisyui class name prefixing
+    // ,{ provide: DUIOPTIONS, useValue: {classPrefix:true} }
+  ],
   bootstrap: [DemoRootComponent]
 })
 
