@@ -132,6 +132,34 @@ for example
 
 ```
 
+## Using default DaisyUI css class names
+
+By default, the framework prefixes all standard DaisyUI class names with 'dui-'
+for example '.btn' will become '.dui-btn'. The standard names can be switched back without the 'dui-' prefix if need be. To switch opf the 'dui-' prefixing, the DUIOPTIONS token value needs to be provided with the classPrefix property set to false-see code snippet below. By default the classPrefix property is true. 
+
+```typescript
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import {DUIOPTIONS, DaisyUIFrameworkModule } from '@zajsf/daisyui';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [ AppComponent ],
+  imports: [
+    DaisyUIFrameworkModule
+  ],
+  providers: [
+    { provide: DUIOPTIONS, useValue: {classPrefix:false} }
+    ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name --project @zajsf/daisyui` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @zajsf/daisyui`.
