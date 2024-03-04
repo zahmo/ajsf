@@ -46,7 +46,7 @@
     },
     "devDependencies": {
         "@types/lodash-es": "^4.17.6",
-        "daisyui": "^3.7.3",
+        "daisyui": "^4.7.0",
         "jsdom": "^16.7.0"
     },
     "sideEffects": false
