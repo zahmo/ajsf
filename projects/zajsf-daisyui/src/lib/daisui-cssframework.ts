@@ -142,3 +142,54 @@ export const cssFrameworkCfgDaisyUI:css_fw.frameworkcfg={
     }
 }
 
+export function getCssFrameworkCfgPrefixed(cssFrameworkCfg:css_fw.frameworkcfg,prefix="dui"):css_fw.frameworkcfg{
+    
+    let classNamesIgnored=[
+        'w-full','mb-1','float-right','shadow-md','p-1',
+        'control-label','sr-only','text-2xl', 'opacity-50',
+        'help-block','input-group-addon','w-px','checkbox-inline',
+        'max-w-xs','rounded-full','form-control','inline-flex'
+    ];
+    let replaceClasses=(classList:string[]|string,pref:string,ignoredClasses:string[])=>{
+        if(!Array.isArray(classList)){
+            classList=classList.split(" ");
+        }
+        return classList.map(cname=>{
+            if(classNamesIgnored.indexOf(cname)>=0){
+                return cname;
+            }
+            return pref+"-"+cname;
+        });
+    }
+    
+    let cssFrameworkCfgPrefixed=JSON.parse(JSON.stringify(cssFrameworkCfg));
+    let widgetNamesIgnore=["__themes__"];
+    let widgetNamesNoSubLevel=[
+        "__required_asterisk__",
+        "__screen_reader__",
+        "__remove_item__",
+        "__help_block__",
+        "__field_addon_left__",
+        "__field_addon_right__",
+    ];
+    Object.keys(cssFrameworkCfgPrefixed.widgetstyles).forEach(widgetName=>{
+        if(widgetNamesIgnore.indexOf(widgetName)>=0){
+            return;
+        }
+        if(widgetNamesNoSubLevel.indexOf(widgetName)>=0){
+           let cnames= cssFrameworkCfgPrefixed.widgetstyles[widgetName];
+           cnames=replaceClasses(cnames,prefix,classNamesIgnored);
+           cssFrameworkCfgPrefixed.widgetstyles[widgetName]=cnames;
+        }
+        let widgetClassMap=cssFrameworkCfgPrefixed.widgetstyles[widgetName];
+        Object.keys(widgetClassMap).forEach(classListName=>{
+            let classListAsArr:string[]|string=widgetClassMap[classListName];
+            classListAsArr=replaceClasses(classListAsArr,prefix,classNamesIgnored);
+            widgetClassMap[classListName]=classListAsArr;
+        })
+        
+    })
+    return cssFrameworkCfgPrefixed;
+
+}
+

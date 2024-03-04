@@ -19,11 +19,12 @@ const minimist = require('minimist');
 // Read command line arguments
 const args = minimist(process.argv.slice(2), {
     boolean: ['all'],
-    string: ['stylePath', 'outputPath', 'outputFormat'],
+    string: ['stylePath', 'outputPath', 'outputFormat', 'classPrefix'],
     alias: {
         stylePath: 's',
         outputPath: 'o',
         outputFormat: 'f',
+        classPrefix: 'p'
 
     },
     default: {
@@ -49,8 +50,9 @@ var htmlDoc = `
 </html>
 `
 let stylePath = args.stylePath;
+let cwd = process.cwd()
 var classes;
-fs.readFile(path.join(__dirname, stylePath), { encoding: 'utf-8' }).then(readRes => {
+fs.readFile(path.join(cwd, stylePath), { encoding: 'utf-8' }).then(readRes => {
     let mainCss = readRes;
 
     var dom = new JSDOM(htmlDoc, {
@@ -63,7 +65,7 @@ fs.readFile(path.join(__dirname, stylePath), { encoding: 'utf-8' }).then(readRes
     style.innerHTML = mainCss;
     head.appendChild(style);
 
-    classes = getClassNames(doc);
+    classes = getClassNames(doc, args.classPrefix);
     console.log(Object.keys(classes).length + " class names to be written");
     let cssTxt = args.outputFormat == "json" ? JSON.stringify(classes) : classesMap2Css(classes);
     return fs.writeFile(args.outputPath, cssTxt);
@@ -91,7 +93,7 @@ function classesMap2Css(classMap) {
     return cssTxt;
 }
 
-function getClassNames(doc) {
+function getClassNames(doc, prefix) {
     var sheet, sheets = doc.styleSheets;
     var rule, rules;
     var classes = {};
@@ -116,7 +118,12 @@ function getClassNames(doc) {
                 if (cname.substring(1).match(/^\d/)) {
                     cname = '\\' + cname
                 }
-                classes[cname] = {}
+                let fcname = cname;
+                if (prefix) {
+                    fcname = "." + prefix + "-" + cname.split(".")[1];
+                }
+
+                classes[fcname] = {}
             }
         }
     }
