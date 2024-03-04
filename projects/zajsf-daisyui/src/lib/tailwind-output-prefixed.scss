@@ -1327,8 +1327,8 @@ html {
     color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
   }
 
-  .dui-menu li > *:not(ul):not(.dui-menu-title):not(details):active,
-.dui-menu li > *:not(ul):not(.dui-menu-title):not(details).dui-active,
+  .dui-menu li > *:not(ul, .dui-menu-title, details, .dui-btn):active,
+.dui-menu li > *:not(ul, .dui-menu-title, details, .dui-btn).dui-active,
 .dui-menu li > details > summary:active {
     --tw-bg-opacity: 1;
     background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
@@ -2276,14 +2276,14 @@ html {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
-  :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > *:not(ul):not(details):not(.dui-menu-title)):not(.dui-active):hover, :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > details > summary:not(.dui-menu-title)):not(.dui-active):hover {
+  :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > *:not(ul, details, .dui-menu-title)):not(.dui-active, .dui-btn):hover, :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > details > summary:not(.dui-menu-title)):not(.dui-active, .dui-btn):hover {
     cursor: pointer;
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
   @supports (color: oklch(0 0 0)) {
-    :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > *:not(ul):not(details):not(.dui-menu-title)):not(.dui-active):hover, :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > details > summary:not(.dui-menu-title)):not(.dui-active):hover {
+    :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > *:not(ul, details, .dui-menu-title)):not(.dui-active, .dui-btn):hover, :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > details > summary:not(.dui-menu-title)):not(.dui-active, .dui-btn):hover {
       background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
     }
   }
@@ -2636,8 +2636,7 @@ html {
   padding-inline-start: 0.5rem;
 }
 
-.dui-menu :where(li:not(.dui-menu-title) > *:not(ul):not(details):not(.dui-menu-title)),
-  .dui-menu :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
+.dui-menu :where(li:not(.dui-menu-title) > *:not(ul, details, .dui-menu-title, .dui-btn)), .dui-menu :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
   display: grid;
   grid-auto-flow: column;
   align-content: flex-start;
@@ -4685,6 +4684,12 @@ details.dui-collapse summary::-webkit-details-marker {
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
 }
 
+.dui-input input {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-p,oklch(var(--p)/var(--tw-bg-opacity)));
+  background-color: transparent;
+}
+
 .dui-input input:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -5104,7 +5109,7 @@ details.dui-collapse summary::-webkit-details-marker {
   content: "";
 }
 
-.dui-menu :where(li:not(.dui-menu-title) > *:not(ul):not(details):not(.dui-menu-title)),
+.dui-menu :where(li:not(.dui-menu-title) > *:not(ul, details, .dui-menu-title, .dui-btn)),
 .dui-menu :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
   border-radius: var(--rounded-btn, 0.5rem);
   padding-left: 1rem;
@@ -5121,12 +5126,7 @@ details.dui-collapse summary::-webkit-details-marker {
   text-wrap: balance;
 }
 
-:where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > *:not(ul):not(details):not(.dui-menu-title)):not(summary):not(.dui-active).dui-focus,
-  :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > *:not(ul):not(details):not(.dui-menu-title)):not(summary):not(.dui-active):focus,
-  :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > *:not(ul):not(details):not(.dui-menu-title)):is(summary):not(.dui-active):focus-visible,
-  :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > details > summary:not(.dui-menu-title)):not(summary):not(.dui-active).dui-focus,
-  :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > details > summary:not(.dui-menu-title)):not(summary):not(.dui-active):focus,
-  :where(.dui-menu li:not(.dui-menu-title):not(.dui-disabled) > details > summary:not(.dui-menu-title)):is(summary):not(.dui-active):focus-visible {
+:where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > *:not(ul, details, .dui-menu-title)):not(summary, .dui-active, .dui-btn).dui-focus, :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > *:not(ul, details, .dui-menu-title)):not(summary, .dui-active, .dui-btn):focus, :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > *:not(ul, details, .dui-menu-title)):is(summary):not(.dui-active, .dui-btn):focus-visible, :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > details > summary:not(.dui-menu-title)):not(summary, .dui-active, .dui-btn).dui-focus, :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > details > summary:not(.dui-menu-title)):not(summary, .dui-active, .dui-btn):focus, :where(.dui-menu li:not(.dui-menu-title, .dui-disabled) > details > summary:not(.dui-menu-title)):is(summary):not(.dui-active, .dui-btn):focus-visible {
   cursor: pointer;
   background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
   --tw-text-opacity: 1;
@@ -5135,8 +5135,8 @@ details.dui-collapse summary::-webkit-details-marker {
   outline-offset: 2px;
 }
 
-.dui-menu li > *:not(ul):not(.dui-menu-title):not(details):active,
-.dui-menu li > *:not(ul):not(.dui-menu-title):not(details).dui-active,
+.dui-menu li > *:not(ul, .dui-menu-title, details, .dui-btn):active,
+.dui-menu li > *:not(ul, .dui-menu-title, details, .dui-btn).dui-active,
 .dui-menu li > details > summary:active {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
@@ -8208,8 +8208,7 @@ html:has(.dui-drawer-open.dui-drawer-open) {
   padding-inline-end: 0px;
 }
 
-.dui-menu-xs :where(li:not(.dui-menu-title) > *:not(ul):not(details):not(.dui-menu-title)),
-  .dui-menu-xs :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
+.dui-menu-xs :where(li:not(.dui-menu-title) > *:not(ul, details, .dui-menu-title)), .dui-menu-xs :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
   border-radius: 0.25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -8226,8 +8225,7 @@ html:has(.dui-drawer-open.dui-drawer-open) {
   padding-bottom: 0.25rem;
 }
 
-.dui-menu-sm :where(li:not(.dui-menu-title) > *:not(ul):not(details):not(.dui-menu-title)),
-  .dui-menu-sm :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
+.dui-menu-sm :where(li:not(.dui-menu-title) > *:not(ul, details, .dui-menu-title)), .dui-menu-sm :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
   border-radius: var(--rounded-btn, 0.5rem);
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -8244,8 +8242,7 @@ html:has(.dui-drawer-open.dui-drawer-open) {
   padding-bottom: 0.5rem;
 }
 
-.dui-menu-md :where(li:not(.dui-menu-title) > *:not(ul):not(details):not(.dui-menu-title)),
-  .dui-menu-md :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
+.dui-menu-md :where(li:not(.dui-menu-title) > *:not(ul, details, .dui-menu-title)), .dui-menu-md :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
   border-radius: var(--rounded-btn, 0.5rem);
   padding-left: 1rem;
   padding-right: 1rem;
@@ -8262,8 +8259,7 @@ html:has(.dui-drawer-open.dui-drawer-open) {
   padding-bottom: 0.5rem;
 }
 
-.dui-menu-lg :where(li:not(.dui-menu-title) > *:not(ul):not(details):not(.dui-menu-title)),
-  .dui-menu-lg :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
+.dui-menu-lg :where(li:not(.dui-menu-title) > *:not(ul, details, .dui-menu-title)), .dui-menu-lg :where(li:not(.dui-menu-title) > details > summary:not(.dui-menu-title)) {
   border-radius: var(--rounded-btn, 0.5rem);
   padding-left: 1.5rem;
   padding-right: 1.5rem;

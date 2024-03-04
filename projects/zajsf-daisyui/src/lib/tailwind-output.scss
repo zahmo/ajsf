@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -32,9 +32,11 @@
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
 6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
 */
 
-html {
+html,
+:host {
   line-height: 1.5;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -44,12 +46,14 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
   font-variation-settings: normal;
   /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
 }
 
 /*
@@ -121,8 +125,10 @@ strong {
 }
 
 /*
-1. Use the user's configured `mono` font family by default.
-2. Correct the odd `em` font sizing in all browsers.
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
 */
 
 code,
@@ -131,8 +137,12 @@ samp,
 pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   /* 1 */
-  font-size: 1em;
+  font-feature-settings: normal;
   /* 2 */
+  font-variation-settings: normal;
+  /* 3 */
+  font-size: 1em;
+  /* 4 */
 }
 
 /*
@@ -1126,40 +1136,6 @@ html {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 .alert {
   display: grid;
   width: 100%;
@@ -1351,21 +1327,13 @@ html {
     color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
   }
 
-  .menu li > *:not(ul):not(.menu-title):not(details):active,
-.menu li > *:not(ul):not(.menu-title):not(details).active,
+  .menu li > *:not(ul, .menu-title, details, .btn):active,
+.menu li > *:not(ul, .menu-title, details, .btn).active,
 .menu li > details > summary:active {
     --tw-bg-opacity: 1;
     background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
     --tw-text-opacity: 1;
     color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
-  }
-
-  
-.menu li > *:not(ul):not(.menu-title):not(details).\!active {
-    --tw-bg-opacity: 1 !important;
-    background-color: hsl(var(--n) / var(--tw-bg-opacity)) !important;
-    --tw-text-opacity: 1 !important;
-    color: hsl(var(--nc) / var(--tw-text-opacity)) !important;
   }
 
   .radio-primary:hover {
@@ -2308,26 +2276,16 @@ html {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
-  :where(.menu li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):not(.active):hover, :where(.menu li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):not(.active):hover {
+  :where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
     cursor: pointer;
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
-<<<<<<< HEAD
-  :where(.menu li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):not(.\!active):hover, :where(.menu li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):not(.\!active):hover {
-    cursor: pointer !important;
-    background-color: hsl(var(--bc) / 0.1) !important;
-    --tw-text-opacity: 1 !important;
-    color: hsl(var(--bc) / var(--tw-text-opacity)) !important;
-    outline: 2px solid transparent !important;
-    outline-offset: 2px !important;
-=======
   @supports (color: oklch(0 0 0)) {
-    :where(.menu li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):not(.active):hover, :where(.menu li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):not(.active):hover {
+    :where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(.active, .btn):hover, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(.active, .btn):hover {
       background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
     }
->>>>>>> 13768cd... build:updated daisyui config for v4
   }
 
   .tab[disabled],
@@ -2497,22 +2455,6 @@ html {
   white-space: nowrap;
 }
 
-.\!input {
-  flex-shrink: 1 !important;
-  height: 3rem !important;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-  font-size: 1rem !important;
-  line-height: 2 !important;
-  line-height: 1.5rem !important;
-  border-width: 1px !important;
-  border-color: hsl(var(--bc) / var(--tw-border-opacity)) !important;
-  --tw-border-opacity: 0 !important;
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
-  border-radius: var(--rounded-btn, 0.5rem) !important;
-}
-
 .input {
   flex-shrink: 1;
   -webkit-appearance: none;
@@ -2525,65 +2467,8 @@ html {
   line-height: 2;
   line-height: 1.5rem;
   border-radius: var(--rounded-btn, 0.5rem);
-<<<<<<< HEAD
-}
-
-.input-group {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-}
-
-.input-group > .input {
-  isolation: isolate;
-}
-
-.input-group > .\!input {
-  isolation: isolate !important;
-}
-
-.input-group > *,
-  .input-group > .input,
-  .input-group > .textarea,
-  .input-group > .select {
-  border-radius: 0px;
-}
-
-
-  .input-group > .\!input {
-  border-radius: 0px !important;
-}
-
-.input-group-md {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  line-height: 2;
-}
-
-.input-group-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  line-height: 2;
-}
-
-.input-group-sm {
-  font-size: 0.875rem;
-  line-height: 2rem;
-}
-
-.input-group-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-  line-height: 1.625;
-}
-
-.input-group :where(span) {
-  display: flex;
-  align-items: center;
-=======
   border-width: 1px;
   border-color: transparent;
->>>>>>> 13768cd... build:updated daisyui config for v4
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
 }
@@ -2751,8 +2636,7 @@ html {
   padding-inline-start: 0.5rem;
 }
 
-.menu :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
-  .menu :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+.menu :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)), .menu :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
   display: grid;
   grid-auto-flow: column;
   align-content: flex-start;
@@ -3668,12 +3552,6 @@ input.tab:checked + .tab-content,
   border-top-width: 2px;
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
-}
-
-.btm-nav > *:where(.\!active) {
-  border-top-width: 2px !important;
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
 }
 
 .btm-nav > *.disabled,
@@ -4806,13 +4684,15 @@ details.collapse summary::-webkit-details-marker {
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
 }
 
+.input input {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-p,oklch(var(--p)/var(--tw-bg-opacity)));
+  background-color: transparent;
+}
+
 .input input:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.\!input[list]::-webkit-calendar-picker-indicator {
-  line-height: 1em !important;
 }
 
 .input[list]::-webkit-calendar-picker-indicator {
@@ -4823,21 +4703,10 @@ details.collapse summary::-webkit-details-marker {
   border-color: var(--fallback-bc,oklch(var(--bc)/0.2));
 }
 
-<<<<<<< HEAD
-.\!input:focus {
-  outline-style: solid !important;
-  outline-width: 2px !important;
-  outline-offset: 2px !important;
-  outline-color: hsl(var(--bc) / 0.2) !important;
-}
-
-.input:focus {
-=======
 .input:focus,
   .input:focus-within {
   box-shadow: none;
   border-color: var(--fallback-bc,oklch(var(--bc)/0.2));
->>>>>>> 13768cd... build:updated daisyui config for v4
   outline-style: solid;
   outline-width: 2px;
   outline-offset: 2px;
@@ -4951,17 +4820,6 @@ details.collapse summary::-webkit-details-marker {
   color: var(--fallback-bc,oklch(var(--bc)/0.4));
 }
 
-
-  .\!input:disabled,
-  .\!input[disabled] {
-  cursor: not-allowed !important;
-  --tw-border-opacity: 1 !important;
-  border-color: hsl(var(--b2) / var(--tw-border-opacity)) !important;
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b2) / var(--tw-bg-opacity)) !important;
-  --tw-text-opacity: 0.2 !important;
-}
-
 .input-disabled::-moz-placeholder, .input:disabled::-moz-placeholder, .input[disabled]::-moz-placeholder {
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-placeholder-opacity)));
   --tw-placeholder-opacity: 0.2;
@@ -4974,21 +4832,8 @@ details.collapse summary::-webkit-details-marker {
   --tw-placeholder-opacity: 0.2;
 }
 
-<<<<<<< HEAD
-.\!input:disabled::-moz-placeholder, .\!input[disabled]::-moz-placeholder {
-  color: hsl(var(--bc) / var(--tw-placeholder-opacity)) !important;
-  --tw-placeholder-opacity: 0.2 !important;
-}
-
-
-  .\!input:disabled::placeholder,
-  .\!input[disabled]::placeholder {
-  color: hsl(var(--bc) / var(--tw-placeholder-opacity)) !important;
-  --tw-placeholder-opacity: 0.2 !important;
-=======
 .input::-webkit-date-and-time-value {
   text-align: inherit;
->>>>>>> 13768cd... build:updated daisyui config for v4
 }
 
 .join > :where(*:not(:first-child)) {
@@ -5264,7 +5109,7 @@ details.collapse summary::-webkit-details-marker {
   content: "";
 }
 
-.menu :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
+.menu :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)),
 .menu :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
   border-radius: var(--rounded-btn, 0.5rem);
   padding-left: 1rem;
@@ -5281,12 +5126,7 @@ details.collapse summary::-webkit-details-marker {
   text-wrap: balance;
 }
 
-:where(.menu li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):not(summary):not(.active).focus,
-  :where(.menu li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):not(summary):not(.active):focus,
-  :where(.menu li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):is(summary):not(.active):focus-visible,
-  :where(.menu li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):not(summary):not(.active).focus,
-  :where(.menu li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):not(summary):not(.active):focus,
-  :where(.menu li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):is(summary):not(.active):focus-visible {
+:where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn).focus, :where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn):focus, :where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):is(summary):not(.active, .btn):focus-visible, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn).focus, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn):focus, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):is(summary):not(.active, .btn):focus-visible {
   cursor: pointer;
   background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
   --tw-text-opacity: 1;
@@ -5295,21 +5135,13 @@ details.collapse summary::-webkit-details-marker {
   outline-offset: 2px;
 }
 
-.menu li > *:not(ul):not(.menu-title):not(details):active,
-.menu li > *:not(ul):not(.menu-title):not(details).active,
+.menu li > *:not(ul, .menu-title, details, .btn):active,
+.menu li > *:not(ul, .menu-title, details, .btn).active,
 .menu li > details > summary:active {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
   --tw-text-opacity: 1;
   color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
-}
-
-
-.menu li > *:not(ul):not(.menu-title):not(details).\!active {
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--n) / var(--tw-bg-opacity)) !important;
-  --tw-text-opacity: 1 !important;
-  color: hsl(var(--nc) / var(--tw-text-opacity)) !important;
 }
 
 .menu :where(li > details > summary)::-webkit-details-marker {
@@ -5485,21 +5317,6 @@ details.collapse summary::-webkit-details-marker {
   direction: ltr;
 }
 
-.mockup-browser .mockup-browser-toolbar .\!input {
-  position: relative !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  display: block !important;
-  height: 1.75rem !important;
-  width: 24rem !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b2) / var(--tw-bg-opacity)) !important;
-  padding-left: 2rem !important;
-}
-
 .mockup-browser .mockup-browser-toolbar .input:before {
   content: "";
   position: absolute;
@@ -5515,21 +5332,6 @@ details.collapse summary::-webkit-details-marker {
   opacity: 0.6;
 }
 
-.mockup-browser .mockup-browser-toolbar .\!input:before {
-  content: "" !important;
-  position: absolute !important;
-  top: 50% !important;
-  left: 0.5rem !important;
-  aspect-ratio: 1 / 1 !important;
-  height: 0.75rem !important;
-  --tw-translate-y: -50% !important;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
-  border-radius: 9999px !important;
-  border-width: 2px !important;
-  border-color: currentColor !important;
-  opacity: 0.6 !important;
-}
-
 .mockup-browser .mockup-browser-toolbar .input:after {
   content: "";
   position: absolute;
@@ -5543,21 +5345,6 @@ details.collapse summary::-webkit-details-marker {
   border-width: 1px;
   border-color: currentColor;
   opacity: 0.6;
-}
-
-.mockup-browser .mockup-browser-toolbar .\!input:after {
-  content: "" !important;
-  position: absolute !important;
-  top: 50% !important;
-  left: 1.25rem !important;
-  height: 0.5rem !important;
-  --tw-translate-y: 25% !important;
-  --tw-rotate: -45deg !important;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
-  border-radius: 9999px !important;
-  border-width: 1px !important;
-  border-color: currentColor !important;
-  opacity: 0.6 !important;
 }
 
 .modal:not(dialog:not(.modal-open)),
@@ -6589,23 +6376,11 @@ details.collapse summary::-webkit-details-marker {
   background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
 }
 
-.table tr.\!active,
-  .table tr.\!active:nth-child(even) {
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b2) / var(--tw-bg-opacity)) !important;
-}
-
 .table-zebra tr.active,
     .table-zebra tr.active:nth-child(even),
     .table-zebra-zebra tbody tr:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-bg-opacity)));
-}
-
-.table-zebra tr.\!active,
-    .table-zebra tr.\!active:nth-child(even) {
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b3) / var(--tw-bg-opacity)) !important;
 }
 
 .table :where(thead, tbody) :where(tr:not(:last-child)),
@@ -7207,10 +6982,6 @@ details.collapse summary::-webkit-details-marker {
   border-top-width: 1px;
 }
 
-.btm-nav-xs > *:where(.\!active) {
-  border-top-width: 1px !important;
-}
-
 .btm-nav-xs .btm-nav-label {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -7222,10 +6993,6 @@ details.collapse summary::-webkit-details-marker {
 
 .btm-nav-sm > *:where(.active) {
   border-top-width: 2px;
-}
-
-.btm-nav-sm > *:where(.\!active) {
-  border-top-width: 2px !important;
 }
 
 .btm-nav-sm .btm-nav-label {
@@ -7241,10 +7008,6 @@ details.collapse summary::-webkit-details-marker {
   border-top-width: 2px;
 }
 
-.btm-nav-md > *:where(.\!active) {
-  border-top-width: 2px !important;
-}
-
 .btm-nav-md .btm-nav-label {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -7256,10 +7019,6 @@ details.collapse summary::-webkit-details-marker {
 
 .btm-nav-lg > *:where(.active) {
   border-top-width: 4px;
-}
-
-.btm-nav-lg > *:where(.\!active) {
-  border-top-width: 4px !important;
 }
 
 .btm-nav-lg .btm-nav-label {
@@ -8449,8 +8208,7 @@ html:has(.drawer-open.drawer-open) {
   padding-inline-end: 0px;
 }
 
-.menu-xs :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
-  .menu-xs :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+.menu-xs :where(li:not(.menu-title) > *:not(ul, details, .menu-title)), .menu-xs :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
   border-radius: 0.25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -8467,8 +8225,7 @@ html:has(.drawer-open.drawer-open) {
   padding-bottom: 0.25rem;
 }
 
-.menu-sm :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
-  .menu-sm :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+.menu-sm :where(li:not(.menu-title) > *:not(ul, details, .menu-title)), .menu-sm :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
   border-radius: var(--rounded-btn, 0.5rem);
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -8485,8 +8242,7 @@ html:has(.drawer-open.drawer-open) {
   padding-bottom: 0.5rem;
 }
 
-.menu-md :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
-  .menu-md :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+.menu-md :where(li:not(.menu-title) > *:not(ul, details, .menu-title)), .menu-md :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
   border-radius: var(--rounded-btn, 0.5rem);
   padding-left: 1rem;
   padding-right: 1rem;
@@ -8503,8 +8259,7 @@ html:has(.drawer-open.drawer-open) {
   padding-bottom: 0.5rem;
 }
 
-.menu-lg :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
-  .menu-lg :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+.menu-lg :where(li:not(.menu-title) > *:not(ul, details, .menu-title)), .menu-lg :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
   border-radius: var(--rounded-btn, 0.5rem);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -8906,56 +8661,8 @@ html:has(.drawer-open.drawer-open) {
   border-width: 0;
 }
 
-.pointer-events-none {
-  pointer-events: none;
-}
-
-.\!visible {
-  visibility: visible !important;
-}
-
-.visible {
-  visibility: visible;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
 .collapse {
   visibility: collapse;
-}
-
-.static {
-  position: static;
-}
-
-.fixed {
-  position: fixed;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.sticky {
-  position: sticky;
-}
-
-.inset-0 {
-  inset: 0px;
-}
-
-.top-0 {
-  top: 0px;
-}
-
-.isolate {
-  isolation: isolate;
 }
 
 .float-right {
@@ -8966,22 +8673,6 @@ html:has(.drawer-open.drawer-open) {
   margin-bottom: 0.25rem;
 }
 
-.block {
-  display: block;
-}
-
-.inline-block {
-  display: inline-block;
-}
-
-.inline {
-  display: inline;
-}
-
-.flex {
-  display: flex;
-}
-
 .inline-flex {
   display: inline-flex;
 }
@@ -8990,33 +8681,6 @@ html:has(.drawer-open.drawer-open) {
   display: table;
 }
 
-<<<<<<< HEAD
-.grid {
-  display: grid;
-}
-
-.inline-grid {
-  display: inline-grid;
-}
-
-.contents {
-  display: contents;
-}
-
-.hidden {
-  display: none;
-}
-
-.h-full {
-  height: 100%;
-}
-
-.w-2 {
-  width: 0.5rem;
-}
-
-=======
->>>>>>> 29b6dbd... feat:support added for class name prefixing in case of conflicting daisyui class names and client apps
 .w-full {
   width: 100%;
 }
@@ -9027,27 +8691,6 @@ html:has(.drawer-open.drawer-open) {
 
 .max-w-xs {
   max-width: 20rem;
-}
-
-.flex-shrink {
-  flex-shrink: 1;
-}
-
-.flex-grow {
-  flex-grow: 1;
-}
-
-.border-collapse {
-  border-collapse: collapse;
-}
-
-.-translate-y-1\/2 {
-  --tw-translate-y: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 @keyframes bounce {
@@ -9099,22 +8742,6 @@ html:has(.drawer-open.drawer-open) {
 
 .animate-spin {
   animation: spin 1s linear infinite;
-}
-
-.resize {
-  resize: both;
-}
-
-.grid-flow-row {
-  grid-auto-flow: row;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.justify-center {
-  justify-content: center;
 }
 
 .divide-accent > :not([hidden]) ~ :not([hidden]) {
@@ -9411,22 +9038,6 @@ html:has(.drawer-open.drawer-open) {
   border-top-left-radius: var(--rounded-box, 1rem);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.rounded {
-  border-radius: 0.25rem;
-}
-
-.rounded-full {
-  border-radius: 9999px;
-=======
-=======
 .rounded-tl-btn {
   border-top-left-radius: var(--rounded-btn, 0.5rem);
 }
@@ -9435,10 +9046,8 @@ html:has(.drawer-open.drawer-open) {
   border-top-right-radius: var(--rounded-badge, 1.9rem);
 }
 
->>>>>>> 29b6dbd... feat:support added for class name prefixing in case of conflicting daisyui class names and client apps
 .rounded-tr-box {
   border-top-right-radius: var(--rounded-box, 1rem);
->>>>>>> 13768cd... build:updated daisyui config for v4
 }
 
 .rounded-tr-btn {
@@ -9447,14 +9056,6 @@ html:has(.drawer-open.drawer-open) {
 
 .border {
   border-width: 1px;
-}
-
-.border-l {
-  border-left-width: 1px;
-}
-
-.border-l-0 {
-  border-left-width: 0px;
 }
 
 .border-accent {
@@ -11048,18 +10649,6 @@ html:has(.drawer-open.drawer-open) {
   line-height: 2rem;
 }
 
-.uppercase {
-  text-transform: uppercase;
-}
-
-.lowercase {
-  text-transform: lowercase;
-}
-
-.italic {
-  font-style: italic;
-}
-
 .text-accent {
   --tw-text-opacity: 1;
   color: var(--fallback-a,oklch(var(--a)/var(--tw-text-opacity)));
@@ -11166,10 +10755,6 @@ html:has(.drawer-open.drawer-open) {
 .text-warning-content {
   --tw-text-opacity: 1;
   color: var(--fallback-wac,oklch(var(--wac)/var(--tw-text-opacity)));
-}
-
-.underline {
-  text-decoration-line: underline;
 }
 
 .placeholder-accent::-moz-placeholder {
@@ -11392,20 +10977,10 @@ html:has(.drawer-open.drawer-open) {
   opacity: 0.5;
 }
 
-.shadow {
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.outline {
-  outline-style: solid;
 }
 
 .ring {
@@ -11664,35 +11239,6 @@ html:has(.drawer-open.drawer-open) {
   --tw-ring-offset-color: var(--fallback-wac,oklch(var(--wac)/1));
 }
 
-.blur {
-  --tw-blur: blur(8px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.grayscale {
-  --tw-grayscale: grayscale(100%);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.invert {
-  --tw-invert: invert(100%);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.sepia {
-  --tw-sepia: sepia(100%);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.backdrop-filter {
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
-
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -11733,30 +11279,4 @@ html:has(.drawer-open.drawer-open) {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.ease-in-out {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ease-out {
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-}
-
-.\[k\:string\] {
-  k: string;
-}
-
-@media (hover:hover) {
-  .table .hover\:hover:hovertr:hover,
-  .table .hover\:hover:hovertr:nth-child(even):hover {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b2) / var(--tw-bg-opacity));
-  }
-
-  .table-zebra .hover\:hover:hovertr:hover,
-  .table-zebra .hover\:hover:hovertr:nth-child(even):hover {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b3) / var(--tw-bg-opacity));
-  }
 }
