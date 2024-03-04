@@ -1,6 +1,6 @@
 {
     "name": "demo",
-    "version": "17.0.0-alpha.0",
+    "version": "17.2.0-RC.1",
     "author": "https://github.com/zahmo/zajsf/graphs/contributors",
     "description": "Angular JSON Schema Form builder Demo",
     "engines": {
@@ -112,7 +112,7 @@
         "@types/node": "^20.11.17",
         "autoprefixer": "^10.4.14",
         "codecov": "^3.8.3",
-        "codelyzer": "^6.0.0",
+        "codelyzer": "^0.0.28",
         "daisyui": "^4.7.0",
         "jasmine-core": "^5.1.2",
         "jsdom": "^24.0.0",
@@ -123,7 +123,7 @@
         "karma-jasmine-html-reporter": "^2.1.0",
         "ng-packagr": "^17.1.2",
         "postcss": "^8.4.27",
-        "protractor": "~7.0.0",
+        "protractor": "^3.3.0",
         "tailwindcss": "^3.4.1",
         "ts-node": "^10.9.2",
         "tslib": "^2.3.1",
