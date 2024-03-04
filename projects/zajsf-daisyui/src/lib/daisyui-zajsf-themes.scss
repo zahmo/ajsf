@@ -54,3 +54,8 @@
 .border[data-theme="daisyui_leaf"] {
     border-radius: 1rem;
 }
+
+[data-theme="daisyui_leaf"] input[type=number] {
+    border-top-left-radius: 9999px;
+    border-bottom-right-radius: 5000px
+}
