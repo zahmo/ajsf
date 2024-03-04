@@ -12,14 +12,18 @@ export class DaisyUIFramework extends CssFramework {
 
 framework=DaisyUIFrameworkComponent;
   constructor(public cssFWService:CssframeworkService,@Inject(DUIOPTIONS) 
-  @Optional() private duiOptions:any={classPrefix:true}//use class prefix by default
+  //use class prefix by default-doesn't seem to work angular will inject null
+  //for TS to use default value, must be undefined
+  //-see https://github.com/angular/angular/issues/37306
+  @Optional() private duiOptions:any={classPrefix:true}
   ){
+    let duiOpts:any=duiOptions===null?{classPrefix:true}:duiOptions;
      let cssFrameworkCfg=cssFrameworkCfgDaisyUI;
-    if(duiOptions?.classPrefix){
+    if(duiOpts?.classPrefix ){//added null,see note above
       cssFrameworkCfg=getCssFrameworkCfgPrefixed(cssFrameworkCfgDaisyUI)
     }
     super(cssFrameworkCfg,cssFWService);
-    if(duiOptions?.classPrefix){
+    if(duiOpts?.classPrefix){
       this.framework=DaisyUIFrameworkComponentPrefixed;
     }
     this.widgets= {
