@@ -21,5 +21,6 @@ module.exports = {
             }
         ],
         prefix: "dui-"
-    }
+    },
+    prefix: "tw-"
 }
