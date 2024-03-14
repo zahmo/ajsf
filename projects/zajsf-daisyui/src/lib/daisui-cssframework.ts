@@ -141,24 +141,63 @@ export const cssFrameworkCfgDaisyUI:css_fw.frameworkcfg={
         }
     }
 }
-
-export function getCssFrameworkCfgPrefixed(cssFrameworkCfg:css_fw.frameworkcfg,prefix="dui"):css_fw.frameworkcfg{
+//need to classify which classnames are controlled by DaisyU and which
+//are controlled by tailwind
+//-ones controlled by tailwind will have prefix tw-{{class name}}
+//-ones controlled by daisyui will have prefix tw-dui-{{class name}}
+export function getCssFrameworkCfgPrefixed(cssFrameworkCfg:css_fw.frameworkcfg,prefixDUI="tw-dui",prefixTW="tw"):css_fw.frameworkcfg{
     
     let classNamesIgnored=[
-        'w-full','mb-1','float-right','shadow-md','p-1',
-        'control-label','sr-only','text-2xl', 'opacity-50',
-        'help-block','input-group-addon','w-px','checkbox-inline',
-        'max-w-xs','rounded-full','form-control','inline-flex'
+        
+        'control-label',
+        'help-block','input-group-addon','checkbox-inline'
+        
     ];
-    let replaceClasses=(classList:string[]|string,pref:string,ignoredClasses:string[])=>{
+
+    //TODO use regexs
+    //-regex won't work the actual prefix classname needs to be 
+    //available as string literals as tailwind seems to scans for the
+    //actual names so for ex: 'tw-' + 'bg-primary' wont be picked up,
+    //has to be 'tw-bg-primary'
+
+    //NB this is not used in code, but need during the taiwind scanning 
+    //to output the class names
+    let classNamesTW=[
+        'w-full','mb-1','shadow-md','p-1',
+        'sr-only','text-2xl', 'opacity-50',
+        'float-right',
+        'w-px',
+        'max-w-xs','rounded-full','form-control','inline-flex',
+        'tw-w-full','tw-mb-1','tw-shadow-md','tw-p-1',
+        'tw-sr-only','tw-text-2xl', 'tw-opacity-50',
+        'tw-float-right',
+        'tw-w-px',
+        'tw-max-w-xs','tw-rounded-full','tw-form-control','tw-inline-flex'
+        
+    ];
+
+    let classNamesDUI=[
+        'btn', 'btn-sm', 'btn-accent','btn-info','btn-group',
+        'input', 'input-md' ,'input-bordered',
+        'checkbox','tab','tabs', 'tabs-boxed','tabs-md',"tab-active",
+        'radio','radio-inline',
+        'range', 'range-info',
+        'select', 'select-md', 'select-bordered',
+        'textarea','textarea-bordered'
+        
+    ];
+    let replaceClasses=(classList:string[]|string,prefDUI:string,prefTW:string,ignoredClasses:string[])=>{
         if(!Array.isArray(classList)){
             classList=classList.split(" ");
         }
         return classList.map(cname=>{
-            if(classNamesIgnored.indexOf(cname)>=0){
+            if(ignoredClasses.indexOf(cname)>=0){
                 return cname;
             }
-            return pref+"-"+cname;
+            if(classNamesDUI.indexOf(cname)>=0){
+                return prefDUI+"-"+cname;
+            }
+            return prefTW+"-"+cname;
         });
     }
     
@@ -178,13 +217,14 @@ export function getCssFrameworkCfgPrefixed(cssFrameworkCfg:css_fw.frameworkcfg,p
         }
         if(widgetNamesNoSubLevel.indexOf(widgetName)>=0){
            let cnames= cssFrameworkCfgPrefixed.widgetstyles[widgetName];
-           cnames=replaceClasses(cnames,prefix,classNamesIgnored);
+           cnames=replaceClasses(cnames,prefixDUI,prefixTW,classNamesIgnored);
            cssFrameworkCfgPrefixed.widgetstyles[widgetName]=cnames;
+           return;
         }
         let widgetClassMap=cssFrameworkCfgPrefixed.widgetstyles[widgetName];
         Object.keys(widgetClassMap).forEach(classListName=>{
             let classListAsArr:string[]|string=widgetClassMap[classListName];
-            classListAsArr=replaceClasses(classListAsArr,prefix,classNamesIgnored);
+            classListAsArr=replaceClasses(classListAsArr,prefixDUI,prefixTW,classNamesIgnored);
             widgetClassMap[classListName]=classListAsArr;
         })
         
