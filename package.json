@@ -1,6 +1,6 @@
 {
     "name": "demo",
-    "version": "16.2.0",
+    "version": "16.2.2",
     "author": "https://github.com/zahmo/zajsf/graphs/contributors",
     "description": "Angular JSON Schema Form builder Demo",
     "engines": {
@@ -67,7 +67,7 @@
         "build:demo-only": "npm run update:env && ng build demo --configuration production --base-href ./",
         "prebuild:material": "npx tailwindcss -c projects/zajsf-material/tailwind.config.js -i projects/zajsf-material/tailwind-input.css -o projects/zajsf-material/src/lib/tailwind-output.scss && cp projects/zajsf-material/src/lib/material-design-themes.scss projects/zajsf-material/assets/material-design-themes.scss",
         "build:daisyui:extract-css-names": "node projects/zajsf-daisyui/css_names_extractor.js --stylePath ./node_modules/daisyui/dist/full.css --outputPath projects/zajsf-daisyui/src/daisyui_class_names.css",
-        "build:daisyui:extract-css-names:prefixed": "node projects/zajsf-daisyui/css_names_extractor.js --stylePath ./node_modules/daisyui/dist/full.css --classPrefix dui --outputPath projects/zajsf-daisyui/src/daisyui_class_names_prefixed.css",
+        "build:daisyui:extract-css-names:prefixed": "node projects/zajsf-daisyui/css_names_extractor.js --stylePath ./node_modules/daisyui/dist/full.css --classPrefix tw-dui --outputPath projects/zajsf-daisyui/src/daisyui_class_names_prefixed.css",
         "build:daisyui": "ng build @zajsf/daisyui --configuration production",
         "postbuild:daisyui": "cp projects/zajsf-daisyui/README.md dist/@zajsf/daisyui/ &&  cp LICENSE dist/@zajsf/daisyui/",
         "output:daisyui:tailwind": "npx tailwindcss -c projects/zajsf-daisyui/tailwind.config.js -i projects/zajsf-daisyui/tailwind-input.css -o projects/zajsf-daisyui/src/lib/tailwind-output.scss",
