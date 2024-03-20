@@ -1,6 +1,6 @@
 {
     "name": "demo",
-    "version": "16.2.2",
+    "version": "16.2.3",
     "author": "https://github.com/zahmo/zajsf/graphs/contributors",
     "description": "Angular JSON Schema Form builder Demo",
     "engines": {
