@@ -80,7 +80,7 @@
                 "flex-direction": "row",
                 "items": [{
                         "key": "phone_numbers[].type",
-                        "flex": "1 1 50px",
+                        "flex": "1 1 90px",
                         "notitle": true,
                         "placeholder": "Type"
                     },
