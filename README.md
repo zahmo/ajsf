@@ -1,6 +1,6 @@
 
 
-# AJSF (Angular JSON Schema Form)
+# ZAJSF (Z Angular JSON Schema Form)
 
 
 This fork was created for anyone needing to use angular 15+ in their project.
