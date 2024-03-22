@@ -73,8 +73,8 @@ export class FlexLayoutSectionComponent {
                     this.options.fxLayoutWrap ? ' ' + this.options.fxLayoutWrap : '';
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.3", ngImport: i0, type: FlexLayoutSectionComponent, deps: [{ token: i1.JsonSchemaFormService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.3", type: FlexLayoutSectionComponent, selector: "flex-layout-section-widget", inputs: { layoutNode: "layoutNode", layoutIndex: "layoutIndex", dataIndex: "dataIndex" }, ngImport: i0, template: `
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.3", ngImport: i0, type: FlexLayoutSectionComponent, deps: [{ token: i1.JsonSchemaFormService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.2.3", type: FlexLayoutSectionComponent, selector: "flex-layout-section-widget", inputs: { layoutNode: "layoutNode", layoutIndex: "layoutIndex", dataIndex: "dataIndex" }, ngImport: i0, template: `
     <div *ngIf="containerType === 'div'"
       [class]="options?.htmlClass || ''"
       [class.expandable]="options?.expandable && !expanded"
@@ -205,7 +205,7 @@ export class FlexLayoutSectionComponent {
         [innerHTML]="options?.errorMessage"></mat-error>
     </mat-expansion-panel>`, isInline: true, styles: ["fieldset{border:0;margin:0;padding:0}.legend{font-weight:700}.expandable>.legend:before{content:\"\\25b6\";padding-right:.3em}.expanded>.legend:before{content:\"\\25bc\";padding-right:.2em}\n"], dependencies: [{ kind: "directive", type: i2.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i3.MatCard, selector: "mat-card", inputs: ["appearance"], exportAs: ["matCard"] }, { kind: "directive", type: i3.MatCardContent, selector: "mat-card-content" }, { kind: "directive", type: i3.MatCardFooter, selector: "mat-card-footer" }, { kind: "component", type: i3.MatCardHeader, selector: "mat-card-header" }, { kind: "component", type: i4.MatExpansionPanel, selector: "mat-expansion-panel", inputs: ["hideToggle", "togglePosition"], outputs: ["afterExpand", "afterCollapse"], exportAs: ["matExpansionPanel"] }, { kind: "component", type: i4.MatExpansionPanelHeader, selector: "mat-expansion-panel-header", inputs: ["expandedHeight", "collapsedHeight", "tabIndex"] }, { kind: "directive", type: i4.MatExpansionPanelTitle, selector: "mat-panel-title" }, { kind: "directive", type: i5.MatError, selector: "mat-error, [matError]", inputs: ["id"] }, { kind: "component", type: i6.FlexLayoutRootComponent, selector: "flex-layout-root-widget", inputs: ["dataIndex", "layoutIndex", "layout", "isFlexItem"] }] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.3", ngImport: i0, type: FlexLayoutSectionComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.3", ngImport: i0, type: FlexLayoutSectionComponent, decorators: [{
             type: Component,
             args: [{ selector: 'flex-layout-section-widget', template: `
     <div *ngIf="containerType === 'div'"
