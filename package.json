@@ -116,7 +116,7 @@
         "@types/node": "^20.11.17",
         "autoprefixer": "^10.4.14",
         "codecov": "^3.8.3",
-        "codelyzer": "^0.0.28",
+        "codelyzer": "^6.0.0",
         "daisyui": "^4.7.0",
         "jasmine-core": "^5.1.2",
         "jsdom": "^24.0.0",
