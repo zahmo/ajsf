@@ -6,13 +6,13 @@ import { Bootstrap4FrameworkComponent } from './bootstrap4-framework.component';
 import { Bootstrap4Framework } from './bootstrap4.framework';
 import * as i0 from "@angular/core";
 export class Bootstrap4FrameworkModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.3", ngImport: i0, type: Bootstrap4FrameworkModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.1.3", ngImport: i0, type: Bootstrap4FrameworkModule, declarations: [Bootstrap4FrameworkComponent], imports: [JsonSchemaFormModule,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.3", ngImport: i0, type: Bootstrap4FrameworkModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.2.3", ngImport: i0, type: Bootstrap4FrameworkModule, declarations: [Bootstrap4FrameworkComponent], imports: [JsonSchemaFormModule,
             CommonModule,
             WidgetLibraryModule,
             CssFrameworkModule], exports: [JsonSchemaFormModule,
             Bootstrap4FrameworkComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.1.3", ngImport: i0, type: Bootstrap4FrameworkModule, providers: [
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.2.3", ngImport: i0, type: Bootstrap4FrameworkModule, providers: [
             JsonSchemaFormService,
             FrameworkLibraryService,
             WidgetLibraryService,
@@ -22,7 +22,7 @@ export class Bootstrap4FrameworkModule {
             WidgetLibraryModule,
             CssFrameworkModule, JsonSchemaFormModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.3", ngImport: i0, type: Bootstrap4FrameworkModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.3", ngImport: i0, type: Bootstrap4FrameworkModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
