@@ -6,13 +6,13 @@ import { NoFrameworkModule } from './framework-library/no-framework.module';
 import { WidgetLibraryModule } from './widget-library/widget-library.module';
 import * as i0 from "@angular/core";
 export class JsonSchemaFormModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.3", ngImport: i0, type: JsonSchemaFormModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.1.3", ngImport: i0, type: JsonSchemaFormModule, declarations: [JsonSchemaFormComponent], imports: [CommonModule, FormsModule, ReactiveFormsModule,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.3", ngImport: i0, type: JsonSchemaFormModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.2.3", ngImport: i0, type: JsonSchemaFormModule, declarations: [JsonSchemaFormComponent], imports: [CommonModule, FormsModule, ReactiveFormsModule,
             WidgetLibraryModule, NoFrameworkModule], exports: [JsonSchemaFormComponent, WidgetLibraryModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.1.3", ngImport: i0, type: JsonSchemaFormModule, imports: [CommonModule, FormsModule, ReactiveFormsModule,
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.2.3", ngImport: i0, type: JsonSchemaFormModule, imports: [CommonModule, FormsModule, ReactiveFormsModule,
             WidgetLibraryModule, NoFrameworkModule, WidgetLibraryModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.3", ngImport: i0, type: JsonSchemaFormModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.3", ngImport: i0, type: JsonSchemaFormModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
