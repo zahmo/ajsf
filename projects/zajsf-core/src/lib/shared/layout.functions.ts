@@ -4,28 +4,28 @@ import _isPlainObject from 'lodash/isPlainObject';
 import uniqueId from 'lodash/uniqueId';
 import { TitleMapItem } from '../json-schema-form.service';
 import {
-    checkInlineType,
-    getFromSchema,
-    getInputType,
-    isInputRequired,
-    removeRecursiveReferences,
-    updateInputOptions
+  checkInlineType,
+  getFromSchema,
+  getInputType,
+  isInputRequired,
+  removeRecursiveReferences,
+  updateInputOptions
 } from './json-schema.functions';
 import { JsonPointer } from './jsonpointer.functions';
 import {
-    copy,
-    fixTitle,
-    forEach,
-    hasOwn
+  copy,
+  fixTitle,
+  forEach,
+  hasOwn
 } from './utility.functions';
 import {
-    inArray,
-    isArray,
-    isDefined,
-    isEmpty,
-    isNumber,
-    isObject,
-    isString
+  inArray,
+  isArray,
+  isDefined,
+  isEmpty,
+  isNumber,
+  isObject,
+  isString
 } from './validator.functions';
 
 
@@ -569,8 +569,10 @@ function fixNestedArrayLayout(options: any) {
       })
       return;
     }
-    //for now added condition to ignore recursive references
-    if (builtLayout.items && builtLayout.type == "array"
+  
+    let dataTypes=["array"];//check only array for now
+     //for now added condition to ignore recursive references
+    if (builtLayout.items && dataTypes.indexOf(builtLayout.dataType)>=0
       && builtLayout.dataPointer
       && !builtLayout.recursiveReference
     ) {

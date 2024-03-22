@@ -16,16 +16,16 @@ import { Bootstrap4FrameworkModule } from '@zajsf/bootstrap4';
 import { JsonSchemaFormModule } from '@zajsf/core';
 
 
-import { DaisyUIFrameworkModule } from '@zajsf/daisyui';
+import { DUIOPTIONS, DaisyUIFrameworkModule } from '@zajsf/daisyui';
 import { MaterialDesignFrameworkModule } from '@zajsf/material';
 
 import { Bootstrap5FrameworkModule } from '@zajsf/bootstrap5';
 import { CssFrameworkModule } from '@zajsf/cssframework';
+import { environment } from '../environments/environment';
 import { AceEditorDirective } from './ace-editor.directive';
 import { DemoRootComponent } from './demo-root.component';
 import { DemoComponent } from './demo.component';
 import { routes } from './demo.routes';
-
 
 
 
@@ -46,7 +46,7 @@ import { routes } from './demo.routes';
   ],
   providers:[{ provide: REMOVE_STYLES_ON_COMPONENT_DESTROY, useValue: true }
     //uncomment to disable daisyui class name prefixing
-    // ,{ provide: DUIOPTIONS, useValue: {classPrefix:true} }
+     ,{ provide: DUIOPTIONS, useValue: {classPrefix:environment.cssClassPrefix} }
   ],
   bootstrap: [DemoRootComponent]
 })
