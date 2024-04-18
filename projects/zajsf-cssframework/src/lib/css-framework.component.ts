@@ -83,15 +83,23 @@ export class CssFrameworkComponent implements OnInit, OnChanges,OnDestroy {
     return flattened
 }
 
-defaultStyling={
+defaultStyling:css_fw.widgetstyles={
+  array:{},
+  default:{fieldHtmlClass: "cssfw-form-control"},
   __themes__:[{name:'notheme',text:'None'}],
   __remove_item__:"cssfw-remove-item",
-  //__array_item_nonref__:"cssfw-array-item-nonref",
+    __array_item_nonref__:{
+      "htmlClass":   "cssfw-array-item-nonref"
+  },
+  __active__:{activeClass:"cssfw-active"},
+  __array__:{htmlClass:"cssfw-array"},
+  __control_label__:{labelHtmlClass:"cssfw-control-label"},
+  __form_group__:{htmlClass: "cssfw-form-group"},
   __field_addon_left__:"cssfw-addon-left",
   __field_addon_right__:"cssfw-addon-right",
   __help_block__:"cssfw-help-block",
   __required_asterisk__:"cssfw-required-astersisk",
-  __screen_reader__: "cssfw-screen-reader",
+  __screen_reader__: "cssfw-screen-reader"
 
 }
 
