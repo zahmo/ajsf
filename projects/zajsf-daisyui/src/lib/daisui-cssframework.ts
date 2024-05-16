@@ -167,12 +167,14 @@ export function getCssFrameworkCfgPrefixed(cssFrameworkCfg:css_fw.frameworkcfg,p
         'sr-only','text-2xl', 'opacity-50',
         'float-right',
         'w-px',
+        'border',
         'max-w-xs','rounded-full','form-control','inline-flex',
         'tw-w-full','tw-mb-1','tw-shadow-md','tw-p-1',
         'tw-sr-only','tw-text-2xl', 'tw-opacity-50',
         'tw-float-right',
         'tw-w-px',
-        'tw-max-w-xs','tw-rounded-full','tw-form-control','tw-inline-flex'
+        'tw-max-w-xs','tw-rounded-full','tw-form-control','tw-inline-flex',
+        'tw-border'
         
     ];
 
