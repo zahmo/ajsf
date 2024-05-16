@@ -9424,6 +9424,10 @@ html:has(.tw-dui-drawer-open.tw-dui-drawer-open) {
   border-top-right-radius: var(--rounded-btn, 0.5rem);
 }
 
+.tw-border {
+  border-width: 1px;
+}
+
 .tw-border-accent {
   --tw-border-opacity: 1;
   border-color: var(--fallback-a,oklch(var(--a)/var(--tw-border-opacity)));
