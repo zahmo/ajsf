@@ -2,6 +2,8 @@
 
 # ZAJSF (Z Angular JSON Schema Form)
 
+**N.B:** this fork has been migrated to its own space, please use [ng-formworks](https://github.com/zahmo/ng-formworks) instead
+
 
 This fork was created for anyone needing to use angular 15+ in their project.
 
