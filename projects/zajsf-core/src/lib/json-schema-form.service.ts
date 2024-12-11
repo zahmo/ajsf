@@ -63,10 +63,10 @@ export class JsonSchemaFormService implements OnDestroy {
     allErrors: true,
     validateFormats:false,
     strict:false
-  
+
   };
   ajv:any = new Ajv(this.ajvOptions); // AJV: Another JSON Schema Validator
-  
+
   validateFormData: any = null; // Compiled AJV function to validate active form's schema
 
   formValues: any = {}; // Internal form data (may not have correct types)
@@ -576,7 +576,7 @@ export class JsonSchemaFormService implements OnDestroy {
         this.formOptions.validateOnRender === true ||
         (this.formOptions.validateOnRender === 'auto' &&
           hasValue(ctx.controlValue));
-      this.fcStatusChangesSubs=ctx.formControl.statusChanges.subscribe(
+      this.fcStatusChangesSubs = ctx.formControl.statusChanges.subscribe(
         status =>
           (ctx.options.errorMessage =
             status === 'VALID'
@@ -586,16 +586,17 @@ export class JsonSchemaFormService implements OnDestroy {
                 ctx.options.validationMessages
               ))
       );
-      this.fcValueChangesSubs=ctx.formControl.valueChanges.subscribe(value => {
-         //commented out to revert back to previous commits
-         //as seems to be causing some issues
-         /*
-        if (!!value) {
-          ctx.controlValue = value;
-        }
-        */
+      this.fcValueChangesSubs = ctx.formControl.valueChanges.subscribe(value => {
+        //commented out to revert back to previous commits
+        //as seems to be causing some issues
+        /*
+       if (!!value) {
+         ctx.controlValue = value;
+       }
+       */
         //TODO-test,this is the original code
         if (!_isEqual(ctx.controlValue, value)) { ctx.controlValue = value }
+        this.handleUpdates(ctx, value)
       });
     } else {
       ctx.controlName = ctx.layoutNode.name;
@@ -678,7 +679,10 @@ export class JsonSchemaFormService implements OnDestroy {
       ctx.formControl.markAsDirty();
     }
     ctx.layoutNode.value = value;
+    this.handleUpdates(ctx, value)
+  }
 
+  handleUpdates(ctx: any, value: any): void {
     // Set values of any related controls in copyValueTo array
     if (isArray(ctx.options.copyValueTo)) {
       for (const item of ctx.options.copyValueTo) {
